@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+#PBS -l select=1:ncpus=24:mem=64GB
+#PBS -l walltime=8:00:00
+#PBS -j oe
+#PBS -P personal
+#PBS -q normal
+
+# load conda environment
+module load miniconda3/py38_4.8.3
+
+conda activate /home/users/ntu/suffiazi/apps/mambaforge/envs/tobias-footprinting
+
+# set up variables
+bam_list_dir=$BAM_LIST_LOC
+outfile=$OUT
+
+# find all list.txt files in the directory
+readarray -t lists < <(find "$bam_list_dir" -name "*.txt" -type f)
+echo "Bam file lists loaded: " "${lists[@]}"
+
+# load up tfbs list
+readarray -t tfbs_list < "$TFBS_CAND"
+echo "List of TF motifs of interest: " "${tfbs_list[@]}"
+
+# check if list.txt files exist
+if [ -n "${lists[*]}" ] && [ -n "${tfbs_list[*]}" ]; then
+    echo "Found list.txt files and candidate TF motifs of interest. Proceeding..."
+    for tfbs in "${tfbs_list[@]}"; do
+        echo "TF motif of interest: $tfbs"
+        tfbs_loc=$(find "/scratch/users/ntu/suffiazi/outputs/brca-subtype-basal-UP" -name "${tfbs}*.bed" -type f)
+        echo "tfbs bed file location: ${tfbs_loc}"
+        for bams in "${lists[@]}"; do
+            echo "Bam file list: $bams"
+            id_name=$(basename "${bams%.bam-list.txt}")
+            # generate mpileup files from bam files of BRCA datasets
+            samtools mpileup -f /scratch/users/ntu/suffiazi/inputs/references/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta -l "${tfbs_loc}" -b "${bams}" -o "${outfile}"/"${tfbs}"_"${id_name}".pup
+        done
+    done
+else
+    echo "No list.txt files found in $bam_list_dir"
+    exit 1
+fi

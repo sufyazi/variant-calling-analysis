@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+#PBS -l select=1:ncpus=24:mem=32GB
+#PBS -l walltime=2:00:00
+#PBS -j oe
+#PBS -P personal
+#PBS -q normal
+
+# load conda environment
+module load miniconda3/py38_4.8.3
+
+conda activate /home/users/ntu/suffiazi/apps/mambaforge/envs/tobias-footprinting
+
+# generate fai index for reference genome
+samtools faidx --gzi-idx /scratch/users/ntu/suffiazi/inputs/references/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta.fai /scratch/users/ntu/suffiazi/inputs/references/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta 
