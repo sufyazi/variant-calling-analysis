@@ -1,27 +1,22 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC1091
 
-#PBS -l select=1:ncpus=24:mem=64GB
-#PBS -l walltime=8:00:00
-#PBS -j oe
-#PBS -P personal
-#PBS -q normal
-
-# load conda environment
-module load miniconda3/py38_4.8.3
-
-conda activate /home/users/ntu/suffiazi/apps/mambaforge/envs/tobias-footprinting
+# check arguments
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 <bam_list_dir/> <tfbs_candidate.txt> <out_dir/>"
+    exit 1
+fi
 
 # set up variables
-bam_list_dir=$BAM_LIST_LOC
-outfile=$OUT
+bam_list_dir=$1
+outfile=$3
 
 # find all list.txt files in the directory
 readarray -t lists < <(find "$bam_list_dir" -name "*.txt" -type f)
 echo "Bam file lists loaded: " "${lists[@]}"
 
 # load up tfbs list
-readarray -t tfbs_list < "$TFBS_CAND"
+readarray -t tfbs_list < "$2"
 echo "List of TF motifs of interest: " "${tfbs_list[@]}"
 
 # check if list.txt files exist
@@ -34,8 +29,8 @@ if [ -n "${lists[*]}" ] && [ -n "${tfbs_list[*]}" ]; then
         for bams in "${lists[@]}"; do
             echo "Bam file list: $bams"
             id_name=$(basename "${bams%.bam-list.txt}")
-            # generate mpileup files from bam files of BRCA datasets
-            samtools mpileup -f /scratch/users/ntu/suffiazi/inputs/references/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta -l "${tfbs_loc}" -b "${bams}" -o "${outfile}"/"${tfbs}"_"${id_name}".pup
+            # submit job
+            qsub -v TF_FILE="${tfbs_loc}",BAM_INP="${bams}",OUT_DIR="${outfile}",TF_NAME="${tfbs}",ID="${id_name}" /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/bcftools_mpileup_submit.pbs
         done
     done
 else

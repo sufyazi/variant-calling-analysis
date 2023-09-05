@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+#PBS -l select=1:ncpus=12:mem=120GB
+#PBS -l walltime=3:00:00
+#PBS -j oe
+#PBS -P personal
+#PBS -q normal
+
+# load conda environment
+module load miniconda3/py38_4.8.3
+
+conda activate /home/users/ntu/suffiazi/apps/mambaforge/envs/tobias-footprinting
+
+# set up variables
+tfbs_loc=$TF_FILE
+bams=$BAM_INP
+outfile=$OUT_DIR
+tfbs=$TF_NAME
+id_name=$ID
+
+# generate mpileup files from bam files of BRCA datasets
+samtools mpileup -f /scratch/users/ntu/suffiazi/inputs/references/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta -l "${tfbs_loc}" -b "${bams}" -o "${outfile}"/"${tfbs}"_"${id_name}".pup
