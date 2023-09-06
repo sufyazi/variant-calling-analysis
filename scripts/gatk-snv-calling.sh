@@ -5,4 +5,4 @@ singExec="singularity exec --bind /home/users/ntu/suffiazi/scratch:/mnt /home/us
 
 $singExec gatk --help
 
-$singExec gatk ValidateSamFile  -I /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/test_files/NA12878.chr17_69k_70k.dictFix.bam -MODE SUMMARY
+$singExec gatk CreateSequenceDictionary --REFERENCE /mnt/inputs/references/gatk4/hg38_GENCODE_primary_assembly_genome.fa
