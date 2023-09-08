@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+#PBS -l select=1:ncpus=12:mem=120GB
+#PBS -l walltime=3:00:00
+#PBS -j oe
+#PBS -P personal
+#PBS -q normal
+
+# load conda environment
+module load singularity
+singExec="singularity exec --bind /home/users/ntu/suffiazi/scratch:/mnt /home/users/ntu/suffiazi/apps/sifs/gatk.sif"
+
+
+# set up variables
+bam=$BAMFILE
+file_prefix=$PREFIX
+
+# run gatk revert sam
+$singExec gatk RevertSam \
+        I="${bam}" \
+        O="${file_prefix}"_revertsam.bam \
+        SANITIZE=true \
+        MAX_DISCARD_FRACTION=0.005 \
+        ATTRIBUTE_TO_CLEAR=XT \
+        ATTRIBUTE_TO_CLEAR=XN \
+        ATTRIBUTE_TO_CLEAR=AS \
+        ATTRIBUTE_TO_CLEAR=OC \
+        ATTRIBUTE_TO_CLEAR=OP \
+        SORT_ORDER=queryname \
+        RESTORE_ORIGINAL_QUALITIES=true \
+        REMOVE_DUPLICATE_INFORMATION=true \
+        REMOVE_ALIGNMENT_INFORMATION=true \
+        TMP_DIR=/mnt/outputs/tmp
