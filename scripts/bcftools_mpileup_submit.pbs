@@ -20,4 +20,4 @@ tfbs=$TF_NAME
 id_name=$ID
 
 # call and filter variants from bam files of BRCA datasets
-bcftools mpileup -Ou -f /scratch/users/ntu/suffiazi/inputs/references/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta -T "${tfbs_loc}" -b "${bams}" | bcftools call -Ou -mv | bcftools filter -i'QUAL>20 && DP>10' > "${outfile}"/"${tfbs}"_"${id_name}".var.flt.vcf
+bcftools mpileup -Ou -f /scratch/users/ntu/suffiazi/inputs/references/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta -T "${tfbs_loc}" -b "${bams}" | bcftools call -Ou -mv | bcftools filter -i'QUAL>10' > "${outfile}"/"${tfbs}"_"${id_name}"_qualgt10.var.flt.vcf
