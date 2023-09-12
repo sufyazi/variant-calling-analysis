@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+#PBS -l select=1:ncpus=24:mem=120GB
+#PBS -l walltime=12:00:00
+#PBS -j oe
+#PBS -P personal
+#PBS -q normal
+
+# load conda environment
+module load singularity
+singExec="singularity exec --bind /home/users/ntu/suffiazi/scratch:/mnt /home/users/ntu/suffiazi/apps/sifs/gatk.sif"
+
+# find all bam_list.txt files in the bam list directory
+readarray -t lists < <(find /scratch/users/ntu/suffiazi/inputs/mpileup_list -name "*.txt" -type f)
+echo "Bam file lists loaded: "
+for item in "${lists[@]}"; do
+    echo "${item}"
+done
+
+# path prefix for singularity
+mount_prefix="/mnt"
+# path prefix to be replaced in the bam file path
+pattern="/home/users/ntu/suffiazi/scratch"
+
+for list in "${lists[@]}"; do
+    echo "Processing list: $list"
+    # get bam file path from the text file per line and store in an array
+    readarray -t bams < "$list"
+    for bam in "${bams[@]}"; do
+        echo "Processing bam: $bam"
+        dir_path=$(dirname "$bam")
+        # find revert_sam bam files in each dir_path 
+        readarray -t revert_sams < <(find "$dir_path" -name "*revertsam.bam" -type f)
+        for revert_sam in "${revert_sams[@]}"; do
+            echo "Processing revert_sam: $revert_sam"
+            modified_bam_path="${revert_sam/#$pattern/$mount_prefix}"
+            echo "Modified bam path: $modified_bam_path"
+            file_prefix="${modified_bam_path%.*}"
+            echo "File prefix: $file_prefix"
+            # run gatk revert sam
+            $singExec gatk MarkIlluminaAdapters \
+            I="${modified_bam_path}" \
+            O="${file_prefix}"_markillum-adapt.bam \
+            M="${file_prefix}"_markillum-metrics.txt \
+            TMP_DIR=/mnt/outputs/tmp
+        done
+    done
+done
+
+echo "All data have been marked for Illumina adapters."
+
