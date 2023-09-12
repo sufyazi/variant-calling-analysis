@@ -25,12 +25,25 @@ if [ -n "${lists[*]}" ] && [ -n "${tfbs_list[*]}" ]; then
     for tfbs in "${tfbs_list[@]}"; do
         echo "TF motif of interest: $tfbs"
         tfbs_loc=$(find "/scratch/users/ntu/suffiazi/outputs/BRCA-diff-footprinting/processed-tfbs" -name "${tfbs}*.bed" -type f)
-        echo "tfbs bed file location: ${tfbs_loc}"
+        readarray -t tfbs_loc <<< "$tfbs_loc"
+        echo "tfbs bed file location: " "${tfbs_loc[@]}"
         for bams in "${lists[@]}"; do
             echo "Bam file list: $bams"
             id_name=$(basename "${bams%.bam-list.txt}")
-            # submit job
-            qsub -v TF_FILE="${tfbs_loc}",BAM_INP="${bams}",OUT_DIR="${outfile}",TF_NAME="${tfbs}",ID="${id_name}" /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/run-bcftools_mpileup_submit.pbs
+            # check if tfbs_loc is more than 1 in length
+            echo "Length of tfbs_loc array: ${#tfbs_loc[@]}"
+            if [ "${#tfbs_loc[@]}" -gt 1 ]; then
+                echo "Motif binding site file array is more than 1 in length. Proceeding with for loop..."
+                for txt in "${tfbs_loc[@]}"; do
+                    echo "Motif BS file: $txt"
+                    # submit job
+                    echo qsub -v TF_FILE="${txt}",BAM_INP="${bams}",OUT_DIR="${outfile}",TF_NAME="${tfbs}",ID="${id_name}" /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/run-bcftools_mpileup_submit.pbs
+                done
+            elif [ "${#tfbs_loc[@]}" -eq 1 ]; then
+                echo "There is precisely one motif TFBS file in the array. Proceeding with job submission..."
+                # submit job
+                echo qsub -v TF_FILE="${tfbs_loc[0]}",BAM_INP="${bams}",OUT_DIR="${outfile}",TF_NAME="${tfbs}",ID="${id_name}" /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/run-bcftools_mpileup_submit.pbs
+            fi
         done
     done
 else
