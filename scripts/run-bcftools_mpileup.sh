@@ -24,7 +24,7 @@ if [ -n "${lists[*]}" ] && [ -n "${tfbs_list[*]}" ]; then
     echo "Found list.txt files and candidate TF motifs of interest. Proceeding..."
     for tfbs in "${tfbs_list[@]}"; do
         echo "TF motif of interest: $tfbs"
-        tfbs_loc=$(find "/scratch/users/ntu/suffiazi/outputs/brca-subtype-basal-UP" -name "${tfbs}*.bed" -type f)
+        tfbs_loc=$(find "/scratch/users/ntu/suffiazi/outputs/BRCA-diff-footprinting/processed-tfbs" -name "${tfbs}*.bed" -type f)
         echo "tfbs bed file location: ${tfbs_loc}"
         for bams in "${lists[@]}"; do
             echo "Bam file list: $bams"
