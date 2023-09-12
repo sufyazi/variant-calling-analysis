@@ -30,7 +30,7 @@ if [ -n "${lists[*]}" ] && [ -n "${tfbs_list[*]}" ]; then
             echo "Bam file list: $bams"
             id_name=$(basename "${bams%.bam-list.txt}")
             # submit job
-            qsub -v TF_FILE="${tfbs_loc}",BAM_INP="${bams}",OUT_DIR="${outfile}",TF_NAME="${tfbs}",ID="${id_name}" /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/bcftools_mpileup_submit.pbs
+            qsub -v TF_FILE="${tfbs_loc}",BAM_INP="${bams}",OUT_DIR="${outfile}",TF_NAME="${tfbs}",ID="${id_name}" /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/run-bcftools_mpileup_submit.pbs
         done
     done
 else
