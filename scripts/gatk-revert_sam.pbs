@@ -4,7 +4,7 @@
 #PBS -l select=1:ncpus=12:mem=120GB
 #PBS -l walltime=3:00:00
 #PBS -j oe
-#PBS -P personal
+#PBS -P 12003580
 #PBS -q normal
 
 # load conda environment
@@ -19,7 +19,7 @@ file_prefix=$PREFIX
 # run gatk revert sam
 $singExec gatk RevertSam \
         I="${bam}" \
-        O="${file_prefix}"_revertsam.bam \
+        O="${file_prefix}"_revertsam-noXS.bam \
         SANITIZE=true \
         MAX_DISCARD_FRACTION=0.005 \
         ATTRIBUTE_TO_CLEAR=XT \
@@ -27,6 +27,7 @@ $singExec gatk RevertSam \
         ATTRIBUTE_TO_CLEAR=AS \
         ATTRIBUTE_TO_CLEAR=OC \
         ATTRIBUTE_TO_CLEAR=OP \
+        ATTRIBUTE_TO_CLEAR=XS \
         SORT_ORDER=queryname \
         RESTORE_ORIGINAL_QUALITIES=true \
         REMOVE_DUPLICATE_INFORMATION=true \

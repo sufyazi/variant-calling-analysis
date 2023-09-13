@@ -1,0 +1,287 @@
+INFO	2023-09-13 14:25:39	RevertSam	
+
+********** NOTE: Picard's command line syntax is changing.
+**********
+********** For more information, please see:
+********** 
+https://github.com/broadinstitute/picard/wiki/Command-Line-Syntax-Transition-For-Users-(Pre-Transition)
+**********
+********** The command line looks like this in the new syntax:
+**********
+**********    RevertSam -I /mnt/inputs/atac-croo-out/98JKPD8/sample11/ddf5bf06-2cc8-466d-9425-952fb8e96770.nodup.no_chrM_MT.bam -O /mnt/inputs/atac-croo-out/98JKPD8/sample11/ddf5bf06-2cc8-466d-9425-952fb8e96770.nodup.no_chrM_MT_revertsam-noXS.bam -SANITIZE true -MAX_DISCARD_FRACTION 0.005 -ATTRIBUTE_TO_CLEAR XT -ATTRIBUTE_TO_CLEAR XN -ATTRIBUTE_TO_CLEAR AS -ATTRIBUTE_TO_CLEAR OC -ATTRIBUTE_TO_CLEAR OP -ATTRIBUTE_TO_CLEAR XS -SORT_ORDER queryname -RESTORE_ORIGINAL_QUALITIES true -REMOVE_DUPLICATE_INFORMATION true -REMOVE_ALIGNMENT_INFORMATION true -TMP_DIR /mnt/outputs/tmp
+**********
+
+
+14:25:39.654 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/gatk/gatk-package-4.4.0.0-local.jar!/com/intel/gkl/native/libgkl_compression.so
+[Wed Sep 13 14:25:39 SGT 2023] RevertSam INPUT=/mnt/inputs/atac-croo-out/98JKPD8/sample11/ddf5bf06-2cc8-466d-9425-952fb8e96770.nodup.no_chrM_MT.bam OUTPUT=/mnt/inputs/atac-croo-out/98JKPD8/sample11/ddf5bf06-2cc8-466d-9425-952fb8e96770.nodup.no_chrM_MT_revertsam-noXS.bam SORT_ORDER=queryname RESTORE_ORIGINAL_QUALITIES=true REMOVE_DUPLICATE_INFORMATION=true REMOVE_ALIGNMENT_INFORMATION=true ATTRIBUTE_TO_CLEAR=[NM, UQ, PG, MD, MQ, SA, MC, AS, XT, XN, AS, OC, OP, XS] SANITIZE=true MAX_DISCARD_FRACTION=0.005 TMP_DIR=[/mnt/outputs/tmp]    OUTPUT_BY_READGROUP=false RESTORE_HARDCLIPS=true OUTPUT_BY_READGROUP_FILE_FORMAT=dynamic ATTRIBUTE_TO_REVERSE=[OQ, U2] ATTRIBUTE_TO_REVERSE_COMPLEMENT=[E2, SQ] KEEP_FIRST_DUPLICATE=false VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=2 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+[Wed Sep 13 14:25:39 SGT 2023] Executing as suffiazi@x1002c2s4b0n1 on Linux 4.18.0-305.25.1.el8_4.x86_64 amd64; OpenJDK 64-Bit Server VM 17.0.6+10-Ubuntu-0ubuntu118.04.1; Deflater: Intel; Inflater: Intel; Provider GCS is available; Picard version: 4.4.0.0
+INFO	2023-09-13 14:25:44	RevertSam	Reverted     1,000,000 records.  Elapsed time: 00:00:04s.  Time for last 1,000,000:    4s.  Last read position: chr1:20,804,411
+INFO	2023-09-13 14:25:48	RevertSam	Reverted     2,000,000 records.  Elapsed time: 00:00:09s.  Time for last 1,000,000:    4s.  Last read position: chr1:44,684,328
+INFO	2023-09-13 14:25:53	RevertSam	Reverted     3,000,000 records.  Elapsed time: 00:00:13s.  Time for last 1,000,000:    4s.  Last read position: chr1:72,469,350
+INFO	2023-09-13 14:25:57	RevertSam	Reverted     4,000,000 records.  Elapsed time: 00:00:18s.  Time for last 1,000,000:    4s.  Last read position: chr1:101,654,677
+INFO	2023-09-13 14:26:02	RevertSam	Reverted     5,000,000 records.  Elapsed time: 00:00:22s.  Time for last 1,000,000:    4s.  Last read position: chr1:123,908,665
+INFO	2023-09-13 14:26:06	RevertSam	Reverted     6,000,000 records.  Elapsed time: 00:00:26s.  Time for last 1,000,000:    4s.  Last read position: chr1:152,070,551
+INFO	2023-09-13 14:26:11	RevertSam	Reverted     7,000,000 records.  Elapsed time: 00:00:31s.  Time for last 1,000,000:    4s.  Last read position: chr1:168,875,229
+INFO	2023-09-13 14:26:15	RevertSam	Reverted     8,000,000 records.  Elapsed time: 00:00:35s.  Time for last 1,000,000:    4s.  Last read position: chr1:188,750,092
+INFO	2023-09-13 14:26:19	RevertSam	Reverted     9,000,000 records.  Elapsed time: 00:00:40s.  Time for last 1,000,000:    4s.  Last read position: chr1:207,305,165
+INFO	2023-09-13 14:26:24	RevertSam	Reverted    10,000,000 records.  Elapsed time: 00:00:44s.  Time for last 1,000,000:    4s.  Last read position: chr1:226,162,982
+INFO	2023-09-13 14:26:28	RevertSam	Reverted    11,000,000 records.  Elapsed time: 00:00:49s.  Time for last 1,000,000:    4s.  Last read position: chr1:244,661,919
+INFO	2023-09-13 14:26:33	RevertSam	Reverted    12,000,000 records.  Elapsed time: 00:00:53s.  Time for last 1,000,000:    4s.  Last read position: chr2:20,366,005
+INFO	2023-09-13 14:26:37	RevertSam	Reverted    13,000,000 records.  Elapsed time: 00:00:58s.  Time for last 1,000,000:    4s.  Last read position: chr2:47,014,668
+INFO	2023-09-13 14:26:42	RevertSam	Reverted    14,000,000 records.  Elapsed time: 00:01:02s.  Time for last 1,000,000:    4s.  Last read position: chr2:74,586,879
+INFO	2023-09-13 14:26:46	RevertSam	Reverted    15,000,000 records.  Elapsed time: 00:01:07s.  Time for last 1,000,000:    4s.  Last read position: chr2:103,043,955
+INFO	2023-09-13 14:26:51	RevertSam	Reverted    16,000,000 records.  Elapsed time: 00:01:11s.  Time for last 1,000,000:    4s.  Last read position: chr2:130,227,751
+INFO	2023-09-13 14:26:55	RevertSam	Reverted    17,000,000 records.  Elapsed time: 00:01:16s.  Time for last 1,000,000:    4s.  Last read position: chr2:159,027,272
+INFO	2023-09-13 14:27:00	RevertSam	Reverted    18,000,000 records.  Elapsed time: 00:01:20s.  Time for last 1,000,000:    4s.  Last read position: chr2:187,616,487
+INFO	2023-09-13 14:27:05	RevertSam	Reverted    19,000,000 records.  Elapsed time: 00:01:26s.  Time for last 1,000,000:    5s.  Last read position: chr2:215,896,426
+INFO	2023-09-13 14:27:10	RevertSam	Reverted    20,000,000 records.  Elapsed time: 00:01:30s.  Time for last 1,000,000:    4s.  Last read position: chr2:240,684,423
+INFO	2023-09-13 14:27:14	RevertSam	Reverted    21,000,000 records.  Elapsed time: 00:01:34s.  Time for last 1,000,000:    4s.  Last read position: chr3:22,055,639
+INFO	2023-09-13 14:27:19	RevertSam	Reverted    22,000,000 records.  Elapsed time: 00:01:39s.  Time for last 1,000,000:    4s.  Last read position: chr3:46,712,658
+INFO	2023-09-13 14:27:23	RevertSam	Reverted    23,000,000 records.  Elapsed time: 00:01:43s.  Time for last 1,000,000:    4s.  Last read position: chr3:69,371,996
+INFO	2023-09-13 14:27:28	RevertSam	Reverted    24,000,000 records.  Elapsed time: 00:01:48s.  Time for last 1,000,000:    4s.  Last read position: chr3:95,640,457
+INFO	2023-09-13 14:27:32	RevertSam	Reverted    25,000,000 records.  Elapsed time: 00:01:52s.  Time for last 1,000,000:    4s.  Last read position: chr3:121,853,216
+INFO	2023-09-13 14:27:36	RevertSam	Reverted    26,000,000 records.  Elapsed time: 00:01:57s.  Time for last 1,000,000:    4s.  Last read position: chr3:145,475,630
+INFO	2023-09-13 14:27:41	RevertSam	Reverted    27,000,000 records.  Elapsed time: 00:02:01s.  Time for last 1,000,000:    4s.  Last read position: chr3:171,726,565
+INFO	2023-09-13 14:27:45	RevertSam	Reverted    28,000,000 records.  Elapsed time: 00:02:06s.  Time for last 1,000,000:    4s.  Last read position: chr3:195,911,075
+INFO	2023-09-13 14:27:50	RevertSam	Reverted    29,000,000 records.  Elapsed time: 00:02:10s.  Time for last 1,000,000:    4s.  Last read position: chr4:22,645,050
+INFO	2023-09-13 14:27:54	RevertSam	Reverted    30,000,000 records.  Elapsed time: 00:02:14s.  Time for last 1,000,000:    4s.  Last read position: chr4:49,710,753
+INFO	2023-09-13 14:27:59	RevertSam	Reverted    31,000,000 records.  Elapsed time: 00:02:19s.  Time for last 1,000,000:    4s.  Last read position: chr4:78,338,785
+INFO	2023-09-13 14:28:03	RevertSam	Reverted    32,000,000 records.  Elapsed time: 00:02:23s.  Time for last 1,000,000:    4s.  Last read position: chr4:107,308,521
+INFO	2023-09-13 14:28:08	RevertSam	Reverted    33,000,000 records.  Elapsed time: 00:02:28s.  Time for last 1,000,000:    4s.  Last read position: chr4:136,481,297
+INFO	2023-09-13 14:28:12	RevertSam	Reverted    34,000,000 records.  Elapsed time: 00:02:32s.  Time for last 1,000,000:    4s.  Last read position: chr4:164,805,858
+INFO	2023-09-13 14:28:17	RevertSam	Reverted    35,000,000 records.  Elapsed time: 00:02:37s.  Time for last 1,000,000:    4s.  Last read position: chr5:1,161,646
+INFO	2023-09-13 14:28:21	RevertSam	Reverted    36,000,000 records.  Elapsed time: 00:02:41s.  Time for last 1,000,000:    4s.  Last read position: chr5:24,081,770
+INFO	2023-09-13 14:28:25	RevertSam	Reverted    37,000,000 records.  Elapsed time: 00:02:46s.  Time for last 1,000,000:    4s.  Last read position: chr5:50,056,525
+INFO	2023-09-13 14:28:30	RevertSam	Reverted    38,000,000 records.  Elapsed time: 00:02:50s.  Time for last 1,000,000:    4s.  Last read position: chr5:73,499,117
+INFO	2023-09-13 14:28:34	RevertSam	Reverted    39,000,000 records.  Elapsed time: 00:02:55s.  Time for last 1,000,000:    4s.  Last read position: chr5:97,318,649
+INFO	2023-09-13 14:28:39	RevertSam	Reverted    40,000,000 records.  Elapsed time: 00:02:59s.  Time for last 1,000,000:    4s.  Last read position: chr5:121,752,134
+INFO	2023-09-13 14:28:43	RevertSam	Reverted    41,000,000 records.  Elapsed time: 00:03:04s.  Time for last 1,000,000:    4s.  Last read position: chr5:142,666,419
+INFO	2023-09-13 14:28:48	RevertSam	Reverted    42,000,000 records.  Elapsed time: 00:03:08s.  Time for last 1,000,000:    4s.  Last read position: chr5:164,974,898
+INFO	2023-09-13 14:28:52	RevertSam	Reverted    43,000,000 records.  Elapsed time: 00:03:13s.  Time for last 1,000,000:    4s.  Last read position: chr6:3,796,205
+INFO	2023-09-13 14:28:57	RevertSam	Reverted    44,000,000 records.  Elapsed time: 00:03:17s.  Time for last 1,000,000:    4s.  Last read position: chr6:26,268,958
+INFO	2023-09-13 14:29:01	RevertSam	Reverted    45,000,000 records.  Elapsed time: 00:03:21s.  Time for last 1,000,000:    4s.  Last read position: chr6:44,511,133
+INFO	2023-09-13 14:29:06	RevertSam	Reverted    46,000,000 records.  Elapsed time: 00:03:26s.  Time for last 1,000,000:    4s.  Last read position: chr6:68,884,656
+INFO	2023-09-13 14:29:10	RevertSam	Reverted    47,000,000 records.  Elapsed time: 00:03:31s.  Time for last 1,000,000:    4s.  Last read position: chr6:97,901,434
+INFO	2023-09-13 14:29:15	RevertSam	Reverted    48,000,000 records.  Elapsed time: 00:03:35s.  Time for last 1,000,000:    4s.  Last read position: chr6:126,301,175
+INFO	2023-09-13 14:29:19	RevertSam	Reverted    49,000,000 records.  Elapsed time: 00:03:40s.  Time for last 1,000,000:    4s.  Last read position: chr6:154,297,790
+INFO	2023-09-13 14:29:24	RevertSam	Reverted    50,000,000 records.  Elapsed time: 00:03:44s.  Time for last 1,000,000:    4s.  Last read position: chr7:5,430,466
+INFO	2023-09-13 14:29:28	RevertSam	Reverted    51,000,000 records.  Elapsed time: 00:03:48s.  Time for last 1,000,000:    4s.  Last read position: chr7:29,489,650
+INFO	2023-09-13 14:29:33	RevertSam	Reverted    52,000,000 records.  Elapsed time: 00:03:53s.  Time for last 1,000,000:    4s.  Last read position: chr7:52,479,288
+INFO	2023-09-13 14:29:37	RevertSam	Reverted    53,000,000 records.  Elapsed time: 00:03:57s.  Time for last 1,000,000:    4s.  Last read position: chr7:76,086,507
+INFO	2023-09-13 14:29:42	RevertSam	Reverted    54,000,000 records.  Elapsed time: 00:04:02s.  Time for last 1,000,000:    4s.  Last read position: chr7:100,156,810
+INFO	2023-09-13 14:29:46	RevertSam	Reverted    55,000,000 records.  Elapsed time: 00:04:06s.  Time for last 1,000,000:    4s.  Last read position: chr7:123,811,501
+INFO	2023-09-13 14:29:50	RevertSam	Reverted    56,000,000 records.  Elapsed time: 00:04:11s.  Time for last 1,000,000:    4s.  Last read position: chr7:146,517,077
+INFO	2023-09-13 14:29:55	RevertSam	Reverted    57,000,000 records.  Elapsed time: 00:04:15s.  Time for last 1,000,000:    4s.  Last read position: chr8:8,665,786
+INFO	2023-09-13 14:29:59	RevertSam	Reverted    58,000,000 records.  Elapsed time: 00:04:20s.  Time for last 1,000,000:    4s.  Last read position: chr8:30,456,905
+INFO	2023-09-13 14:30:04	RevertSam	Reverted    59,000,000 records.  Elapsed time: 00:04:24s.  Time for last 1,000,000:    4s.  Last read position: chr8:53,688,798
+INFO	2023-09-13 14:30:08	RevertSam	Reverted    60,000,000 records.  Elapsed time: 00:04:29s.  Time for last 1,000,000:    4s.  Last read position: chr8:77,505,405
+INFO	2023-09-13 14:30:13	RevertSam	Reverted    61,000,000 records.  Elapsed time: 00:04:33s.  Time for last 1,000,000:    4s.  Last read position: chr8:100,158,104
+INFO	2023-09-13 14:30:17	RevertSam	Reverted    62,000,000 records.  Elapsed time: 00:04:37s.  Time for last 1,000,000:    4s.  Last read position: chr8:123,446,593
+INFO	2023-09-13 14:30:22	RevertSam	Reverted    63,000,000 records.  Elapsed time: 00:04:42s.  Time for last 1,000,000:    4s.  Last read position: chr8:143,740,144
+INFO	2023-09-13 14:30:26	RevertSam	Reverted    64,000,000 records.  Elapsed time: 00:04:46s.  Time for last 1,000,000:    4s.  Last read position: chr9:21,149,592
+INFO	2023-09-13 14:30:31	RevertSam	Reverted    65,000,000 records.  Elapsed time: 00:04:51s.  Time for last 1,000,000:    4s.  Last read position: chr9:43,663,340
+INFO	2023-09-13 14:30:35	RevertSam	Reverted    66,000,000 records.  Elapsed time: 00:04:55s.  Time for last 1,000,000:    4s.  Last read position: chr9:83,797,346
+INFO	2023-09-13 14:30:40	RevertSam	Reverted    67,000,000 records.  Elapsed time: 00:05:00s.  Time for last 1,000,000:    4s.  Last read position: chr9:106,041,810
+INFO	2023-09-13 14:30:44	RevertSam	Reverted    68,000,000 records.  Elapsed time: 00:05:04s.  Time for last 1,000,000:    4s.  Last read position: chr9:127,534,289
+INFO	2023-09-13 14:30:48	RevertSam	Reverted    69,000,000 records.  Elapsed time: 00:05:09s.  Time for last 1,000,000:    4s.  Last read position: chr10:7,428,203
+INFO	2023-09-13 14:30:53	RevertSam	Reverted    70,000,000 records.  Elapsed time: 00:05:13s.  Time for last 1,000,000:    4s.  Last read position: chr10:35,871,582
+INFO	2023-09-13 14:30:57	RevertSam	Reverted    71,000,000 records.  Elapsed time: 00:05:18s.  Time for last 1,000,000:    4s.  Last read position: chr10:62,980,131
+INFO	2023-09-13 14:31:02	RevertSam	Reverted    72,000,000 records.  Elapsed time: 00:05:22s.  Time for last 1,000,000:    4s.  Last read position: chr10:89,421,108
+INFO	2023-09-13 14:31:06	RevertSam	Reverted    73,000,000 records.  Elapsed time: 00:05:27s.  Time for last 1,000,000:    4s.  Last read position: chr10:116,181,008
+INFO	2023-09-13 14:31:11	RevertSam	Reverted    74,000,000 records.  Elapsed time: 00:05:31s.  Time for last 1,000,000:    4s.  Last read position: chr11:5,986,616
+INFO	2023-09-13 14:31:15	RevertSam	Reverted    75,000,000 records.  Elapsed time: 00:05:35s.  Time for last 1,000,000:    4s.  Last read position: chr11:33,443,511
+INFO	2023-09-13 14:31:20	RevertSam	Reverted    76,000,000 records.  Elapsed time: 00:05:40s.  Time for last 1,000,000:    4s.  Last read position: chr11:62,383,812
+INFO	2023-09-13 14:31:24	RevertSam	Reverted    77,000,000 records.  Elapsed time: 00:05:44s.  Time for last 1,000,000:    4s.  Last read position: chr11:85,510,867
+INFO	2023-09-13 14:31:29	RevertSam	Reverted    78,000,000 records.  Elapsed time: 00:05:49s.  Time for last 1,000,000:    4s.  Last read position: chr11:114,179,330
+INFO	2023-09-13 14:31:33	RevertSam	Reverted    79,000,000 records.  Elapsed time: 00:05:53s.  Time for last 1,000,000:    4s.  Last read position: chr12:3,651,178
+INFO	2023-09-13 14:31:38	RevertSam	Reverted    80,000,000 records.  Elapsed time: 00:05:58s.  Time for last 1,000,000:    4s.  Last read position: chr12:26,137,560
+INFO	2023-09-13 14:31:42	RevertSam	Reverted    81,000,000 records.  Elapsed time: 00:06:03s.  Time for last 1,000,000:    4s.  Last read position: chr12:49,053,078
+INFO	2023-09-13 14:31:47	RevertSam	Reverted    82,000,000 records.  Elapsed time: 00:06:07s.  Time for last 1,000,000:    4s.  Last read position: chr12:69,044,651
+INFO	2023-09-13 14:31:51	RevertSam	Reverted    83,000,000 records.  Elapsed time: 00:06:12s.  Time for last 1,000,000:    4s.  Last read position: chr12:93,485,868
+INFO	2023-09-13 14:31:56	RevertSam	Reverted    84,000,000 records.  Elapsed time: 00:06:16s.  Time for last 1,000,000:    4s.  Last read position: chr12:115,000,661
+INFO	2023-09-13 14:32:00	RevertSam	Reverted    85,000,000 records.  Elapsed time: 00:06:21s.  Time for last 1,000,000:    4s.  Last read position: chr13:16,691,709
+INFO	2023-09-13 14:32:05	RevertSam	Reverted    86,000,000 records.  Elapsed time: 00:06:25s.  Time for last 1,000,000:    4s.  Last read position: chr13:42,122,838
+INFO	2023-09-13 14:32:09	RevertSam	Reverted    87,000,000 records.  Elapsed time: 00:06:29s.  Time for last 1,000,000:    4s.  Last read position: chr13:71,765,014
+INFO	2023-09-13 14:32:14	RevertSam	Reverted    88,000,000 records.  Elapsed time: 00:06:34s.  Time for last 1,000,000:    4s.  Last read position: chr13:101,326,101
+INFO	2023-09-13 14:32:18	RevertSam	Reverted    89,000,000 records.  Elapsed time: 00:06:38s.  Time for last 1,000,000:    4s.  Last read position: chr14:28,316,234
+INFO	2023-09-13 14:32:23	RevertSam	Reverted    90,000,000 records.  Elapsed time: 00:06:43s.  Time for last 1,000,000:    4s.  Last read position: chr14:52,791,427
+INFO	2023-09-13 14:32:27	RevertSam	Reverted    91,000,000 records.  Elapsed time: 00:06:47s.  Time for last 1,000,000:    4s.  Last read position: chr14:74,918,980
+INFO	2023-09-13 14:32:32	RevertSam	Reverted    92,000,000 records.  Elapsed time: 00:06:52s.  Time for last 1,000,000:    4s.  Last read position: chr14:97,027,548
+INFO	2023-09-13 14:32:36	RevertSam	Reverted    93,000,000 records.  Elapsed time: 00:06:56s.  Time for last 1,000,000:    4s.  Last read position: chr15:30,920,836
+INFO	2023-09-13 14:32:41	RevertSam	Reverted    94,000,000 records.  Elapsed time: 00:07:01s.  Time for last 1,000,000:    4s.  Last read position: chr15:59,461,194
+INFO	2023-09-13 14:32:45	RevertSam	Reverted    95,000,000 records.  Elapsed time: 00:07:05s.  Time for last 1,000,000:    4s.  Last read position: chr15:85,725,804
+INFO	2023-09-13 14:32:50	RevertSam	Reverted    96,000,000 records.  Elapsed time: 00:07:10s.  Time for last 1,000,000:    4s.  Last read position: chr16:4,159,010
+INFO	2023-09-13 14:32:54	RevertSam	Reverted    97,000,000 records.  Elapsed time: 00:07:14s.  Time for last 1,000,000:    4s.  Last read position: chr16:22,005,519
+INFO	2023-09-13 14:32:59	RevertSam	Reverted    98,000,000 records.  Elapsed time: 00:07:19s.  Time for last 1,000,000:    4s.  Last read position: chr16:46,400,243
+INFO	2023-09-13 14:33:03	RevertSam	Reverted    99,000,000 records.  Elapsed time: 00:07:23s.  Time for last 1,000,000:    4s.  Last read position: chr16:72,191,247
+INFO	2023-09-13 14:33:08	RevertSam	Reverted   100,000,000 records.  Elapsed time: 00:07:28s.  Time for last 1,000,000:    4s.  Last read position: chr17:5,742,886
+INFO	2023-09-13 14:33:12	RevertSam	Reverted   101,000,000 records.  Elapsed time: 00:07:32s.  Time for last 1,000,000:    4s.  Last read position: chr17:34,100,497
+INFO	2023-09-13 14:33:17	RevertSam	Reverted   102,000,000 records.  Elapsed time: 00:07:37s.  Time for last 1,000,000:    4s.  Last read position: chr17:58,119,872
+INFO	2023-09-13 14:33:21	RevertSam	Reverted   103,000,000 records.  Elapsed time: 00:07:41s.  Time for last 1,000,000:    4s.  Last read position: chr17:82,048,018
+INFO	2023-09-13 14:33:26	RevertSam	Reverted   104,000,000 records.  Elapsed time: 00:07:46s.  Time for last 1,000,000:    4s.  Last read position: chr18:26,137,283
+INFO	2023-09-13 14:33:30	RevertSam	Reverted   105,000,000 records.  Elapsed time: 00:07:50s.  Time for last 1,000,000:    4s.  Last read position: chr18:54,596,450
+INFO	2023-09-13 14:33:35	RevertSam	Reverted   106,000,000 records.  Elapsed time: 00:07:55s.  Time for last 1,000,000:    4s.  Last read position: chr19:1,083,345
+INFO	2023-09-13 14:33:39	RevertSam	Reverted   107,000,000 records.  Elapsed time: 00:07:59s.  Time for last 1,000,000:    4s.  Last read position: chr19:16,197,765
+INFO	2023-09-13 14:33:43	RevertSam	Reverted   108,000,000 records.  Elapsed time: 00:08:04s.  Time for last 1,000,000:    4s.  Last read position: chr19:38,905,016
+INFO	2023-09-13 14:33:48	RevertSam	Reverted   109,000,000 records.  Elapsed time: 00:08:08s.  Time for last 1,000,000:    4s.  Last read position: chr19:55,325,059
+INFO	2023-09-13 14:33:52	RevertSam	Reverted   110,000,000 records.  Elapsed time: 00:08:13s.  Time for last 1,000,000:    4s.  Last read position: chr20:19,000,573
+INFO	2023-09-13 14:33:57	RevertSam	Reverted   111,000,000 records.  Elapsed time: 00:08:17s.  Time for last 1,000,000:    4s.  Last read position: chr20:39,647,867
+INFO	2023-09-13 14:34:01	RevertSam	Reverted   112,000,000 records.  Elapsed time: 00:08:22s.  Time for last 1,000,000:    4s.  Last read position: chr20:60,673,808
+INFO	2023-09-13 14:34:06	RevertSam	Reverted   113,000,000 records.  Elapsed time: 00:08:26s.  Time for last 1,000,000:    4s.  Last read position: chr21:18,707,758
+INFO	2023-09-13 14:34:10	RevertSam	Reverted   114,000,000 records.  Elapsed time: 00:08:31s.  Time for last 1,000,000:    4s.  Last read position: chr21:43,702,021
+INFO	2023-09-13 14:34:15	RevertSam	Reverted   115,000,000 records.  Elapsed time: 00:08:35s.  Time for last 1,000,000:    4s.  Last read position: chr22:33,871,162
+INFO	2023-09-13 14:34:19	RevertSam	Reverted   116,000,000 records.  Elapsed time: 00:08:40s.  Time for last 1,000,000:    4s.  Last read position: chrX:6,726,588
+INFO	2023-09-13 14:34:24	RevertSam	Reverted   117,000,000 records.  Elapsed time: 00:08:44s.  Time for last 1,000,000:    4s.  Last read position: chrX:36,786,209
+INFO	2023-09-13 14:34:28	RevertSam	Reverted   118,000,000 records.  Elapsed time: 00:08:49s.  Time for last 1,000,000:    4s.  Last read position: chrX:67,881,828
+INFO	2023-09-13 14:34:33	RevertSam	Reverted   119,000,000 records.  Elapsed time: 00:08:53s.  Time for last 1,000,000:    4s.  Last read position: chrX:99,598,559
+INFO	2023-09-13 14:34:37	RevertSam	Reverted   120,000,000 records.  Elapsed time: 00:08:58s.  Time for last 1,000,000:    4s.  Last read position: chrX:129,645,863
+INFO	2023-09-13 14:34:42	RevertSam	Reverted   121,000,000 records.  Elapsed time: 00:09:02s.  Time for last 1,000,000:    4s.  Last read position: chrY:56,850,131
+INFO	2023-09-13 14:34:46	RevertSam	Reverted   122,000,000 records.  Elapsed time: 00:09:07s.  Time for last 1,000,000:    4s.  Last read position: chrUn_KI270744v1:108,161
+INFO	2023-09-13 14:34:48	RevertSam	Detected quality format for HKCKVBBXX_6_BRCA-78F79CE9-210D-47BF-B6AB-AA5327778FBE-X010-S03-L053-B1-T1-P021_TCGA-BH-A0BA-01A-31-A615-42: Standard
+INFO	2023-09-13 14:34:48	RevertSam	Detected quality format for HKCKVBBXX_4_BRCA-78F79CE9-210D-47BF-B6AB-AA5327778FBE-X010-S03-L054-B1-T2-P019_TCGA-BH-A0BA-01A-31-A615-42: Standard
+INFO	2023-09-13 14:34:50	RevertSam	Sanitized     1,000,000 records.  Elapsed time: 00:00:02s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:34:52	RevertSam	Sanitized     2,000,000 records.  Elapsed time: 00:00:03s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:34:54	RevertSam	Sanitized     3,000,000 records.  Elapsed time: 00:00:05s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:34:55	RevertSam	Sanitized     4,000,000 records.  Elapsed time: 00:00:07s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:34:57	RevertSam	Sanitized     5,000,000 records.  Elapsed time: 00:00:08s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:34:58	RevertSam	Sanitized     6,000,000 records.  Elapsed time: 00:00:10s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:00	RevertSam	Sanitized     7,000,000 records.  Elapsed time: 00:00:11s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:02	RevertSam	Sanitized     8,000,000 records.  Elapsed time: 00:00:13s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:03	RevertSam	Sanitized     9,000,000 records.  Elapsed time: 00:00:15s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:05	RevertSam	Sanitized    10,000,000 records.  Elapsed time: 00:00:16s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:06	RevertSam	Sanitized    11,000,000 records.  Elapsed time: 00:00:18s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:08	RevertSam	Sanitized    12,000,000 records.  Elapsed time: 00:00:20s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:10	RevertSam	Sanitized    13,000,000 records.  Elapsed time: 00:00:21s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:11	RevertSam	Sanitized    14,000,000 records.  Elapsed time: 00:00:23s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:12	RevertSam	Sanitized    15,000,000 records.  Elapsed time: 00:00:24s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:14	RevertSam	Sanitized    16,000,000 records.  Elapsed time: 00:00:25s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:15	RevertSam	Sanitized    17,000,000 records.  Elapsed time: 00:00:27s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:16	RevertSam	Sanitized    18,000,000 records.  Elapsed time: 00:00:28s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:18	RevertSam	Sanitized    19,000,000 records.  Elapsed time: 00:00:29s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:19	RevertSam	Sanitized    20,000,000 records.  Elapsed time: 00:00:31s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:20	RevertSam	Sanitized    21,000,000 records.  Elapsed time: 00:00:32s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:22	RevertSam	Sanitized    22,000,000 records.  Elapsed time: 00:00:33s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:23	RevertSam	Sanitized    23,000,000 records.  Elapsed time: 00:00:34s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:24	RevertSam	Sanitized    24,000,000 records.  Elapsed time: 00:00:36s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:26	RevertSam	Sanitized    25,000,000 records.  Elapsed time: 00:00:37s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:27	RevertSam	Sanitized    26,000,000 records.  Elapsed time: 00:00:39s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:28	RevertSam	Sanitized    27,000,000 records.  Elapsed time: 00:00:40s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:30	RevertSam	Sanitized    28,000,000 records.  Elapsed time: 00:00:41s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:31	RevertSam	Sanitized    29,000,000 records.  Elapsed time: 00:00:42s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:32	RevertSam	Sanitized    30,000,000 records.  Elapsed time: 00:00:44s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:34	RevertSam	Sanitized    31,000,000 records.  Elapsed time: 00:00:45s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:35	RevertSam	Sanitized    32,000,000 records.  Elapsed time: 00:00:46s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:36	RevertSam	Sanitized    33,000,000 records.  Elapsed time: 00:00:48s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:37	RevertSam	Sanitized    34,000,000 records.  Elapsed time: 00:00:49s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:39	RevertSam	Sanitized    35,000,000 records.  Elapsed time: 00:00:50s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:40	RevertSam	Sanitized    36,000,000 records.  Elapsed time: 00:00:52s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:42	RevertSam	Sanitized    37,000,000 records.  Elapsed time: 00:00:53s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:43	RevertSam	Sanitized    38,000,000 records.  Elapsed time: 00:00:54s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:44	RevertSam	Sanitized    39,000,000 records.  Elapsed time: 00:00:56s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:46	RevertSam	Sanitized    40,000,000 records.  Elapsed time: 00:00:57s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:47	RevertSam	Sanitized    41,000,000 records.  Elapsed time: 00:00:58s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:48	RevertSam	Sanitized    42,000,000 records.  Elapsed time: 00:01:00s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:50	RevertSam	Sanitized    43,000,000 records.  Elapsed time: 00:01:01s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:51	RevertSam	Sanitized    44,000,000 records.  Elapsed time: 00:01:02s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:52	RevertSam	Sanitized    45,000,000 records.  Elapsed time: 00:01:04s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:53	RevertSam	Sanitized    46,000,000 records.  Elapsed time: 00:01:05s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:55	RevertSam	Sanitized    47,000,000 records.  Elapsed time: 00:01:06s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:56	RevertSam	Sanitized    48,000,000 records.  Elapsed time: 00:01:08s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:57	RevertSam	Sanitized    49,000,000 records.  Elapsed time: 00:01:09s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:35:59	RevertSam	Sanitized    50,000,000 records.  Elapsed time: 00:01:10s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:00	RevertSam	Sanitized    51,000,000 records.  Elapsed time: 00:01:11s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:01	RevertSam	Sanitized    52,000,000 records.  Elapsed time: 00:01:13s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:03	RevertSam	Sanitized    53,000,000 records.  Elapsed time: 00:01:14s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:04	RevertSam	Sanitized    54,000,000 records.  Elapsed time: 00:01:15s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:05	RevertSam	Sanitized    55,000,000 records.  Elapsed time: 00:01:17s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:07	RevertSam	Sanitized    56,000,000 records.  Elapsed time: 00:01:18s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:08	RevertSam	Sanitized    57,000,000 records.  Elapsed time: 00:01:19s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:09	RevertSam	Sanitized    58,000,000 records.  Elapsed time: 00:01:21s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:11	RevertSam	Sanitized    59,000,000 records.  Elapsed time: 00:01:22s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:12	RevertSam	Sanitized    60,000,000 records.  Elapsed time: 00:01:23s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:13	RevertSam	Sanitized    61,000,000 records.  Elapsed time: 00:01:25s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:15	RevertSam	Sanitized    62,000,000 records.  Elapsed time: 00:01:26s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:16	RevertSam	Sanitized    63,000,000 records.  Elapsed time: 00:01:27s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:17	RevertSam	Sanitized    64,000,000 records.  Elapsed time: 00:01:29s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:18	RevertSam	Sanitized    65,000,000 records.  Elapsed time: 00:01:30s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:20	RevertSam	Sanitized    66,000,000 records.  Elapsed time: 00:01:31s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:21	RevertSam	Sanitized    67,000,000 records.  Elapsed time: 00:01:33s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:23	RevertSam	Sanitized    68,000,000 records.  Elapsed time: 00:01:34s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:24	RevertSam	Sanitized    69,000,000 records.  Elapsed time: 00:01:35s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:25	RevertSam	Sanitized    70,000,000 records.  Elapsed time: 00:01:37s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:26	RevertSam	Sanitized    71,000,000 records.  Elapsed time: 00:01:38s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:28	RevertSam	Sanitized    72,000,000 records.  Elapsed time: 00:01:39s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:29	RevertSam	Sanitized    73,000,000 records.  Elapsed time: 00:01:41s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:30	RevertSam	Sanitized    74,000,000 records.  Elapsed time: 00:01:42s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:32	RevertSam	Sanitized    75,000,000 records.  Elapsed time: 00:01:43s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:33	RevertSam	Sanitized    76,000,000 records.  Elapsed time: 00:01:45s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:34	RevertSam	Sanitized    77,000,000 records.  Elapsed time: 00:01:46s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:36	RevertSam	Sanitized    78,000,000 records.  Elapsed time: 00:01:47s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:37	RevertSam	Sanitized    79,000,000 records.  Elapsed time: 00:01:48s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:38	RevertSam	Sanitized    80,000,000 records.  Elapsed time: 00:01:50s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:40	RevertSam	Sanitized    81,000,000 records.  Elapsed time: 00:01:51s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:41	RevertSam	Sanitized    82,000,000 records.  Elapsed time: 00:01:52s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:42	RevertSam	Sanitized    83,000,000 records.  Elapsed time: 00:01:54s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:44	RevertSam	Sanitized    84,000,000 records.  Elapsed time: 00:01:55s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:45	RevertSam	Sanitized    85,000,000 records.  Elapsed time: 00:01:56s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:46	RevertSam	Sanitized    86,000,000 records.  Elapsed time: 00:01:58s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:47	RevertSam	Sanitized    87,000,000 records.  Elapsed time: 00:01:59s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:49	RevertSam	Sanitized    88,000,000 records.  Elapsed time: 00:02:00s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:50	RevertSam	Sanitized    89,000,000 records.  Elapsed time: 00:02:02s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:52	RevertSam	Sanitized    90,000,000 records.  Elapsed time: 00:02:03s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:53	RevertSam	Sanitized    91,000,000 records.  Elapsed time: 00:02:04s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:54	RevertSam	Sanitized    92,000,000 records.  Elapsed time: 00:02:06s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:55	RevertSam	Sanitized    93,000,000 records.  Elapsed time: 00:02:07s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:57	RevertSam	Sanitized    94,000,000 records.  Elapsed time: 00:02:08s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:58	RevertSam	Sanitized    95,000,000 records.  Elapsed time: 00:02:10s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:36:59	RevertSam	Sanitized    96,000,000 records.  Elapsed time: 00:02:11s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:01	RevertSam	Sanitized    97,000,000 records.  Elapsed time: 00:02:12s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:02	RevertSam	Sanitized    98,000,000 records.  Elapsed time: 00:02:13s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:03	RevertSam	Sanitized    99,000,000 records.  Elapsed time: 00:02:15s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:05	RevertSam	Sanitized   100,000,000 records.  Elapsed time: 00:02:16s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:06	RevertSam	Sanitized   101,000,000 records.  Elapsed time: 00:02:18s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:07	RevertSam	Sanitized   102,000,000 records.  Elapsed time: 00:02:19s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:09	RevertSam	Sanitized   103,000,000 records.  Elapsed time: 00:02:20s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:10	RevertSam	Sanitized   104,000,000 records.  Elapsed time: 00:02:21s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:11	RevertSam	Sanitized   105,000,000 records.  Elapsed time: 00:02:23s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:13	RevertSam	Sanitized   106,000,000 records.  Elapsed time: 00:02:24s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:14	RevertSam	Sanitized   107,000,000 records.  Elapsed time: 00:02:25s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:15	RevertSam	Sanitized   108,000,000 records.  Elapsed time: 00:02:27s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:16	RevertSam	Sanitized   109,000,000 records.  Elapsed time: 00:02:28s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:18	RevertSam	Sanitized   110,000,000 records.  Elapsed time: 00:02:29s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:19	RevertSam	Sanitized   111,000,000 records.  Elapsed time: 00:02:31s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:20	RevertSam	Sanitized   112,000,000 records.  Elapsed time: 00:02:32s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:22	RevertSam	Sanitized   113,000,000 records.  Elapsed time: 00:02:33s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:23	RevertSam	Sanitized   114,000,000 records.  Elapsed time: 00:02:35s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:24	RevertSam	Sanitized   115,000,000 records.  Elapsed time: 00:02:36s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:26	RevertSam	Sanitized   116,000,000 records.  Elapsed time: 00:02:37s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:27	RevertSam	Sanitized   117,000,000 records.  Elapsed time: 00:02:39s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:28	RevertSam	Sanitized   118,000,000 records.  Elapsed time: 00:02:40s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:30	RevertSam	Sanitized   119,000,000 records.  Elapsed time: 00:02:41s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:31	RevertSam	Sanitized   120,000,000 records.  Elapsed time: 00:02:43s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:32	RevertSam	Sanitized   121,000,000 records.  Elapsed time: 00:02:44s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:34	RevertSam	Sanitized   122,000,000 records.  Elapsed time: 00:02:45s.  Time for last 1,000,000:    1s.  Last read position: */*
+INFO	2023-09-13 14:37:34	RevertSam	Discarded 0 out of 122165600 (0.000%) reads in order to sanitize output.
+[Wed Sep 13 14:37:34 SGT 2023] picard.sam.RevertSam done. Elapsed time: 11.91 minutes.
+Runtime.totalMemory()=1124073472
+Tool returned:
+0
+Using GATK jar /gatk/gatk-package-4.4.0.0-local.jar
+Running:
+    java -Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=2 -jar /gatk/gatk-package-4.4.0.0-local.jar RevertSam I=/mnt/inputs/atac-croo-out/98JKPD8/sample11/ddf5bf06-2cc8-466d-9425-952fb8e96770.nodup.no_chrM_MT.bam O=/mnt/inputs/atac-croo-out/98JKPD8/sample11/ddf5bf06-2cc8-466d-9425-952fb8e96770.nodup.no_chrM_MT_revertsam-noXS.bam SANITIZE=true MAX_DISCARD_FRACTION=0.005 ATTRIBUTE_TO_CLEAR=XT ATTRIBUTE_TO_CLEAR=XN ATTRIBUTE_TO_CLEAR=AS ATTRIBUTE_TO_CLEAR=OC ATTRIBUTE_TO_CLEAR=OP ATTRIBUTE_TO_CLEAR=XS SORT_ORDER=queryname RESTORE_ORIGINAL_QUALITIES=true REMOVE_DUPLICATE_INFORMATION=true REMOVE_ALIGNMENT_INFORMATION=true TMP_DIR=/mnt/outputs/tmp
+======================================================================================
+
+			Resource Usage on 2023-09-13 14:37:35.683783:
+
+	JobId: 2859734.pbs101  
+	Project: 12003580 
+	Exit Status: 0
+	NCPUs Requested: 12				NCPUs Used: 12
+							CPU Time Used: 00:18:15
+	Memory Requested: 120gb 			Memory Used: 28924224kb
+							Vmem Used: 41519584kb
+	Walltime requested: 03:00:00 			Walltime Used: 00:12:01
+	
+	Execution Nodes Used: (x1002c2s4b0n1:ncpus=12:mem=125829120kb)
+	
+ ======================================================================================

@@ -30,11 +30,11 @@ for list in "${lists[@]}"; do
     for bam in "${bams[@]}"; do
         echo "Processing bam: $bam"
         dir_path=$(dirname "$bam")
-        # find revert_sam bam files in each dir_path 
+        # find revertsam bam files in each dir_path 
         readarray -t revert_sams < <(find "$dir_path" -name "*revertsam.bam" -type f)
-        for revert_sam in "${revert_sams[@]}"; do
-            echo "Processing revert_sam: $revert_sam"
-            modified_bam_path="${revert_sam/#$pattern/$mount_prefix}"
+        for revertsam in "${revert_sams[@]}"; do
+            echo "Processing revertsam: $revertsam"
+            modified_bam_path="${revertsam/#$pattern/$mount_prefix}"
             echo "Modified bam path: $modified_bam_path"
             file_prefix="${modified_bam_path%.*}"
             echo "File prefix: $file_prefix"

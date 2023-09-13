@@ -2,7 +2,7 @@
 # shellcheck disable=SC1091
 
 #PBS -l select=1:ncpus=12:mem=120GB
-#PBS -l walltime=4:00:00
+#PBS -l walltime=3:00:00
 #PBS -j oe
 #PBS -P personal
 #PBS -q normal
@@ -16,9 +16,9 @@ singExec="singularity exec --bind /home/users/ntu/suffiazi/scratch:/mnt /home/us
 bam=$BAMFILE
 file_prefix=$PREFIX
 
-# run gatk revert sam
-$singExec gatk MarkIlluminaAdapters \
+# run gatk MarkIlluminaAdapters
+$singExec gatk --java-options "-Xmx80G" MarkIlluminaAdapters \
         I="${bam}" \
-        O="${file_prefix}"_markillum-adapt.bam \
-        M="${file_prefix}"_markillum-metrics.txt \
+        O="${file_prefix}"_markadapt.bam \
+        M="${file_prefix}"_markadapt-metrics.txt \
         TMP_DIR=/mnt/outputs/tmp
