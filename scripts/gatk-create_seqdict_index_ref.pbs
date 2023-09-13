@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#PBS -l select=1:ncpus=12:mem=120GB
+#PBS -l walltime=3:00:00
+#PBS -j oe
+#PBS -P 12003580
+#PBS -q normal
+
+# Load singularity
+module load singularity
+singExec="singularity exec --bind /home/users/ntu/suffiazi/scratch:/mnt /home/users/ntu/suffiazi/apps/sifs/gatk.sif"
+
+# run gatk CreateSequenceDictionary
+$singExec gatk CreateSequenceDictionary --REFERENCE /mnt/inputs/references/gatk4/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta
+
+# then index the reference genome using bwa
+module load miniconda3/py38_4.8.3
+conda activate /home/users/ntu/suffiazi/apps/mambaforge/envs/encd-atac
+
+bwa index -a bwtsw /home/users/ntu/suffiazi/scratch/inputs/references/gatk4/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta

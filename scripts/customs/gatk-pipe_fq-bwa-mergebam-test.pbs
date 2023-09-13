@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+#PBS -l select=1:ncpus=16:mem=120GB
+#PBS -l walltime=8:00:00
+#PBS -j oe
+#PBS -P 12003580
+#PBS -q normal
+
+set -o pipefail
+
+# load conda environment and singularity
+module load miniconda3/py38_4.8.3
+conda activate /home/users/ntu/suffiazi/apps/mambaforge/envs/gatk-snv
+
+module load singularity
+singExec="singularity exec --bind /home/users/ntu/suffiazi/scratch:/mnt /home/users/ntu/suffiazi/apps/sifs/gatk.sif"
+
+# set up variable
+file_prefix="/mnt/inputs/atac-croo-out/2GAMBDQ/sample1/b0dde559-618f-43ce-9ccf-66c744f8e831.nodup.no_chrM_MT"
+echo "file_prefix: ${file_prefix}"
+
+# run gatk SamToFastq
+$singExec gatk --java-options "-Xmx100G" SamToFastq \
+        I="${file_prefix}"_revertsam-noXS_markadapt.bam \
+        FASTQ=/dev/stdout \
+        CLIPPING_ATTRIBUTE=XT \
+        CLIPPING_ACTION=2 \
+        INTERLEAVE=true \
+        NON_PF=true \
+        TMPDIR=/mnt/outputs/tmp | \
+
+bwa mem -M -t 16 -p /scratch/users/ntu/suffiazi/inputs/references/gatk4/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta /dev/stdin | \
+
+$singExec gatk --java-options "-Xmx100G" MergeBamAlignment \
+        ALIGNED_BAM=/dev/stdin \
+        UNMAPPED_BAM="${file_prefix}"_revertsam-noXS.bam \
+        OUTPUT="${file_prefix}"_pipe-merged.bam \
+        R=/mnt/inputs/references/gatk4/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta \
+        CREATE_INDEX=true \
+        ADD_MATE_CIGAR=true \
+        CLIP_ADAPTERS=false \
+        CLIP_OVERLAPPING_READS=true \
+        INCLUDE_SECONDARY_ALIGNMENTS=true \
+        MAX_INSERTIONS_OR_DELETIONS=-1 \
+        PRIMARY_ALIGNMENT_STRATEGY=MostDistant \
+        ATTRIBUTES_TO_RETAIN=XS \
+        TMP_DIR=/mnt/outputs/tmp

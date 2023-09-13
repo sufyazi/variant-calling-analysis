@@ -1,0 +1,248 @@
+INFO	2023-09-13 16:10:06	MarkIlluminaAdapters	
+
+********** NOTE: Picard's command line syntax is changing.
+**********
+********** For more information, please see:
+********** 
+https://github.com/broadinstitute/picard/wiki/Command-Line-Syntax-Transition-For-Users-(Pre-Transition)
+**********
+********** The command line looks like this in the new syntax:
+**********
+**********    MarkIlluminaAdapters -I /mnt/inputs/atac-croo-out/S6R691V/sample10/9f6a85ba-d06b-4fd8-ad24-603e4e7f706b.nodup.no_chrM_MT_revertsam-noXS.bam -O /mnt/inputs/atac-croo-out/S6R691V/sample10/9f6a85ba-d06b-4fd8-ad24-603e4e7f706b.nodup.no_chrM_MT_revertsam-noXS_markadapt.bam -M /mnt/inputs/atac-croo-out/S6R691V/sample10/9f6a85ba-d06b-4fd8-ad24-603e4e7f706b.nodup.no_chrM_MT_revertsam-noXS_markadapt-metrcs.txt -TMP_DIR /mnt/outputs/tmp
+**********
+
+
+16:10:06.128 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/gatk/gatk-package-4.4.0.0-local.jar!/com/intel/gkl/native/libgkl_compression.so
+[Wed Sep 13 16:10:06 SGT 2023] MarkIlluminaAdapters INPUT=/mnt/inputs/atac-croo-out/S6R691V/sample10/9f6a85ba-d06b-4fd8-ad24-603e4e7f706b.nodup.no_chrM_MT_revertsam-noXS.bam OUTPUT=/mnt/inputs/atac-croo-out/S6R691V/sample10/9f6a85ba-d06b-4fd8-ad24-603e4e7f706b.nodup.no_chrM_MT_revertsam-noXS_markadapt.bam METRICS=/mnt/inputs/atac-croo-out/S6R691V/sample10/9f6a85ba-d06b-4fd8-ad24-603e4e7f706b.nodup.no_chrM_MT_revertsam-noXS_markadapt-metrcs.txt TMP_DIR=[/mnt/outputs/tmp]    MIN_MATCH_BASES_SE=12 MIN_MATCH_BASES_PE=6 MAX_ERROR_RATE_SE=0.1 MAX_ERROR_RATE_PE=0.1 ADAPTERS=[INDEXED, DUAL_INDEXED, PAIRED_END] ADAPTER_TRUNCATION_LENGTH=30 PRUNE_ADAPTER_LIST_AFTER_THIS_MANY_ADAPTERS_SEEN=100 NUM_ADAPTERS_TO_KEEP=1 VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=2 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+[Wed Sep 13 16:10:06 SGT 2023] Executing as suffiazi@x1001c0s0b0n0 on Linux 4.18.0-305.25.1.el8_4.x86_64 amd64; OpenJDK 64-Bit Server VM 17.0.6+10-Ubuntu-0ubuntu118.04.1; Deflater: Intel; Inflater: Intel; Provider GCS is available; Picard version: 4.4.0.0
+INFO	2023-09-13 16:10:11	MarkIlluminaAdapters	Read     1,000,000 records.  Elapsed time: 00:00:05s.  Time for last 1,000,000:    5s.  Last read position: */*
+INFO	2023-09-13 16:10:16	MarkIlluminaAdapters	Read     2,000,000 records.  Elapsed time: 00:00:10s.  Time for last 1,000,000:    5s.  Last read position: */*
+INFO	2023-09-13 16:10:21	MarkIlluminaAdapters	Read     3,000,000 records.  Elapsed time: 00:00:15s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:10:26	MarkIlluminaAdapters	Read     4,000,000 records.  Elapsed time: 00:00:20s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:10:31	MarkIlluminaAdapters	Read     5,000,000 records.  Elapsed time: 00:00:25s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:10:35	MarkIlluminaAdapters	Read     6,000,000 records.  Elapsed time: 00:00:29s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:10:40	MarkIlluminaAdapters	Read     7,000,000 records.  Elapsed time: 00:00:34s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:10:46	MarkIlluminaAdapters	Read     8,000,000 records.  Elapsed time: 00:00:39s.  Time for last 1,000,000:    5s.  Last read position: */*
+INFO	2023-09-13 16:10:50	MarkIlluminaAdapters	Read     9,000,000 records.  Elapsed time: 00:00:44s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:10:55	MarkIlluminaAdapters	Read    10,000,000 records.  Elapsed time: 00:00:49s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:11:00	MarkIlluminaAdapters	Read    11,000,000 records.  Elapsed time: 00:00:54s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:11:05	MarkIlluminaAdapters	Read    12,000,000 records.  Elapsed time: 00:00:58s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:11:09	MarkIlluminaAdapters	Read    13,000,000 records.  Elapsed time: 00:01:03s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:11:16	MarkIlluminaAdapters	Read    14,000,000 records.  Elapsed time: 00:01:09s.  Time for last 1,000,000:    6s.  Last read position: */*
+INFO	2023-09-13 16:11:20	MarkIlluminaAdapters	Read    15,000,000 records.  Elapsed time: 00:01:14s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:11:25	MarkIlluminaAdapters	Read    16,000,000 records.  Elapsed time: 00:01:19s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:11:30	MarkIlluminaAdapters	Read    17,000,000 records.  Elapsed time: 00:01:24s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:11:35	MarkIlluminaAdapters	Read    18,000,000 records.  Elapsed time: 00:01:29s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:11:40	MarkIlluminaAdapters	Read    19,000,000 records.  Elapsed time: 00:01:33s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:11:44	MarkIlluminaAdapters	Read    20,000,000 records.  Elapsed time: 00:01:38s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:11:49	MarkIlluminaAdapters	Read    21,000,000 records.  Elapsed time: 00:01:43s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:11:54	MarkIlluminaAdapters	Read    22,000,000 records.  Elapsed time: 00:01:48s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:11:59	MarkIlluminaAdapters	Read    23,000,000 records.  Elapsed time: 00:01:52s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:12:03	MarkIlluminaAdapters	Read    24,000,000 records.  Elapsed time: 00:01:57s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:12:08	MarkIlluminaAdapters	Read    25,000,000 records.  Elapsed time: 00:02:02s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:12:13	MarkIlluminaAdapters	Read    26,000,000 records.  Elapsed time: 00:02:07s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:12:18	MarkIlluminaAdapters	Read    27,000,000 records.  Elapsed time: 00:02:11s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:12:23	MarkIlluminaAdapters	Read    28,000,000 records.  Elapsed time: 00:02:16s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:12:27	MarkIlluminaAdapters	Read    29,000,000 records.  Elapsed time: 00:02:21s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:12:32	MarkIlluminaAdapters	Read    30,000,000 records.  Elapsed time: 00:02:26s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:12:37	MarkIlluminaAdapters	Read    31,000,000 records.  Elapsed time: 00:02:31s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:12:42	MarkIlluminaAdapters	Read    32,000,000 records.  Elapsed time: 00:02:35s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:12:47	MarkIlluminaAdapters	Read    33,000,000 records.  Elapsed time: 00:02:40s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:12:51	MarkIlluminaAdapters	Read    34,000,000 records.  Elapsed time: 00:02:45s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:12:56	MarkIlluminaAdapters	Read    35,000,000 records.  Elapsed time: 00:02:50s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:13:01	MarkIlluminaAdapters	Read    36,000,000 records.  Elapsed time: 00:02:55s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:13:06	MarkIlluminaAdapters	Read    37,000,000 records.  Elapsed time: 00:02:59s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:13:10	MarkIlluminaAdapters	Read    38,000,000 records.  Elapsed time: 00:03:04s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:13:15	MarkIlluminaAdapters	Read    39,000,000 records.  Elapsed time: 00:03:09s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:13:20	MarkIlluminaAdapters	Read    40,000,000 records.  Elapsed time: 00:03:14s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:13:25	MarkIlluminaAdapters	Read    41,000,000 records.  Elapsed time: 00:03:19s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:13:30	MarkIlluminaAdapters	Read    42,000,000 records.  Elapsed time: 00:03:23s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:13:34	MarkIlluminaAdapters	Read    43,000,000 records.  Elapsed time: 00:03:28s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:13:39	MarkIlluminaAdapters	Read    44,000,000 records.  Elapsed time: 00:03:33s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:13:44	MarkIlluminaAdapters	Read    45,000,000 records.  Elapsed time: 00:03:38s.  Time for last 1,000,000:    5s.  Last read position: */*
+INFO	2023-09-13 16:13:49	MarkIlluminaAdapters	Read    46,000,000 records.  Elapsed time: 00:03:43s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:13:54	MarkIlluminaAdapters	Read    47,000,000 records.  Elapsed time: 00:03:48s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:13:59	MarkIlluminaAdapters	Read    48,000,000 records.  Elapsed time: 00:03:53s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:14:04	MarkIlluminaAdapters	Read    49,000,000 records.  Elapsed time: 00:03:57s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:14:08	MarkIlluminaAdapters	Read    50,000,000 records.  Elapsed time: 00:04:02s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:14:13	MarkIlluminaAdapters	Read    51,000,000 records.  Elapsed time: 00:04:07s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:14:18	MarkIlluminaAdapters	Read    52,000,000 records.  Elapsed time: 00:04:12s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:14:23	MarkIlluminaAdapters	Read    53,000,000 records.  Elapsed time: 00:04:16s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:14:28	MarkIlluminaAdapters	Read    54,000,000 records.  Elapsed time: 00:04:22s.  Time for last 1,000,000:    5s.  Last read position: */*
+INFO	2023-09-13 16:14:33	MarkIlluminaAdapters	Read    55,000,000 records.  Elapsed time: 00:04:27s.  Time for last 1,000,000:    5s.  Last read position: */*
+INFO	2023-09-13 16:14:38	MarkIlluminaAdapters	Read    56,000,000 records.  Elapsed time: 00:04:32s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:14:43	MarkIlluminaAdapters	Read    57,000,000 records.  Elapsed time: 00:04:37s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:14:48	MarkIlluminaAdapters	Read    58,000,000 records.  Elapsed time: 00:04:41s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:14:53	MarkIlluminaAdapters	Read    59,000,000 records.  Elapsed time: 00:04:46s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:14:57	MarkIlluminaAdapters	Read    60,000,000 records.  Elapsed time: 00:04:51s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:15:02	MarkIlluminaAdapters	Read    61,000,000 records.  Elapsed time: 00:04:56s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:15:07	MarkIlluminaAdapters	Read    62,000,000 records.  Elapsed time: 00:05:01s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:15:12	MarkIlluminaAdapters	Read    63,000,000 records.  Elapsed time: 00:05:06s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:15:16	MarkIlluminaAdapters	Read    64,000,000 records.  Elapsed time: 00:05:10s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:15:21	MarkIlluminaAdapters	Read    65,000,000 records.  Elapsed time: 00:05:15s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:15:26	MarkIlluminaAdapters	Read    66,000,000 records.  Elapsed time: 00:05:20s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:15:31	MarkIlluminaAdapters	Read    67,000,000 records.  Elapsed time: 00:05:25s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:15:36	MarkIlluminaAdapters	Read    68,000,000 records.  Elapsed time: 00:05:30s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:15:41	MarkIlluminaAdapters	Read    69,000,000 records.  Elapsed time: 00:05:35s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:15:46	MarkIlluminaAdapters	Read    70,000,000 records.  Elapsed time: 00:05:40s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:15:51	MarkIlluminaAdapters	Read    71,000,000 records.  Elapsed time: 00:05:44s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:15:55	MarkIlluminaAdapters	Read    72,000,000 records.  Elapsed time: 00:05:49s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:16:00	MarkIlluminaAdapters	Read    73,000,000 records.  Elapsed time: 00:05:54s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:16:05	MarkIlluminaAdapters	Read    74,000,000 records.  Elapsed time: 00:05:59s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:16:10	MarkIlluminaAdapters	Read    75,000,000 records.  Elapsed time: 00:06:04s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:16:15	MarkIlluminaAdapters	Read    76,000,000 records.  Elapsed time: 00:06:08s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:16:19	MarkIlluminaAdapters	Read    77,000,000 records.  Elapsed time: 00:06:13s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:16:24	MarkIlluminaAdapters	Read    78,000,000 records.  Elapsed time: 00:06:18s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:16:29	MarkIlluminaAdapters	Read    79,000,000 records.  Elapsed time: 00:06:23s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:16:34	MarkIlluminaAdapters	Read    80,000,000 records.  Elapsed time: 00:06:28s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:16:39	MarkIlluminaAdapters	Read    81,000,000 records.  Elapsed time: 00:06:33s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:16:44	MarkIlluminaAdapters	Read    82,000,000 records.  Elapsed time: 00:06:38s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:16:49	MarkIlluminaAdapters	Read    83,000,000 records.  Elapsed time: 00:06:43s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:16:53	MarkIlluminaAdapters	Read    84,000,000 records.  Elapsed time: 00:06:47s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:16:57	MarkIlluminaAdapters	Read    85,000,000 records.  Elapsed time: 00:06:51s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:17:01	MarkIlluminaAdapters	Read    86,000,000 records.  Elapsed time: 00:06:54s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:17:04	MarkIlluminaAdapters	Read    87,000,000 records.  Elapsed time: 00:06:58s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:17:08	MarkIlluminaAdapters	Read    88,000,000 records.  Elapsed time: 00:07:02s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:17:12	MarkIlluminaAdapters	Read    89,000,000 records.  Elapsed time: 00:07:06s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:17:16	MarkIlluminaAdapters	Read    90,000,000 records.  Elapsed time: 00:07:10s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:17:20	MarkIlluminaAdapters	Read    91,000,000 records.  Elapsed time: 00:07:14s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:17:24	MarkIlluminaAdapters	Read    92,000,000 records.  Elapsed time: 00:07:18s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:17:28	MarkIlluminaAdapters	Read    93,000,000 records.  Elapsed time: 00:07:22s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:17:31	MarkIlluminaAdapters	Read    94,000,000 records.  Elapsed time: 00:07:25s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:17:35	MarkIlluminaAdapters	Read    95,000,000 records.  Elapsed time: 00:07:29s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:17:39	MarkIlluminaAdapters	Read    96,000,000 records.  Elapsed time: 00:07:33s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:17:43	MarkIlluminaAdapters	Read    97,000,000 records.  Elapsed time: 00:07:37s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:17:47	MarkIlluminaAdapters	Read    98,000,000 records.  Elapsed time: 00:07:41s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:17:51	MarkIlluminaAdapters	Read    99,000,000 records.  Elapsed time: 00:07:45s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:17:55	MarkIlluminaAdapters	Read   100,000,000 records.  Elapsed time: 00:07:49s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:17:59	MarkIlluminaAdapters	Read   101,000,000 records.  Elapsed time: 00:07:53s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:18:03	MarkIlluminaAdapters	Read   102,000,000 records.  Elapsed time: 00:07:57s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:18:07	MarkIlluminaAdapters	Read   103,000,000 records.  Elapsed time: 00:08:00s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:18:10	MarkIlluminaAdapters	Read   104,000,000 records.  Elapsed time: 00:08:04s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:18:14	MarkIlluminaAdapters	Read   105,000,000 records.  Elapsed time: 00:08:08s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:18:18	MarkIlluminaAdapters	Read   106,000,000 records.  Elapsed time: 00:08:12s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:18:22	MarkIlluminaAdapters	Read   107,000,000 records.  Elapsed time: 00:08:16s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:18:26	MarkIlluminaAdapters	Read   108,000,000 records.  Elapsed time: 00:08:19s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:18:30	MarkIlluminaAdapters	Read   109,000,000 records.  Elapsed time: 00:08:23s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:18:33	MarkIlluminaAdapters	Read   110,000,000 records.  Elapsed time: 00:08:27s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:18:38	MarkIlluminaAdapters	Read   111,000,000 records.  Elapsed time: 00:08:32s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:18:42	MarkIlluminaAdapters	Read   112,000,000 records.  Elapsed time: 00:08:36s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:18:46	MarkIlluminaAdapters	Read   113,000,000 records.  Elapsed time: 00:08:39s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:18:49	MarkIlluminaAdapters	Read   114,000,000 records.  Elapsed time: 00:08:43s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:18:53	MarkIlluminaAdapters	Read   115,000,000 records.  Elapsed time: 00:08:47s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:18:57	MarkIlluminaAdapters	Read   116,000,000 records.  Elapsed time: 00:08:51s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:19:00	MarkIlluminaAdapters	Read   117,000,000 records.  Elapsed time: 00:08:54s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:19:04	MarkIlluminaAdapters	Read   118,000,000 records.  Elapsed time: 00:08:58s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:19:08	MarkIlluminaAdapters	Read   119,000,000 records.  Elapsed time: 00:09:02s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:19:11	MarkIlluminaAdapters	Read   120,000,000 records.  Elapsed time: 00:09:05s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:19:15	MarkIlluminaAdapters	Read   121,000,000 records.  Elapsed time: 00:09:09s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:19:19	MarkIlluminaAdapters	Read   122,000,000 records.  Elapsed time: 00:09:12s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:19:22	MarkIlluminaAdapters	Read   123,000,000 records.  Elapsed time: 00:09:16s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:19:26	MarkIlluminaAdapters	Read   124,000,000 records.  Elapsed time: 00:09:20s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:19:30	MarkIlluminaAdapters	Read   125,000,000 records.  Elapsed time: 00:09:23s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:19:33	MarkIlluminaAdapters	Read   126,000,000 records.  Elapsed time: 00:09:27s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:19:37	MarkIlluminaAdapters	Read   127,000,000 records.  Elapsed time: 00:09:31s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:19:41	MarkIlluminaAdapters	Read   128,000,000 records.  Elapsed time: 00:09:35s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:19:44	MarkIlluminaAdapters	Read   129,000,000 records.  Elapsed time: 00:09:38s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:19:48	MarkIlluminaAdapters	Read   130,000,000 records.  Elapsed time: 00:09:42s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:19:52	MarkIlluminaAdapters	Read   131,000,000 records.  Elapsed time: 00:09:46s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:19:55	MarkIlluminaAdapters	Read   132,000,000 records.  Elapsed time: 00:09:49s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:19:59	MarkIlluminaAdapters	Read   133,000,000 records.  Elapsed time: 00:09:53s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:20:03	MarkIlluminaAdapters	Read   134,000,000 records.  Elapsed time: 00:09:57s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:20:07	MarkIlluminaAdapters	Read   135,000,000 records.  Elapsed time: 00:10:00s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:20:11	MarkIlluminaAdapters	Read   136,000,000 records.  Elapsed time: 00:10:04s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:20:14	MarkIlluminaAdapters	Read   137,000,000 records.  Elapsed time: 00:10:08s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:20:18	MarkIlluminaAdapters	Read   138,000,000 records.  Elapsed time: 00:10:12s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:20:21	MarkIlluminaAdapters	Read   139,000,000 records.  Elapsed time: 00:10:15s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:20:25	MarkIlluminaAdapters	Read   140,000,000 records.  Elapsed time: 00:10:19s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:20:29	MarkIlluminaAdapters	Read   141,000,000 records.  Elapsed time: 00:10:23s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:20:33	MarkIlluminaAdapters	Read   142,000,000 records.  Elapsed time: 00:10:26s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:20:36	MarkIlluminaAdapters	Read   143,000,000 records.  Elapsed time: 00:10:30s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:20:40	MarkIlluminaAdapters	Read   144,000,000 records.  Elapsed time: 00:10:34s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:20:44	MarkIlluminaAdapters	Read   145,000,000 records.  Elapsed time: 00:10:38s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:20:48	MarkIlluminaAdapters	Read   146,000,000 records.  Elapsed time: 00:10:42s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:20:51	MarkIlluminaAdapters	Read   147,000,000 records.  Elapsed time: 00:10:45s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:20:55	MarkIlluminaAdapters	Read   148,000,000 records.  Elapsed time: 00:10:49s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:20:59	MarkIlluminaAdapters	Read   149,000,000 records.  Elapsed time: 00:10:53s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:21:02	MarkIlluminaAdapters	Read   150,000,000 records.  Elapsed time: 00:10:56s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:21:06	MarkIlluminaAdapters	Read   151,000,000 records.  Elapsed time: 00:11:00s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:21:10	MarkIlluminaAdapters	Read   152,000,000 records.  Elapsed time: 00:11:04s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:21:13	MarkIlluminaAdapters	Read   153,000,000 records.  Elapsed time: 00:11:07s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:21:17	MarkIlluminaAdapters	Read   154,000,000 records.  Elapsed time: 00:11:11s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:21:21	MarkIlluminaAdapters	Read   155,000,000 records.  Elapsed time: 00:11:15s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:21:24	MarkIlluminaAdapters	Read   156,000,000 records.  Elapsed time: 00:11:18s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:21:28	MarkIlluminaAdapters	Read   157,000,000 records.  Elapsed time: 00:11:22s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:21:32	MarkIlluminaAdapters	Read   158,000,000 records.  Elapsed time: 00:11:26s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:21:36	MarkIlluminaAdapters	Read   159,000,000 records.  Elapsed time: 00:11:30s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:21:39	MarkIlluminaAdapters	Read   160,000,000 records.  Elapsed time: 00:11:33s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:21:43	MarkIlluminaAdapters	Read   161,000,000 records.  Elapsed time: 00:11:37s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:21:47	MarkIlluminaAdapters	Read   162,000,000 records.  Elapsed time: 00:11:41s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:21:50	MarkIlluminaAdapters	Read   163,000,000 records.  Elapsed time: 00:11:44s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:21:54	MarkIlluminaAdapters	Read   164,000,000 records.  Elapsed time: 00:11:48s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:21:58	MarkIlluminaAdapters	Read   165,000,000 records.  Elapsed time: 00:11:52s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:22:01	MarkIlluminaAdapters	Read   166,000,000 records.  Elapsed time: 00:11:55s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:22:05	MarkIlluminaAdapters	Read   167,000,000 records.  Elapsed time: 00:11:59s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:22:09	MarkIlluminaAdapters	Read   168,000,000 records.  Elapsed time: 00:12:02s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:22:12	MarkIlluminaAdapters	Read   169,000,000 records.  Elapsed time: 00:12:06s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:22:16	MarkIlluminaAdapters	Read   170,000,000 records.  Elapsed time: 00:12:10s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:22:20	MarkIlluminaAdapters	Read   171,000,000 records.  Elapsed time: 00:12:13s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:22:23	MarkIlluminaAdapters	Read   172,000,000 records.  Elapsed time: 00:12:17s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:22:27	MarkIlluminaAdapters	Read   173,000,000 records.  Elapsed time: 00:12:21s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:22:31	MarkIlluminaAdapters	Read   174,000,000 records.  Elapsed time: 00:12:24s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:22:36	MarkIlluminaAdapters	Read   175,000,000 records.  Elapsed time: 00:12:29s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:22:39	MarkIlluminaAdapters	Read   176,000,000 records.  Elapsed time: 00:12:33s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:22:43	MarkIlluminaAdapters	Read   177,000,000 records.  Elapsed time: 00:12:37s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:22:47	MarkIlluminaAdapters	Read   178,000,000 records.  Elapsed time: 00:12:41s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:22:51	MarkIlluminaAdapters	Read   179,000,000 records.  Elapsed time: 00:12:44s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:22:54	MarkIlluminaAdapters	Read   180,000,000 records.  Elapsed time: 00:12:48s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:22:58	MarkIlluminaAdapters	Read   181,000,000 records.  Elapsed time: 00:12:52s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:23:02	MarkIlluminaAdapters	Read   182,000,000 records.  Elapsed time: 00:12:56s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:23:06	MarkIlluminaAdapters	Read   183,000,000 records.  Elapsed time: 00:13:00s.  Time for last 1,000,000:    4s.  Last read position: */*
+INFO	2023-09-13 16:23:10	MarkIlluminaAdapters	Read   184,000,000 records.  Elapsed time: 00:13:03s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:23:13	MarkIlluminaAdapters	Read   185,000,000 records.  Elapsed time: 00:13:07s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:23:17	MarkIlluminaAdapters	Read   186,000,000 records.  Elapsed time: 00:13:11s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:23:21	MarkIlluminaAdapters	Read   187,000,000 records.  Elapsed time: 00:13:15s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:23:25	MarkIlluminaAdapters	Read   188,000,000 records.  Elapsed time: 00:13:19s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:23:29	MarkIlluminaAdapters	Read   189,000,000 records.  Elapsed time: 00:13:22s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:23:32	MarkIlluminaAdapters	Read   190,000,000 records.  Elapsed time: 00:13:26s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:23:36	MarkIlluminaAdapters	Read   191,000,000 records.  Elapsed time: 00:13:30s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:23:40	MarkIlluminaAdapters	Read   192,000,000 records.  Elapsed time: 00:13:34s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:23:44	MarkIlluminaAdapters	Read   193,000,000 records.  Elapsed time: 00:13:38s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:23:48	MarkIlluminaAdapters	Read   194,000,000 records.  Elapsed time: 00:13:42s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:23:52	MarkIlluminaAdapters	Read   195,000,000 records.  Elapsed time: 00:13:46s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:23:56	MarkIlluminaAdapters	Read   196,000,000 records.  Elapsed time: 00:13:50s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:24:00	MarkIlluminaAdapters	Read   197,000,000 records.  Elapsed time: 00:13:53s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:24:03	MarkIlluminaAdapters	Read   198,000,000 records.  Elapsed time: 00:13:57s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:24:07	MarkIlluminaAdapters	Read   199,000,000 records.  Elapsed time: 00:14:01s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:24:11	MarkIlluminaAdapters	Read   200,000,000 records.  Elapsed time: 00:14:05s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:24:15	MarkIlluminaAdapters	Read   201,000,000 records.  Elapsed time: 00:14:08s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:24:18	MarkIlluminaAdapters	Read   202,000,000 records.  Elapsed time: 00:14:12s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:24:22	MarkIlluminaAdapters	Read   203,000,000 records.  Elapsed time: 00:14:16s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:24:26	MarkIlluminaAdapters	Read   204,000,000 records.  Elapsed time: 00:14:20s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:24:30	MarkIlluminaAdapters	Read   205,000,000 records.  Elapsed time: 00:14:24s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:24:34	MarkIlluminaAdapters	Read   206,000,000 records.  Elapsed time: 00:14:27s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:24:37	MarkIlluminaAdapters	Read   207,000,000 records.  Elapsed time: 00:14:31s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-13 16:24:41	MarkIlluminaAdapters	Read   208,000,000 records.  Elapsed time: 00:14:35s.  Time for last 1,000,000:    3s.  Last read position: */*
+[Wed Sep 13 16:24:44 SGT 2023] picard.illumina.MarkIlluminaAdapters done. Elapsed time: 14.64 minutes.
+Runtime.totalMemory()=335544320
+Tool returned:
+0
+Using GATK jar /gatk/gatk-package-4.4.0.0-local.jar
+Running:
+    java -Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=2 -Xmx80G -jar /gatk/gatk-package-4.4.0.0-local.jar MarkIlluminaAdapters I=/mnt/inputs/atac-croo-out/S6R691V/sample10/9f6a85ba-d06b-4fd8-ad24-603e4e7f706b.nodup.no_chrM_MT_revertsam-noXS.bam O=/mnt/inputs/atac-croo-out/S6R691V/sample10/9f6a85ba-d06b-4fd8-ad24-603e4e7f706b.nodup.no_chrM_MT_revertsam-noXS_markadapt.bam M=/mnt/inputs/atac-croo-out/S6R691V/sample10/9f6a85ba-d06b-4fd8-ad24-603e4e7f706b.nodup.no_chrM_MT_revertsam-noXS_markadapt-metrcs.txt TMP_DIR=/mnt/outputs/tmp
+======================================================================================
+
+			Resource Usage on 2023-09-13 16:24:44.626084:
+
+	JobId: 2860336.pbs101  
+	Project: 12003580 
+	Exit Status: 0
+	NCPUs Requested: 12				NCPUs Used: 12
+							CPU Time Used: 00:20:34
+	Memory Requested: 120gb 			Memory Used: 25670564kb
+							Vmem Used: 93265092kb
+	Walltime requested: 03:00:00 			Walltime Used: 00:14:48
+	
+	Execution Nodes Used: (x1001c0s0b0n0:ncpus=12:mem=125829120kb)
+	
+ ======================================================================================
