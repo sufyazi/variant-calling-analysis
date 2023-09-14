@@ -18,9 +18,10 @@ singExec="singularity exec --bind /home/users/ntu/suffiazi/scratch:/mnt /home/us
 
 # set up variable
 file_prefix="/mnt/inputs/atac-croo-out/2GAMBDQ/sample1/b0dde559-618f-43ce-9ccf-66c744f8e831.nodup.no_chrM_MT"
-echo "file_prefix: ${file_prefix}"
 
-# run gatk SamToFastq
+# run gatk SamToFastq > bwa mem > gatk MergeBamAlignment pipeline
+echo "Running gatk SamToFastq > bwa mem > gatk MergeBamAlignment pipeline"
+
 $singExec gatk --java-options "-Xmx100G" SamToFastq \
         I="${file_prefix}"_revertsam-noXS_markadapt.bam \
         FASTQ=/dev/stdout \
@@ -28,7 +29,7 @@ $singExec gatk --java-options "-Xmx100G" SamToFastq \
         CLIPPING_ACTION=2 \
         INTERLEAVE=true \
         NON_PF=true \
-        TMPDIR=/mnt/outputs/tmp | \
+        TMP_DIR=/mnt/outputs/tmp | \
 
 bwa mem -M -t 16 -p /scratch/users/ntu/suffiazi/inputs/references/gatk4/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta /dev/stdin | \
 
@@ -46,3 +47,5 @@ $singExec gatk --java-options "-Xmx100G" MergeBamAlignment \
         PRIMARY_ALIGNMENT_STRATEGY=MostDistant \
         ATTRIBUTES_TO_RETAIN=XS \
         TMP_DIR=/mnt/outputs/tmp
+
+echo "Pipeline run finished!"
