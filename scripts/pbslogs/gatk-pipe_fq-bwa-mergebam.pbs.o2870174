@@ -1,0 +1,1081 @@
+Running gatk SamToFastq > bwa mem > gatk MergeBamAlignment pipeline
+[M::bwa_idx_load_from_disk] read 0 ALT contigs
+INFO	2023-09-15 11:14:22	SamToFastq	
+
+********** NOTE: Picard's command line syntax is changing.
+**********
+********** For more information, please see:
+********** 
+https://github.com/broadinstitute/picard/wiki/Command-Line-Syntax-Transition-For-Users-(Pre-Transition)
+**********
+********** The command line looks like this in the new syntax:
+**********
+**********    SamToFastq -I /mnt/inputs/atac-croo-out/S6R691V/sample16/1bdd5f44-fe98-41c7-8eb4-db22b8154315.nodup.no_chrM_MT_revertsam-noXS_markadapt.bam -FASTQ /dev/stdout -CLIPPING_ATTRIBUTE XT -CLIPPING_ACTION 2 -INTERLEAVE true -NON_PF true -TMP_DIR /mnt/outputs/tmp
+**********
+
+
+INFO	2023-09-15 11:14:22	MergeBamAlignment	
+
+********** NOTE: Picard's command line syntax is changing.
+**********
+********** For more information, please see:
+********** 
+https://github.com/broadinstitute/picard/wiki/Command-Line-Syntax-Transition-For-Users-(Pre-Transition)
+**********
+********** The command line looks like this in the new syntax:
+**********
+**********    MergeBamAlignment -ALIGNED_BAM /dev/stdin -UNMAPPED_BAM /mnt/inputs/atac-croo-out/S6R691V/sample16/1bdd5f44-fe98-41c7-8eb4-db22b8154315.nodup.no_chrM_MT_revertsam-noXS.bam -OUTPUT /mnt/inputs/atac-croo-out/S6R691V/sample16/1bdd5f44-fe98-41c7-8eb4-db22b8154315.nodup.no_chrM_MT_pipe-merged.bam -R /mnt/inputs/references/gatk4/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta -CREATE_INDEX true -ADD_MATE_CIGAR true -CLIP_ADAPTERS false -CLIP_OVERLAPPING_READS true -INCLUDE_SECONDARY_ALIGNMENTS true -MAX_INSERTIONS_OR_DELETIONS -1 -PRIMARY_ALIGNMENT_STRATEGY MostDistant -ATTRIBUTES_TO_RETAIN XS -TMP_DIR /mnt/outputs/tmp
+**********
+
+
+11:14:22.254 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/gatk/gatk-package-4.4.0.0-local.jar!/com/intel/gkl/native/libgkl_compression.so
+11:14:22.278 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/gatk/gatk-package-4.4.0.0-local.jar!/com/intel/gkl/native/libgkl_compression.so
+[Fri Sep 15 11:14:22 SGT 2023] SamToFastq INPUT=/mnt/inputs/atac-croo-out/S6R691V/sample16/1bdd5f44-fe98-41c7-8eb4-db22b8154315.nodup.no_chrM_MT_revertsam-noXS_markadapt.bam FASTQ=/dev/stdout INTERLEAVE=true INCLUDE_NON_PF_READS=true CLIPPING_ATTRIBUTE=XT CLIPPING_ACTION=2 TMP_DIR=[/mnt/outputs/tmp]    OUTPUT_PER_RG=false COMPRESS_OUTPUTS_PER_RG=false RG_TAG=PU RE_REVERSE=true CLIPPING_MIN_LENGTH=0 READ1_TRIM=0 READ2_TRIM=0 INCLUDE_NON_PRIMARY_ALIGNMENTS=false VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=2 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+[Fri Sep 15 11:14:22 SGT 2023] Executing as suffiazi@x1001c6s6b1n0 on Linux 4.18.0-305.25.1.el8_4.x86_64 amd64; OpenJDK 64-Bit Server VM 17.0.6+10-Ubuntu-0ubuntu118.04.1; Deflater: Intel; Inflater: Intel; Provider GCS is available; Picard version: 4.4.0.0
+[Fri Sep 15 11:14:22 SGT 2023] MergeBamAlignment UNMAPPED_BAM=/mnt/inputs/atac-croo-out/S6R691V/sample16/1bdd5f44-fe98-41c7-8eb4-db22b8154315.nodup.no_chrM_MT_revertsam-noXS.bam ALIGNED_BAM=[/dev/stdin] OUTPUT=/mnt/inputs/atac-croo-out/S6R691V/sample16/1bdd5f44-fe98-41c7-8eb4-db22b8154315.nodup.no_chrM_MT_pipe-merged.bam CLIP_ADAPTERS=false MAX_INSERTIONS_OR_DELETIONS=-1 ATTRIBUTES_TO_RETAIN=[XS] PRIMARY_ALIGNMENT_STRATEGY=MostDistant CLIP_OVERLAPPING_READS=true INCLUDE_SECONDARY_ALIGNMENTS=true ADD_MATE_CIGAR=true TMP_DIR=[/mnt/outputs/tmp] CREATE_INDEX=true REFERENCE_SEQUENCE=/mnt/inputs/references/gatk4/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta    ADD_PG_TAG_TO_READS=true PAIRED_RUN=true IS_BISULFITE_SEQUENCE=false ALIGNED_READS_ONLY=false ATTRIBUTES_TO_REVERSE=[OQ, U2] ATTRIBUTES_TO_REVERSE_COMPLEMENT=[E2, SQ] READ1_TRIM=0 READ2_TRIM=0 ALIGNER_PROPER_PAIR_FLAGS=false SORT_ORDER=coordinate HARD_CLIP_OVERLAPPING_READS=false UNMAP_CONTAMINANT_READS=false MIN_UNCLIPPED_BASES=32 MATCHING_DICTIONARY_TAGS=[M5, LN] UNMAPPED_READ_STRATEGY=DO_NOT_CHANGE VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=2 MAX_RECORDS_IN_RAM=500000 CREATE_MD5_FILE=false USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+[Fri Sep 15 11:14:22 SGT 2023] Executing as suffiazi@x1001c6s6b1n0 on Linux 4.18.0-305.25.1.el8_4.x86_64 amd64; OpenJDK 64-Bit Server VM 17.0.6+10-Ubuntu-0ubuntu118.04.1; Deflater: Intel; Inflater: Intel; Provider GCS is available; Picard version: 4.4.0.0
+INFO	2023-09-15 11:14:22	SamAlignmentMerger	Processing SAM file(s): [/dev/stdin]
+INFO	2023-09-15 11:14:25	SamToFastq	Processed     1,000,000 records.  Elapsed time: 00:00:02s.  Time for last 1,000,000:    2s.  Last read position: */*
+INFO	2023-09-15 11:14:27	SamToFastq	Processed     2,000,000 records.  Elapsed time: 00:00:05s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:14:30	SamToFastq	Processed     3,000,000 records.  Elapsed time: 00:00:08s.  Time for last 1,000,000:    3s.  Last read position: */*
+INFO	2023-09-15 11:14:34	SamToFastq	Processed     4,000,000 records.  Elapsed time: 00:00:11s.  Time for last 1,000,000:    3s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (3, 846664, 4, 4)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (117, 240, 417)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1017)
+[M::mem_pestat] mean and std.dev: (292.13, 207.85)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1317)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_process_seqs] Processed 2105264 reads in 481.298 CPU sec, 30.322 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:14:58	AbstractAlignmentMerger	Seen many non-increasing record positions. Printing Read-names as well.
+INFO	2023-09-15 11:15:09	AbstractAlignmentMerger	Merged     1,000,000 records.  Elapsed time: 00:00:46s.  Time for last 1,000,000:   11s.  Last read position: chr12:108,248,279.  Last read name: J00118:292:HKF77BBXX:3:1102:4817:31400
+INFO	2023-09-15 11:15:19	AbstractAlignmentMerger	Merged     2,000,000 records.  Elapsed time: 00:00:57s.  Time for last 1,000,000:   10s.  Last read position: chr1:183,924,687.  Last read name: J00118:292:HKF77BBXX:3:1104:28605:35585
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (1, 846472, 10, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (118, 244, 426)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1042)
+[M::mem_pestat] mean and std.dev: (298.21, 214.10)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1350)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (134, 269, 3360)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 9812)
+[M::mem_pestat] mean and std.dev: (1617.90, 1897.59)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 13038)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+INFO	2023-09-15 11:15:24	SamToFastq	Processed     5,000,000 records.  Elapsed time: 00:01:01s.  Time for last 1,000,000:   50s.  Last read position: */*
+INFO	2023-09-15 11:15:26	SamToFastq	Processed     6,000,000 records.  Elapsed time: 00:01:04s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 517.487 CPU sec, 32.733 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:15:39	AbstractAlignmentMerger	Merged     3,000,000 records.  Elapsed time: 00:01:17s.  Time for last 1,000,000:   19s.  Last read position: chr4:174,728,271.  Last read name: J00118:292:HKF77BBXX:3:1106:24160:45291
+INFO	2023-09-15 11:15:50	AbstractAlignmentMerger	Merged     4,000,000 records.  Elapsed time: 00:01:28s.  Time for last 1,000,000:   10s.  Last read position: chr17:81,792,984.  Last read name: J00118:292:HKF77BBXX:3:1108:19025:2000
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (3, 846070, 13, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (119, 247, 434)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1064)
+[M::mem_pestat] mean and std.dev: (302.85, 218.90)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1379)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (106, 130, 1782)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 5134)
+[M::mem_pestat] mean and std.dev: (748.08, 1306.08)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 6810)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+INFO	2023-09-15 11:15:55	SamToFastq	Processed     7,000,000 records.  Elapsed time: 00:01:33s.  Time for last 1,000,000:   29s.  Last read position: */*
+INFO	2023-09-15 11:15:58	SamToFastq	Processed     8,000,000 records.  Elapsed time: 00:01:36s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 509.617 CPU sec, 32.078 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:16:09	AbstractAlignmentMerger	Merged     5,000,000 records.  Elapsed time: 00:01:47s.  Time for last 1,000,000:   19s.  Last read position: chr6:154,454,588.  Last read name: J00118:292:HKF77BBXX:3:1110:1407:37765
+INFO	2023-09-15 11:16:19	AbstractAlignmentMerger	Merged     6,000,000 records.  Elapsed time: 00:01:56s.  Time for last 1,000,000:    9s.  Last read position: chr17:50,052,651.  Last read name: J00118:292:HKF77BBXX:3:1111:9171:41721
+INFO	2023-09-15 11:16:24	SamToFastq	Processed     9,000,000 records.  Elapsed time: 00:02:02s.  Time for last 1,000,000:   26s.  Last read position: */*
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (3, 845665, 6, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (119, 250, 442)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1088)
+[M::mem_pestat] mean and std.dev: (307.31, 223.38)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1411)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:16:27	SamToFastq	Processed    10,000,000 records.  Elapsed time: 00:02:04s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 511.213 CPU sec, 32.171 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:16:42	AbstractAlignmentMerger	Merged     7,000,000 records.  Elapsed time: 00:02:19s.  Time for last 1,000,000:   22s.  Last read position: chr5:60,488,078.  Last read name: J00118:292:HKF77BBXX:3:1113:3376:43357
+INFO	2023-09-15 11:16:52	AbstractAlignmentMerger	Merged     8,000,000 records.  Elapsed time: 00:02:30s.  Time for last 1,000,000:   10s.  Last read position: chr18:12,766,464.  Last read name: J00118:292:HKF77BBXX:3:1115:28219:14414
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (3, 846373, 6, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (119, 253, 449)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1109)
+[M::mem_pestat] mean and std.dev: (311.24, 227.61)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1439)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:16:58	SamToFastq	Processed    11,000,000 records.  Elapsed time: 00:02:35s.  Time for last 1,000,000:   31s.  Last read position: */*
+INFO	2023-09-15 11:17:00	SamToFastq	Processed    12,000,000 records.  Elapsed time: 00:02:37s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 511.052 CPU sec, 32.146 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:17:13	AbstractAlignmentMerger	Merged     9,000,000 records.  Elapsed time: 00:02:50s.  Time for last 1,000,000:   20s.  Last read position: chr10:60,021,396.  Last read name: J00118:292:HKF77BBXX:3:1117:2412:22063
+INFO	2023-09-15 11:17:25	AbstractAlignmentMerger	Merged    10,000,000 records.  Elapsed time: 00:03:03s.  Time for last 1,000,000:   12s.  Last read position: chr15:71,339,741.  Last read name: J00118:292:HKF77BBXX:3:1119:19339:27971
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (3, 845801, 6, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (119, 255, 456)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1130)
+[M::mem_pestat] mean and std.dev: (314.62, 231.47)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1467)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:17:32	SamToFastq	Processed    13,000,000 records.  Elapsed time: 00:03:10s.  Time for last 1,000,000:   32s.  Last read position: */*
+INFO	2023-09-15 11:17:35	SamToFastq	Processed    14,000,000 records.  Elapsed time: 00:03:12s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 512.119 CPU sec, 32.233 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:17:42	AbstractAlignmentMerger	Merged    11,000,000 records.  Elapsed time: 00:03:20s.  Time for last 1,000,000:   17s.  Last read position: chr5:117,236,537.  Last read name: J00118:292:HKF77BBXX:3:1121:14996:20797
+INFO	2023-09-15 11:17:52	AbstractAlignmentMerger	Merged    12,000,000 records.  Elapsed time: 00:03:29s.  Time for last 1,000,000:    9s.  Last read position: chr15:30,471,087.  Last read name: J00118:292:HKF77BBXX:3:1123:1144:37624
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (2, 845403, 10, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (119, 256, 455)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1127)
+[M::mem_pestat] mean and std.dev: (314.17, 230.70)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1463)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (230, 279, 2459)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 6917)
+[M::mem_pestat] mean and std.dev: (946.89, 1216.19)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 9146)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+INFO	2023-09-15 11:18:02	SamToFastq	Processed    15,000,000 records.  Elapsed time: 00:03:40s.  Time for last 1,000,000:   27s.  Last read position: */*
+INFO	2023-09-15 11:18:04	SamToFastq	Processed    16,000,000 records.  Elapsed time: 00:03:42s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 512.047 CPU sec, 32.205 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:18:14	AbstractAlignmentMerger	Merged    13,000,000 records.  Elapsed time: 00:03:51s.  Time for last 1,000,000:   22s.  Last read position: chr18:22,717,326.  Last read name: J00118:292:HKF77BBXX:3:1124:8450:37484
+INFO	2023-09-15 11:18:23	AbstractAlignmentMerger	Merged    14,000,000 records.  Elapsed time: 00:04:01s.  Time for last 1,000,000:    9s.  Last read position: chr13:43,779,311.  Last read name: J00118:292:HKF77BBXX:3:1126:5416:27830
+INFO	2023-09-15 11:18:32	SamToFastq	Processed    17,000,000 records.  Elapsed time: 00:04:09s.  Time for last 1,000,000:   27s.  Last read position: */*
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (1, 846462, 9, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (118, 244, 425)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1039)
+[M::mem_pestat] mean and std.dev: (297.42, 213.44)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1346)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:18:34	SamToFastq	Processed    18,000,000 records.  Elapsed time: 00:04:11s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 503.252 CPU sec, 31.653 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:18:45	AbstractAlignmentMerger	Merged    15,000,000 records.  Elapsed time: 00:04:22s.  Time for last 1,000,000:   21s.  Last read position: chr11:122,246,099.  Last read name: J00118:292:HKF77BBXX:3:1128:29762:5165
+INFO	2023-09-15 11:18:57	AbstractAlignmentMerger	Merged    16,000,000 records.  Elapsed time: 00:04:35s.  Time for last 1,000,000:   12s.  Last read position: chr17:21,740,953.  Last read name: J00118:292:HKF77BBXX:3:1202:25378:18775
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (4, 847866, 14, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (119, 244, 424)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1034)
+[M::mem_pestat] mean and std.dev: (297.07, 212.91)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1339)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (73, 170, 432)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1150)
+[M::mem_pestat] mean and std.dev: (256.62, 300.84)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1509)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+INFO	2023-09-15 11:19:08	SamToFastq	Processed    19,000,000 records.  Elapsed time: 00:04:46s.  Time for last 1,000,000:   34s.  Last read position: */*
+INFO	2023-09-15 11:19:10	SamToFastq	Processed    20,000,000 records.  Elapsed time: 00:04:48s.  Time for last 1,000,000:    2s.  Last read position: */*
+INFO	2023-09-15 11:19:13	SamToFastq	Processed    21,000,000 records.  Elapsed time: 00:04:51s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 500.084 CPU sec, 31.468 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:19:16	AbstractAlignmentMerger	Merged    17,000,000 records.  Elapsed time: 00:04:53s.  Time for last 1,000,000:   18s.  Last read position: chr15:75,176,438.  Last read name: J00118:292:HKF77BBXX:3:1204:20334:24349
+INFO	2023-09-15 11:19:26	AbstractAlignmentMerger	Merged    18,000,000 records.  Elapsed time: 00:05:04s.  Time for last 1,000,000:   10s.  Last read position: chr12:28,899,127.  Last read name: J00118:292:HKF77BBXX:3:1206:15442:7117
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (2, 847057, 4, 2)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (120, 249, 435)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1065)
+[M::mem_pestat] mean and std.dev: (303.60, 218.93)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1380)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:19:38	SamToFastq	Processed    22,000,000 records.  Elapsed time: 00:05:16s.  Time for last 1,000,000:   24s.  Last read position: */*
+INFO	2023-09-15 11:19:41	SamToFastq	Processed    23,000,000 records.  Elapsed time: 00:05:18s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 505.566 CPU sec, 31.800 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:19:47	AbstractAlignmentMerger	Merged    19,000,000 records.  Elapsed time: 00:05:24s.  Time for last 1,000,000:   20s.  Last read position: chr1:122,974,003.  Last read name: J00118:292:HKF77BBXX:3:1208:1083:46276
+INFO	2023-09-15 11:19:59	AbstractAlignmentMerger	Merged    20,000,000 records.  Elapsed time: 00:05:36s.  Time for last 1,000,000:   11s.  Last read position: chr10:7,085,986.  Last read name: J00118:292:HKF77BBXX:3:1209:5578:39963
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (0, 846897, 9, 3)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (120, 253, 444)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1092)
+[M::mem_pestat] mean and std.dev: (308.69, 223.94)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1416)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:20:08	AbstractAlignmentMerger	Merged    21,000,000 records.  Elapsed time: 00:05:46s.  Time for last 1,000,000:    9s.  Last read position: chr9:125,040,188.  Last read name: J00118:292:HKF77BBXX:3:1211:29670:8523
+INFO	2023-09-15 11:20:12	SamToFastq	Processed    24,000,000 records.  Elapsed time: 00:05:50s.  Time for last 1,000,000:   31s.  Last read position: */*
+INFO	2023-09-15 11:20:15	SamToFastq	Processed    25,000,000 records.  Elapsed time: 00:05:52s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 510.216 CPU sec, 32.113 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:20:27	AbstractAlignmentMerger	Merged    22,000,000 records.  Elapsed time: 00:06:04s.  Time for last 1,000,000:   18s.  Last read position: chr3:185,341,590.  Last read name: J00118:292:HKF77BBXX:3:1213:25256:48737
+INFO	2023-09-15 11:20:37	AbstractAlignmentMerger	Merged    23,000,000 records.  Elapsed time: 00:06:15s.  Time for last 1,000,000:   10s.  Last read position: chr14:63,509,881.  Last read name: J00118:292:HKF77BBXX:3:1215:20912:28305
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (1, 846892, 4, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (120, 255, 452)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1116)
+[M::mem_pestat] mean and std.dev: (312.67, 228.67)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:20:43	SamToFastq	Processed    26,000,000 records.  Elapsed time: 00:06:20s.  Time for last 1,000,000:   27s.  Last read position: */*
+INFO	2023-09-15 11:20:45	SamToFastq	Processed    27,000,000 records.  Elapsed time: 00:06:23s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 510.892 CPU sec, 32.157 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:20:58	AbstractAlignmentMerger	Merged    24,000,000 records.  Elapsed time: 00:06:36s.  Time for last 1,000,000:   20s.  Last read position: chr2:207,624,317.  Last read name: J00118:292:HKF77BBXX:3:1217:1621:10563
+INFO	2023-09-15 11:21:09	AbstractAlignmentMerger	Merged    25,000,000 records.  Elapsed time: 00:06:47s.  Time for last 1,000,000:   10s.  Last read position: chrX:7,269,675.  Last read name: J00118:292:HKF77BBXX:3:1219:11322:4831
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (0, 845941, 9, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (121, 258, 460)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1138)
+[M::mem_pestat] mean and std.dev: (317.21, 232.89)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1477)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:21:15	SamToFastq	Processed    28,000,000 records.  Elapsed time: 00:06:53s.  Time for last 1,000,000:   30s.  Last read position: */*
+INFO	2023-09-15 11:21:17	SamToFastq	Processed    29,000,000 records.  Elapsed time: 00:06:55s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 516.044 CPU sec, 32.474 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:21:31	AbstractAlignmentMerger	Merged    26,000,000 records.  Elapsed time: 00:07:08s.  Time for last 1,000,000:   21s.  Last read position: chr19:45,824,771.  Last read name: J00118:292:HKF77BBXX:3:1220:6015:24155
+INFO	2023-09-15 11:21:40	AbstractAlignmentMerger	Merged    27,000,000 records.  Elapsed time: 00:07:18s.  Time for last 1,000,000:    9s.  Last read position: chr13:77,337,987.  Last read name: J00118:292:HKF77BBXX:3:1222:30137:1455
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (3, 844032, 11, 4)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (121, 259, 462)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1144)
+[M::mem_pestat] mean and std.dev: (318.17, 234.24)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1485)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (90, 215, 4648)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 13764)
+[M::mem_pestat] mean and std.dev: (1800.00, 2936.74)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 18322)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+INFO	2023-09-15 11:21:46	SamToFastq	Processed    30,000,000 records.  Elapsed time: 00:07:24s.  Time for last 1,000,000:   29s.  Last read position: */*
+INFO	2023-09-15 11:21:50	SamToFastq	Processed    31,000,000 records.  Elapsed time: 00:07:27s.  Time for last 1,000,000:    3s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 515.056 CPU sec, 32.407 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:22:01	AbstractAlignmentMerger	Merged    28,000,000 records.  Elapsed time: 00:07:39s.  Time for last 1,000,000:   21s.  Last read position: chr6:150,005,265.  Last read name: J00118:292:HKF77BBXX:3:1224:26118:35637
+INFO	2023-09-15 11:22:12	AbstractAlignmentMerger	Merged    29,000,000 records.  Elapsed time: 00:07:50s.  Time for last 1,000,000:   10s.  Last read position: chr13:48,649,279.  Last read name: J00118:292:HKF77BBXX:3:1226:2321:12761
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (2, 845828, 7, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (123, 249, 433)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1053)
+[M::mem_pestat] mean and std.dev: (304.07, 218.95)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1363)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:22:21	SamToFastq	Processed    32,000,000 records.  Elapsed time: 00:07:59s.  Time for last 1,000,000:   31s.  Last read position: */*
+INFO	2023-09-15 11:22:25	SamToFastq	Processed    33,000,000 records.  Elapsed time: 00:08:02s.  Time for last 1,000,000:    3s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 509.678 CPU sec, 32.053 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:22:32	AbstractAlignmentMerger	Merged    30,000,000 records.  Elapsed time: 00:08:09s.  Time for last 1,000,000:   19s.  Last read position: chr5:171,440,894.  Last read name: J00118:292:HKF77BBXX:3:1228:1996:1191
+INFO	2023-09-15 11:22:42	AbstractAlignmentMerger	Merged    31,000,000 records.  Elapsed time: 00:08:20s.  Time for last 1,000,000:   10s.  Last read position: chr7:76,466,728.  Last read name: J00118:292:HKF77BBXX:3:2102:16518:4760
+INFO	2023-09-15 11:22:50	SamToFastq	Processed    34,000,000 records.  Elapsed time: 00:08:28s.  Time for last 1,000,000:   25s.  Last read position: */*
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (0, 846802, 4, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (124, 245, 421)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1015)
+[M::mem_pestat] mean and std.dev: (296.92, 210.52)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1312)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:22:53	SamToFastq	Processed    35,000,000 records.  Elapsed time: 00:08:30s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 530.038 CPU sec, 33.340 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:23:04	AbstractAlignmentMerger	Merged    32,000,000 records.  Elapsed time: 00:08:42s.  Time for last 1,000,000:   21s.  Last read position: chr4:163,976,191.  Last read name: J00118:292:HKF77BBXX:3:2104:13362:18388
+INFO	2023-09-15 11:23:16	AbstractAlignmentMerger	Merged    33,000,000 records.  Elapsed time: 00:08:54s.  Time for last 1,000,000:   11s.  Last read position: chr19:52,943,145.  Last read name: J00118:292:HKF77BBXX:3:2105:9313:27514
+INFO	2023-09-15 11:23:27	SamToFastq	Processed    36,000,000 records.  Elapsed time: 00:09:05s.  Time for last 1,000,000:   34s.  Last read position: */*
+INFO	2023-09-15 11:23:31	SamToFastq	Processed    37,000,000 records.  Elapsed time: 00:09:08s.  Time for last 1,000,000:    3s.  Last read position: */*
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (2, 848929, 12, 2)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (124, 249, 429)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1039)
+[M::mem_pestat] mean and std.dev: (302.06, 216.00)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1344)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (95, 179, 619)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1667)
+[M::mem_pestat] mean and std.dev: (244.64, 302.99)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 2191)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 652.545 CPU sec, 41.017 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:23:44	AbstractAlignmentMerger	Merged    34,000,000 records.  Elapsed time: 00:09:22s.  Time for last 1,000,000:   28s.  Last read position: chr2:241,636,867.  Last read name: J00118:292:HKF77BBXX:3:2107:5792:16243
+INFO	2023-09-15 11:23:54	AbstractAlignmentMerger	Merged    35,000,000 records.  Elapsed time: 00:09:32s.  Time for last 1,000,000:    9s.  Last read position: chr9:106,315,163.  Last read name: J00118:292:HKF77BBXX:3:2109:6563:14308
+INFO	2023-09-15 11:24:03	SamToFastq	Processed    38,000,000 records.  Elapsed time: 00:09:40s.  Time for last 1,000,000:   31s.  Last read position: */*
+INFO	2023-09-15 11:24:05	SamToFastq	Processed    39,000,000 records.  Elapsed time: 00:09:42s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (1, 846480, 10, 3)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (125, 255, 442)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1076)
+[M::mem_pestat] mean and std.dev: (309.51, 222.80)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1393)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (100, 268, 2456)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 7168)
+[M::mem_pestat] mean and std.dev: (1451.00, 2010.91)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 9524)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+INFO	2023-09-15 11:24:07	SamToFastq	Processed    40,000,000 records.  Elapsed time: 00:09:45s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 520.051 CPU sec, 32.706 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:24:16	AbstractAlignmentMerger	Merged    36,000,000 records.  Elapsed time: 00:09:54s.  Time for last 1,000,000:   22s.  Last read position: chr3:168,862,757.  Last read name: J00118:292:HKF77BBXX:3:2111:32055:31083
+INFO	2023-09-15 11:24:26	AbstractAlignmentMerger	Merged    37,000,000 records.  Elapsed time: 00:10:04s.  Time for last 1,000,000:    9s.  Last read position: chr13:28,197,947.  Last read name: J00118:292:HKF77BBXX:3:2113:28097:18212
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (1, 846523, 8, 3)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (125, 260, 456)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1118)
+[M::mem_pestat] mean and std.dev: (316.87, 231.34)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1449)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:24:38	SamToFastq	Processed    41,000,000 records.  Elapsed time: 00:10:16s.  Time for last 1,000,000:   31s.  Last read position: */*
+INFO	2023-09-15 11:24:40	SamToFastq	Processed    42,000,000 records.  Elapsed time: 00:10:18s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 510.329 CPU sec, 32.094 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:24:48	AbstractAlignmentMerger	Merged    38,000,000 records.  Elapsed time: 00:10:26s.  Time for last 1,000,000:   21s.  Last read position: chr11:106,044,863.  Last read name: J00118:292:HKF77BBXX:3:2115:24211:26846
+INFO	2023-09-15 11:24:57	AbstractAlignmentMerger	Merged    39,000,000 records.  Elapsed time: 00:10:35s.  Time for last 1,000,000:    9s.  Last read position: chr1:74,970,750.  Last read name: J00118:292:HKF77BBXX:3:2117:20121:35374
+INFO	2023-09-15 11:25:08	AbstractAlignmentMerger	Merged    40,000,000 records.  Elapsed time: 00:10:45s.  Time for last 1,000,000:   10s.  Last read position: chr8:87,248,214.  Last read name: J00118:292:HKF77BBXX:3:2119:15585:10669
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (2, 846380, 6, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (125, 263, 467)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1151)
+[M::mem_pestat] mean and std.dev: (322.56, 238.47)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1493)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:25:11	SamToFastq	Processed    43,000,000 records.  Elapsed time: 00:10:49s.  Time for last 1,000,000:   30s.  Last read position: */*
+INFO	2023-09-15 11:25:14	SamToFastq	Processed    44,000,000 records.  Elapsed time: 00:10:52s.  Time for last 1,000,000:    3s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 511.107 CPU sec, 32.159 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:25:28	AbstractAlignmentMerger	Merged    41,000,000 records.  Elapsed time: 00:11:05s.  Time for last 1,000,000:   20s.  Last read position: chr12:90,374,659.  Last read name: J00118:292:HKF77BBXX:3:2121:10531:44992
+INFO	2023-09-15 11:25:38	AbstractAlignmentMerger	Merged    42,000,000 records.  Elapsed time: 00:11:16s.  Time for last 1,000,000:   10s.  Last read position: chr2:188,056,101.  Last read name: J00118:292:HKF77BBXX:3:2122:5304:45994
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (3, 843779, 4, 2)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (123, 265, 480)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1194)
+[M::mem_pestat] mean and std.dev: (328.50, 246.94)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1551)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:25:44	SamToFastq	Processed    45,000,000 records.  Elapsed time: 00:11:21s.  Time for last 1,000,000:   29s.  Last read position: */*
+INFO	2023-09-15 11:25:47	SamToFastq	Processed    46,000,000 records.  Elapsed time: 00:11:25s.  Time for last 1,000,000:    3s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 516.099 CPU sec, 32.456 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:26:00	AbstractAlignmentMerger	Merged    43,000,000 records.  Elapsed time: 00:11:38s.  Time for last 1,000,000:   21s.  Last read position: chr20:63,535,409.  Last read name: J00118:292:HKF77BBXX:3:2124:29589:5253
+INFO	2023-09-15 11:26:13	AbstractAlignmentMerger	Merged    44,000,000 records.  Elapsed time: 00:11:51s.  Time for last 1,000,000:   12s.  Last read position: chr5:177,926,337.  Last read name: J00118:292:HKF77BBXX:3:2126:2503:19478
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (2, 847551, 10, 3)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (124, 253, 447)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1093)
+[M::mem_pestat] mean and std.dev: (311.71, 228.43)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1416)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (124, 283, 1332)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 3748)
+[M::mem_pestat] mean and std.dev: (767.10, 977.06)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 4956)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+INFO	2023-09-15 11:26:18	SamToFastq	Processed    47,000,000 records.  Elapsed time: 00:11:55s.  Time for last 1,000,000:   30s.  Last read position: */*
+INFO	2023-09-15 11:26:20	SamToFastq	Processed    48,000,000 records.  Elapsed time: 00:11:58s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 503.239 CPU sec, 31.645 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:26:31	AbstractAlignmentMerger	Merged    45,000,000 records.  Elapsed time: 00:12:09s.  Time for last 1,000,000:   18s.  Last read position: chr13:107,993,642.  Last read name: J00118:292:HKF77BBXX:3:2128:2037:11882
+INFO	2023-09-15 11:26:43	AbstractAlignmentMerger	Merged    46,000,000 records.  Elapsed time: 00:12:20s.  Time for last 1,000,000:   11s.  Last read position: chr1:1,621,103.  Last read name: J00118:292:HKF77BBXX:3:2202:16873:2281
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (2, 847802, 10, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (123, 244, 421)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1017)
+[M::mem_pestat] mean and std.dev: (296.40, 211.05)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1315)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (118, 175, 269)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 571)
+[M::mem_pestat] mean and std.dev: (159.33, 90.72)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 722)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+INFO	2023-09-15 11:26:50	SamToFastq	Processed    49,000,000 records.  Elapsed time: 00:12:28s.  Time for last 1,000,000:   29s.  Last read position: */*
+INFO	2023-09-15 11:26:53	SamToFastq	Processed    50,000,000 records.  Elapsed time: 00:12:31s.  Time for last 1,000,000:    3s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 496.601 CPU sec, 31.233 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:27:01	AbstractAlignmentMerger	Merged    47,000,000 records.  Elapsed time: 00:12:39s.  Time for last 1,000,000:   18s.  Last read position: chr8:30,668,155.  Last read name: J00118:292:HKF77BBXX:3:2204:13514:36411
+INFO	2023-09-15 11:27:12	AbstractAlignmentMerger	Merged    48,000,000 records.  Elapsed time: 00:12:50s.  Time for last 1,000,000:   10s.  Last read position: chr22:30,810,538.  Last read name: J00118:292:HKF77BBXX:3:2205:9546:42900
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (2, 847993, 6, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (124, 249, 428)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1036)
+[M::mem_pestat] mean and std.dev: (301.37, 215.38)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1340)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:27:19	SamToFastq	Processed    51,000,000 records.  Elapsed time: 00:12:57s.  Time for last 1,000,000:   25s.  Last read position: */*
+INFO	2023-09-15 11:27:22	SamToFastq	Processed    52,000,000 records.  Elapsed time: 00:12:59s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 500.433 CPU sec, 31.488 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:27:32	AbstractAlignmentMerger	Merged    49,000,000 records.  Elapsed time: 00:13:09s.  Time for last 1,000,000:   19s.  Last read position: chr11:37,506,809.  Last read name: J00118:292:HKF77BBXX:3:2207:5802:24947
+INFO	2023-09-15 11:27:44	AbstractAlignmentMerger	Merged    50,000,000 records.  Elapsed time: 00:13:21s.  Time for last 1,000,000:   12s.  Last read position: chr19:48,809,465.  Last read name: J00118:292:HKF77BBXX:3:2209:31253:47841
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (1, 847046, 7, 4)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (126, 254, 441)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1071)
+[M::mem_pestat] mean and std.dev: (309.12, 222.46)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1386)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:27:54	SamToFastq	Processed    53,000,000 records.  Elapsed time: 00:13:32s.  Time for last 1,000,000:   32s.  Last read position: */*
+INFO	2023-09-15 11:27:58	SamToFastq	Processed    54,000,000 records.  Elapsed time: 00:13:35s.  Time for last 1,000,000:    3s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 563.612 CPU sec, 35.463 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:28:05	AbstractAlignmentMerger	Merged    51,000,000 records.  Elapsed time: 00:13:43s.  Time for last 1,000,000:   21s.  Last read position: chr3:81,157,996.  Last read name: J00118:292:HKF77BBXX:3:2211:2777:22415
+INFO	2023-09-15 11:28:15	AbstractAlignmentMerger	Merged    52,000,000 records.  Elapsed time: 00:13:52s.  Time for last 1,000,000:    9s.  Last read position: chr9:26,817,394.  Last read name: J00118:292:HKF77BBXX:3:2213:25215:4637
+INFO	2023-09-15 11:28:24	SamToFastq	Processed    55,000,000 records.  Elapsed time: 00:14:02s.  Time for last 1,000,000:   26s.  Last read position: */*
+INFO	2023-09-15 11:28:27	SamToFastq	Processed    56,000,000 records.  Elapsed time: 00:14:04s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (2, 839551, 13, 4)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (130, 264, 459)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1117)
+[M::mem_pestat] mean and std.dev: (319.79, 231.16)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1446)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (70, 125, 2439)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 7177)
+[M::mem_pestat] mean and std.dev: (953.62, 1728.18)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 9546)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+[M::mem_process_seqs] Processed 2105264 reads in 625.508 CPU sec, 39.326 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:28:44	AbstractAlignmentMerger	Merged    53,000,000 records.  Elapsed time: 00:14:21s.  Time for last 1,000,000:   29s.  Last read position: chr3:26,431,619.  Last read name: J00118:292:HKF77BBXX:3:2215:22506:16717
+INFO	2023-09-15 11:28:56	AbstractAlignmentMerger	Merged    54,000,000 records.  Elapsed time: 00:14:33s.  Time for last 1,000,000:   11s.  Last read position: chr3:33,115,284.  Last read name: J00118:292:HKF77BBXX:3:2217:2108:48368
+INFO	2023-09-15 11:29:06	SamToFastq	Processed    57,000,000 records.  Elapsed time: 00:14:43s.  Time for last 1,000,000:   39s.  Last read position: */*
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (4, 845479, 5, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (126, 265, 466)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1146)
+[M::mem_pestat] mean and std.dev: (322.59, 237.01)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1486)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:29:09	SamToFastq	Processed    58,000,000 records.  Elapsed time: 00:14:46s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 581.952 CPU sec, 36.597 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:29:20	AbstractAlignmentMerger	Merged    55,000,000 records.  Elapsed time: 00:14:57s.  Time for last 1,000,000:   24s.  Last read position: chr4:147,465,361.  Last read name: J00118:292:HKF77BBXX:3:2219:17147:32050
+INFO	2023-09-15 11:29:30	AbstractAlignmentMerger	Merged    56,000,000 records.  Elapsed time: 00:15:08s.  Time for last 1,000,000:   10s.  Last read position: chr16:80,457,339.  Last read name: J00118:292:HKF77BBXX:3:2221:13261:46592
+INFO	2023-09-15 11:29:42	SamToFastq	Processed    59,000,000 records.  Elapsed time: 00:15:20s.  Time for last 1,000,000:   33s.  Last read position: */*
+INFO	2023-09-15 11:29:45	SamToFastq	Processed    60,000,000 records.  Elapsed time: 00:15:22s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (3, 845857, 8, 3)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (126, 270, 484)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1200)
+[M::mem_pestat] mean and std.dev: (331.54, 247.85)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1558)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:29:47	SamToFastq	Processed    61,000,000 records.  Elapsed time: 00:15:25s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 609.668 CPU sec, 38.332 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:29:57	AbstractAlignmentMerger	Merged    57,000,000 records.  Elapsed time: 00:15:35s.  Time for last 1,000,000:   26s.  Last read position: chr1:68,133,683.  Last read name: J00118:292:HKF77BBXX:3:2222:9161:43111
+INFO	2023-09-15 11:30:09	AbstractAlignmentMerger	Merged    58,000,000 records.  Elapsed time: 00:15:47s.  Time for last 1,000,000:   12s.  Last read position: chr10:123,994,828.  Last read name: J00118:292:HKF77BBXX:3:2224:5203:37800
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (2, 829451, 13, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (120, 255, 449)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1107)
+[M::mem_pestat] mean and std.dev: (309.81, 224.04)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1436)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (168, 296, 4499)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 13161)
+[M::mem_pestat] mean and std.dev: (2449.77, 2889.53)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 17492)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+INFO	2023-09-15 11:30:24	SamToFastq	Processed    62,000,000 records.  Elapsed time: 00:16:02s.  Time for last 1,000,000:   36s.  Last read position: */*
+INFO	2023-09-15 11:30:26	SamToFastq	Processed    63,000,000 records.  Elapsed time: 00:16:04s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 572.684 CPU sec, 36.012 real sec
+INFO	2023-09-15 11:30:33	AbstractAlignmentMerger	Merged    59,000,000 records.  Elapsed time: 00:16:10s.  Time for last 1,000,000:   23s.  Last read position: chr12:26,773,228.  Last read name: J00118:292:HKF77BBXX:3:2226:31294:3037
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:30:43	AbstractAlignmentMerger	Merged    60,000,000 records.  Elapsed time: 00:16:20s.  Time for last 1,000,000:    9s.  Last read position: chr1:22,613,441.  Last read name: J00118:292:HKF77BBXX:8:1101:14763:7732
+INFO	2023-09-15 11:30:54	AbstractAlignmentMerger	Merged    61,000,000 records.  Elapsed time: 00:16:32s.  Time for last 1,000,000:   11s.  Last read position: chr3:15,102,372.  Last read name: J00118:292:HKF77BBXX:8:1103:15716:25843
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (1, 833873, 6, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (119, 252, 438)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1076)
+[M::mem_pestat] mean and std.dev: (302.85, 214.27)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1395)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:30:59	SamToFastq	Processed    64,000,000 records.  Elapsed time: 00:16:37s.  Time for last 1,000,000:   32s.  Last read position: */*
+INFO	2023-09-15 11:31:01	SamToFastq	Processed    65,000,000 records.  Elapsed time: 00:16:39s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 522.572 CPU sec, 32.855 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:31:16	AbstractAlignmentMerger	Merged    62,000,000 records.  Elapsed time: 00:16:54s.  Time for last 1,000,000:   21s.  Last read position: chr13:60,561,938.  Last read name: J00118:292:HKF77BBXX:8:1105:15838:4708
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (1, 828702, 13, 3)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (115, 250, 443)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1099)
+[M::mem_pestat] mean and std.dev: (303.71, 217.86)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1427)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (175, 253, 1171)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 3163)
+[M::mem_pestat] mean and std.dev: (285.00, 293.48)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 4159)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+INFO	2023-09-15 11:31:29	AbstractAlignmentMerger	Merged    63,000,000 records.  Elapsed time: 00:17:07s.  Time for last 1,000,000:   12s.  Last read position: chr5:40,469,060.  Last read name: J00118:292:HKF77BBXX:8:1107:16285:3723
+INFO	2023-09-15 11:31:36	SamToFastq	Processed    66,000,000 records.  Elapsed time: 00:17:13s.  Time for last 1,000,000:   34s.  Last read position: */*
+INFO	2023-09-15 11:31:38	SamToFastq	Processed    67,000,000 records.  Elapsed time: 00:17:16s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::mem_process_seqs] Processed 2105264 reads in 530.735 CPU sec, 33.397 real sec
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:31:47	AbstractAlignmentMerger	Merged    64,000,000 records.  Elapsed time: 00:17:25s.  Time for last 1,000,000:   18s.  Last read position: chr1:119,745,945.  Last read name: J00118:292:HKF77BBXX:8:1109:16691:31013
+INFO	2023-09-15 11:31:59	AbstractAlignmentMerger	Merged    65,000,000 records.  Elapsed time: 00:17:37s.  Time for last 1,000,000:   11s.  Last read position: chr9:127,955,820.  Last read name: J00118:292:HKF77BBXX:8:1111:18223:29800
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (1, 832027, 8, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (116, 254, 454)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1130)
+[M::mem_pestat] mean and std.dev: (309.87, 224.09)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1468)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:32:05	SamToFastq	Processed    68,000,000 records.  Elapsed time: 00:17:43s.  Time for last 1,000,000:   26s.  Last read position: */*
+INFO	2023-09-15 11:32:07	SamToFastq	Processed    69,000,000 records.  Elapsed time: 00:17:45s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 529.988 CPU sec, 33.335 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:32:19	AbstractAlignmentMerger	Merged    66,000,000 records.  Elapsed time: 00:17:56s.  Time for last 1,000,000:   19s.  Last read position: chr4:26,127,991.  Last read name: J00118:292:HKF77BBXX:8:1113:18304:27971
+INFO	2023-09-15 11:32:31	AbstractAlignmentMerger	Merged    67,000,000 records.  Elapsed time: 00:18:09s.  Time for last 1,000,000:   12s.  Last read position: chr14:39,936,946.  Last read name: J00118:292:HKF77BBXX:8:1115:2016:36394
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (2, 826639, 7, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (112, 249, 453)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1135)
+[M::mem_pestat] mean and std.dev: (308.11, 226.68)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1476)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:32:38	SamToFastq	Processed    70,000,000 records.  Elapsed time: 00:18:16s.  Time for last 1,000,000:   30s.  Last read position: */*
+INFO	2023-09-15 11:32:40	SamToFastq	Processed    71,000,000 records.  Elapsed time: 00:18:18s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 536.224 CPU sec, 33.721 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:32:53	AbstractAlignmentMerger	Merged    68,000,000 records.  Elapsed time: 00:18:30s.  Time for last 1,000,000:   21s.  Last read position: chr1:229,334,907.  Last read name: J00118:292:HKF77BBXX:8:1117:25357:41845
+INFO	2023-09-15 11:33:04	AbstractAlignmentMerger	Merged    69,000,000 records.  Elapsed time: 00:18:42s.  Time for last 1,000,000:   11s.  Last read position: chr2:129,299,881.  Last read name: J00118:292:HKF77BBXX:8:1119:4675:17333
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (3, 831958, 6, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (113, 250, 453)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1133)
+[M::mem_pestat] mean and std.dev: (308.69, 226.23)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1473)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:33:13	SamToFastq	Processed    72,000,000 records.  Elapsed time: 00:18:51s.  Time for last 1,000,000:   32s.  Last read position: */*
+INFO	2023-09-15 11:33:15	SamToFastq	Processed    73,000,000 records.  Elapsed time: 00:18:53s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 533.196 CPU sec, 33.539 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:33:23	AbstractAlignmentMerger	Merged    70,000,000 records.  Elapsed time: 00:19:01s.  Time for last 1,000,000:   19s.  Last read position: chr14:36,755,497.  Last read name: J00118:292:HKF77BBXX:8:1122:11525:45660
+INFO	2023-09-15 11:33:33	AbstractAlignmentMerger	Merged    71,000,000 records.  Elapsed time: 00:19:10s.  Time for last 1,000,000:    9s.  Last read position: chr17:2,127,672.  Last read name: J00118:292:HKF77BBXX:8:1124:16336:41194
+INFO	2023-09-15 11:33:41	SamToFastq	Processed    74,000,000 records.  Elapsed time: 00:19:18s.  Time for last 1,000,000:   25s.  Last read position: */*
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (2, 836939, 7, 2)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (115, 251, 449)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1117)
+[M::mem_pestat] mean and std.dev: (308.30, 224.79)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1451)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:33:43	SamToFastq	Processed    75,000,000 records.  Elapsed time: 00:19:21s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 524.395 CPU sec, 32.963 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:33:55	AbstractAlignmentMerger	Merged    72,000,000 records.  Elapsed time: 00:19:33s.  Time for last 1,000,000:   22s.  Last read position: chr5:61,591,106.  Last read name: J00118:292:HKF77BBXX:8:1126:19461:21606
+INFO	2023-09-15 11:34:05	AbstractAlignmentMerger	Merged    73,000,000 records.  Elapsed time: 00:19:42s.  Time for last 1,000,000:    9s.  Last read position: chr4:183,017,331.  Last read name: J00118:292:HKF77BBXX:8:1128:22617:37800
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (3, 844145, 11, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (120, 249, 429)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1047)
+[M::mem_pestat] mean and std.dev: (298.68, 209.67)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1356)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (417, 1170, 2449)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 6513)
+[M::mem_pestat] mean and std.dev: (1514.09, 1340.37)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 8545)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+INFO	2023-09-15 11:34:16	SamToFastq	Processed    76,000,000 records.  Elapsed time: 00:19:54s.  Time for last 1,000,000:   33s.  Last read position: */*
+INFO	2023-09-15 11:34:19	SamToFastq	Processed    77,000,000 records.  Elapsed time: 00:19:57s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 513.414 CPU sec, 32.291 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:34:27	AbstractAlignmentMerger	Merged    74,000,000 records.  Elapsed time: 00:20:05s.  Time for last 1,000,000:   22s.  Last read position: chr4:41,349,412.  Last read name: J00118:292:HKF77BBXX:8:1202:21562:14941
+INFO	2023-09-15 11:34:37	AbstractAlignmentMerger	Merged    75,000,000 records.  Elapsed time: 00:20:15s.  Time for last 1,000,000:    9s.  Last read position: chr19:46,321,009.  Last read name: J00118:292:HKF77BBXX:8:1204:19928:28323
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (0, 843354, 6, 2)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (118, 253, 442)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1090)
+[M::mem_pestat] mean and std.dev: (305.13, 217.69)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1414)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:34:47	SamToFastq	Processed    78,000,000 records.  Elapsed time: 00:20:25s.  Time for last 1,000,000:   28s.  Last read position: */*
+INFO	2023-09-15 11:34:50	SamToFastq	Processed    79,000,000 records.  Elapsed time: 00:20:27s.  Time for last 1,000,000:    2s.  Last read position: */*
+INFO	2023-09-15 11:34:52	SamToFastq	Processed    80,000,000 records.  Elapsed time: 00:20:30s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 514.904 CPU sec, 32.378 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:34:59	AbstractAlignmentMerger	Merged    76,000,000 records.  Elapsed time: 00:20:36s.  Time for last 1,000,000:   21s.  Last read position: chr9:27,219,504.  Last read name: J00118:292:HKF77BBXX:8:1206:18304:43691
+INFO	2023-09-15 11:35:09	AbstractAlignmentMerger	Merged    77,000,000 records.  Elapsed time: 00:20:46s.  Time for last 1,000,000:    9s.  Last read position: chr1:114,122,122.  Last read name: J00118:292:HKF77BBXX:8:1208:1651:35514
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (1, 841802, 7, 2)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (118, 253, 442)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1090)
+[M::mem_pestat] mean and std.dev: (304.81, 217.19)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1414)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:35:25	SamToFastq	Processed    81,000,000 records.  Elapsed time: 00:21:03s.  Time for last 1,000,000:   33s.  Last read position: */*
+INFO	2023-09-15 11:35:29	SamToFastq	Processed    82,000,000 records.  Elapsed time: 00:21:07s.  Time for last 1,000,000:    3s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 521.741 CPU sec, 32.831 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:35:31	AbstractAlignmentMerger	Merged    78,000,000 records.  Elapsed time: 00:21:09s.  Time for last 1,000,000:   22s.  Last read position: chr5:141,810,230.  Last read name: J00118:292:HKF77BBXX:8:1210:15300:46539
+INFO	2023-09-15 11:35:41	AbstractAlignmentMerger	Merged    79,000,000 records.  Elapsed time: 00:21:18s.  Time for last 1,000,000:    9s.  Last read position: chr9:129,031,792.  Last read name: J00118:292:HKF77BBXX:8:1212:13382:38715
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (2, 837729, 12, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (115, 249, 443)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1099)
+[M::mem_pestat] mean and std.dev: (303.98, 219.09)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1427)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (90, 435, 2626)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 7698)
+[M::mem_pestat] mean and std.dev: (1335.42, 1873.76)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 10234)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+INFO	2023-09-15 11:35:54	AbstractAlignmentMerger	Merged    80,000,000 records.  Elapsed time: 00:21:32s.  Time for last 1,000,000:   13s.  Last read position: chr21:40,936,329.  Last read name: J00118:292:HKF77BBXX:8:1214:11677:5235
+INFO	2023-09-15 11:36:00	SamToFastq	Processed    83,000,000 records.  Elapsed time: 00:21:38s.  Time for last 1,000,000:   31s.  Last read position: */*
+INFO	2023-09-15 11:36:03	SamToFastq	Processed    84,000,000 records.  Elapsed time: 00:21:41s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 522.974 CPU sec, 32.885 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:36:11	AbstractAlignmentMerger	Merged    81,000,000 records.  Elapsed time: 00:21:49s.  Time for last 1,000,000:   16s.  Last read position: chr2:177,880,136.  Last read name: J00118:292:HKF77BBXX:8:1216:10896:17526
+INFO	2023-09-15 11:36:22	AbstractAlignmentMerger	Merged    82,000,000 records.  Elapsed time: 00:21:59s.  Time for last 1,000,000:   10s.  Last read position: chr8:80,728,808.  Last read name: J00118:292:HKF77BBXX:8:1218:10998:5183
+INFO	2023-09-15 11:36:26	SamToFastq	Processed    85,000,000 records.  Elapsed time: 00:22:04s.  Time for last 1,000,000:   23s.  Last read position: */*
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (2, 835425, 10, 3)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (114, 250, 451)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1125)
+[M::mem_pestat] mean and std.dev: (307.59, 224.67)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1462)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (70, 181, 246)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 598)
+[M::mem_pestat] mean and std.dev: (168.70, 85.30)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 774)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+INFO	2023-09-15 11:36:28	SamToFastq	Processed    86,000,000 records.  Elapsed time: 00:22:06s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 528.408 CPU sec, 33.228 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:36:44	AbstractAlignmentMerger	Merged    83,000,000 records.  Elapsed time: 00:22:22s.  Time for last 1,000,000:   22s.  Last read position: chr3:123,158,955.  Last read name: J00118:292:HKF77BBXX:8:1220:10703:41071
+INFO	2023-09-15 11:36:56	AbstractAlignmentMerger	Merged    84,000,000 records.  Elapsed time: 00:22:33s.  Time for last 1,000,000:   11s.  Last read position: chr1:227,741,327.  Last read name: J00118:292:HKF77BBXX:8:1222:12083:40578
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (5, 839095, 7, 2)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (114, 250, 448)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1116)
+[M::mem_pestat] mean and std.dev: (307.00, 223.72)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1450)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:37:01	SamToFastq	Processed    87,000,000 records.  Elapsed time: 00:22:38s.  Time for last 1,000,000:   32s.  Last read position: */*
+INFO	2023-09-15 11:37:03	SamToFastq	Processed    88,000,000 records.  Elapsed time: 00:22:41s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 531.161 CPU sec, 33.412 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:37:17	AbstractAlignmentMerger	Merged    85,000,000 records.  Elapsed time: 00:22:55s.  Time for last 1,000,000:   21s.  Last read position: chr16:82,563,462.  Last read name: J00118:292:HKF77BBXX:8:1224:11941:27004
+INFO	2023-09-15 11:37:30	AbstractAlignmentMerger	Merged    86,000,000 records.  Elapsed time: 00:23:07s.  Time for last 1,000,000:   12s.  Last read position: chr14:24,920,393.  Last read name: J00118:292:HKF77BBXX:8:1226:11373:41458
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (4, 842439, 8, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (125, 266, 464)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1142)
+[M::mem_pestat] mean and std.dev: (318.56, 228.13)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1481)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:37:37	SamToFastq	Processed    89,000,000 records.  Elapsed time: 00:23:15s.  Time for last 1,000,000:   33s.  Last read position: */*
+INFO	2023-09-15 11:37:41	SamToFastq	Processed    90,000,000 records.  Elapsed time: 00:23:19s.  Time for last 1,000,000:    3s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 520.350 CPU sec, 32.728 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:37:49	AbstractAlignmentMerger	Merged    87,000,000 records.  Elapsed time: 00:23:27s.  Time for last 1,000,000:   19s.  Last read position: chr21:20,370,492.  Last read name: J00118:292:HKF77BBXX:8:1228:10612:36587
+INFO	2023-09-15 11:38:01	AbstractAlignmentMerger	Merged    88,000,000 records.  Elapsed time: 00:23:38s.  Time for last 1,000,000:   11s.  Last read position: chr15:84,398,997.  Last read name: J00118:292:HKF77BBXX:8:2101:8258:22204
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (3, 844195, 4, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (133, 272, 462)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1120)
+[M::mem_pestat] mean and std.dev: (320.01, 223.75)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1449)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:38:08	SamToFastq	Processed    91,000,000 records.  Elapsed time: 00:23:46s.  Time for last 1,000,000:   26s.  Last read position: */*
+INFO	2023-09-15 11:38:10	SamToFastq	Processed    92,000,000 records.  Elapsed time: 00:23:48s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 515.174 CPU sec, 32.394 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:38:19	AbstractAlignmentMerger	Merged    89,000,000 records.  Elapsed time: 00:23:57s.  Time for last 1,000,000:   18s.  Last read position: chr9:39,544,640.  Last read name: J00118:292:HKF77BBXX:8:2103:6573:28780
+INFO	2023-09-15 11:38:32	AbstractAlignmentMerger	Merged    90,000,000 records.  Elapsed time: 00:24:09s.  Time for last 1,000,000:   12s.  Last read position: chr1:44,167,399.  Last read name: J00118:292:HKF77BBXX:8:2105:4290:33510
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (2, 843588, 6, 3)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (131, 275, 474)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1160)
+[M::mem_pestat] mean and std.dev: (324.91, 230.61)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1503)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:38:39	SamToFastq	Processed    93,000,000 records.  Elapsed time: 00:24:17s.  Time for last 1,000,000:   29s.  Last read position: */*
+INFO	2023-09-15 11:38:42	SamToFastq	Processed    94,000,000 records.  Elapsed time: 00:24:19s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 521.449 CPU sec, 32.790 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:38:51	AbstractAlignmentMerger	Merged    91,000,000 records.  Elapsed time: 00:24:29s.  Time for last 1,000,000:   19s.  Last read position: chr17:60,475,664.  Last read name: J00118:292:HKF77BBXX:8:2107:31091:47208
+INFO	2023-09-15 11:39:03	AbstractAlignmentMerger	Merged    92,000,000 records.  Elapsed time: 00:24:41s.  Time for last 1,000,000:   11s.  Last read position: chr12:47,984,883.  Last read name: J00118:292:HKF77BBXX:8:2109:28848:6572
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (1, 843736, 5, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (131, 279, 485)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1193)
+[M::mem_pestat] mean and std.dev: (330.25, 236.56)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1547)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:39:14	SamToFastq	Processed    95,000,000 records.  Elapsed time: 00:24:51s.  Time for last 1,000,000:   31s.  Last read position: */*
+INFO	2023-09-15 11:39:17	SamToFastq	Processed    96,000,000 records.  Elapsed time: 00:24:55s.  Time for last 1,000,000:    3s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 519.485 CPU sec, 32.677 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:39:24	AbstractAlignmentMerger	Merged    93,000,000 records.  Elapsed time: 00:25:01s.  Time for last 1,000,000:   20s.  Last read position: chr14:100,928,756.  Last read name: J00118:292:HKF77BBXX:8:2111:26616:41845
+INFO	2023-09-15 11:39:33	AbstractAlignmentMerger	Merged    94,000,000 records.  Elapsed time: 00:25:11s.  Time for last 1,000,000:    9s.  Last read position: chr3:68,465,059.  Last read name: J00118:292:HKF77BBXX:8:2113:24180:34881
+INFO	2023-09-15 11:39:42	SamToFastq	Processed    97,000,000 records.  Elapsed time: 00:25:20s.  Time for last 1,000,000:   24s.  Last read position: */*
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (2, 842089, 10, 2)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (127, 276, 489)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1213)
+[M::mem_pestat] mean and std.dev: (331.27, 240.77)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1575)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (111, 172, 2480)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 7218)
+[M::mem_pestat] mean and std.dev: (872.11, 1483.93)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 9587)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+INFO	2023-09-15 11:39:45	SamToFastq	Processed    98,000,000 records.  Elapsed time: 00:25:22s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 528.735 CPU sec, 33.239 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:39:56	AbstractAlignmentMerger	Merged    95,000,000 records.  Elapsed time: 00:25:33s.  Time for last 1,000,000:   22s.  Last read position: chr2:70,619,688.  Last read name: J00118:292:HKF77BBXX:8:2115:21978:41932
+INFO	2023-09-15 11:40:06	AbstractAlignmentMerger	Merged    96,000,000 records.  Elapsed time: 00:25:43s.  Time for last 1,000,000:    9s.  Last read position: chrX:79,266,410.  Last read name: J00118:292:HKF77BBXX:8:2117:20324:20076
+INFO	2023-09-15 11:40:15	SamToFastq	Processed    99,000,000 records.  Elapsed time: 00:25:53s.  Time for last 1,000,000:   30s.  Last read position: */*
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (2, 841658, 5, 3)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (124, 274, 493)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1231)
+[M::mem_pestat] mean and std.dev: (332.83, 245.36)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1600)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:40:18	SamToFastq	Processed   100,000,000 records.  Elapsed time: 00:25:56s.  Time for last 1,000,000:    2s.  Last read position: */*
+INFO	2023-09-15 11:40:21	SamToFastq	Processed   101,000,000 records.  Elapsed time: 00:25:59s.  Time for last 1,000,000:    3s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 528.571 CPU sec, 33.239 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:40:28	AbstractAlignmentMerger	Merged    97,000,000 records.  Elapsed time: 00:26:06s.  Time for last 1,000,000:   22s.  Last read position: chr5:126,467,247.  Last read name: J00118:292:HKF77BBXX:8:2119:18609:8910
+INFO	2023-09-15 11:40:40	AbstractAlignmentMerger	Merged    98,000,000 records.  Elapsed time: 00:26:18s.  Time for last 1,000,000:   11s.  Last read position: chr5:136,888,319.  Last read name: J00118:292:HKF77BBXX:8:2121:16914:7451
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (4, 843116, 6, 2)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (124, 274, 500)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1252)
+[M::mem_pestat] mean and std.dev: (335.74, 249.78)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1628)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:40:53	AbstractAlignmentMerger	Merged    99,000,000 records.  Elapsed time: 00:26:30s.  Time for last 1,000,000:   12s.  Last read position: chr13:107,347,202.  Last read name: J00118:292:HKF77BBXX:8:2123:15189:28797
+INFO	2023-09-15 11:40:58	SamToFastq	Processed   102,000,000 records.  Elapsed time: 00:26:36s.  Time for last 1,000,000:   36s.  Last read position: */*
+[M::mem_process_seqs] Processed 2105264 reads in 530.765 CPU sec, 33.399 real sec
+INFO	2023-09-15 11:41:02	SamToFastq	Processed   103,000,000 records.  Elapsed time: 00:26:39s.  Time for last 1,000,000:    3s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:41:10	AbstractAlignmentMerger	Merged   100,000,000 records.  Elapsed time: 00:26:48s.  Time for last 1,000,000:   17s.  Last read position: chr14:105,811,020.  Last read name: J00118:292:HKF77BBXX:8:2125:13139:32173
+INFO	2023-09-15 11:41:24	AbstractAlignmentMerger	Merged   101,000,000 records.  Elapsed time: 00:27:01s.  Time for last 1,000,000:   13s.  Last read position: chr8:97,234,599.  Last read name: J00118:292:HKF77BBXX:8:2127:10744:33404
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (4, 844937, 1, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (130, 272, 472)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1156)
+[M::mem_pestat] mean and std.dev: (325.05, 233.29)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1498)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:41:28	SamToFastq	Processed   104,000,000 records.  Elapsed time: 00:27:06s.  Time for last 1,000,000:   26s.  Last read position: */*
+INFO	2023-09-15 11:41:31	SamToFastq	Processed   105,000,000 records.  Elapsed time: 00:27:08s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 520.133 CPU sec, 32.726 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:41:43	AbstractAlignmentMerger	Merged   102,000,000 records.  Elapsed time: 00:27:21s.  Time for last 1,000,000:   19s.  Last read position: chr21:15,832,431.  Last read name: J00118:292:HKF77BBXX:8:2128:8532:46592
+INFO	2023-09-15 11:41:57	AbstractAlignmentMerger	Merged   103,000,000 records.  Elapsed time: 00:27:34s.  Time for last 1,000,000:   13s.  Last read position: chr17:56,357,045.  Last read name: J00118:292:HKF77BBXX:8:2202:5518:24278
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (3, 846044, 13, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (133, 270, 456)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1102)
+[M::mem_pestat] mean and std.dev: (317.88, 222.19)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1425)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (106, 177, 2263)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 6577)
+[M::mem_pestat] mean and std.dev: (846.00, 1193.38)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 8734)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+INFO	2023-09-15 11:42:02	SamToFastq	Processed   106,000,000 records.  Elapsed time: 00:27:39s.  Time for last 1,000,000:   31s.  Last read position: */*
+INFO	2023-09-15 11:42:04	SamToFastq	Processed   107,000,000 records.  Elapsed time: 00:27:42s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 537.591 CPU sec, 33.808 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:42:17	AbstractAlignmentMerger	Merged   104,000,000 records.  Elapsed time: 00:27:55s.  Time for last 1,000,000:   20s.  Last read position: chr7:128,387,462.  Last read name: J00118:292:HKF77BBXX:8:2204:3579:31224
+INFO	2023-09-15 11:42:30	AbstractAlignmentMerger	Merged   105,000,000 records.  Elapsed time: 00:28:08s.  Time for last 1,000,000:   13s.  Last read position: chr9:87,256,219.  Last read name: J00118:292:HKF77BBXX:8:2206:30259:31206
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (1, 843772, 14, 3)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (133, 275, 470)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1144)
+[M::mem_pestat] mean and std.dev: (324.32, 228.93)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1481)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (172, 190, 279)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 493)
+[M::mem_pestat] mean and std.dev: (164.27, 79.98)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 600)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+INFO	2023-09-15 11:42:37	SamToFastq	Processed   108,000,000 records.  Elapsed time: 00:28:15s.  Time for last 1,000,000:   33s.  Last read position: */*
+INFO	2023-09-15 11:42:41	SamToFastq	Processed   109,000,000 records.  Elapsed time: 00:28:19s.  Time for last 1,000,000:    3s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 588.887 CPU sec, 37.043 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:42:53	AbstractAlignmentMerger	Merged   106,000,000 records.  Elapsed time: 00:28:31s.  Time for last 1,000,000:   22s.  Last read position: chrX:83,173,931.  Last read name: J00118:292:HKF77BBXX:8:2208:27955:38363
+INFO	2023-09-15 11:43:05	AbstractAlignmentMerger	Merged   107,000,000 records.  Elapsed time: 00:28:43s.  Time for last 1,000,000:   12s.  Last read position: chr3:185,942,383.  Last read name: J00118:292:HKF77BBXX:8:2210:25499:28586
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (6, 843713, 9, 3)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (133, 275, 472)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1150)
+[M::mem_pestat] mean and std.dev: (324.89, 229.92)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1489)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:43:13	SamToFastq	Processed   110,000,000 records.  Elapsed time: 00:28:51s.  Time for last 1,000,000:   31s.  Last read position: */*
+INFO	2023-09-15 11:43:17	SamToFastq	Processed   111,000,000 records.  Elapsed time: 00:28:54s.  Time for last 1,000,000:    3s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 546.394 CPU sec, 34.370 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:43:25	AbstractAlignmentMerger	Merged   108,000,000 records.  Elapsed time: 00:29:03s.  Time for last 1,000,000:   20s.  Last read position: chr8:22,902,310.  Last read name: J00118:292:HKF77BBXX:8:2212:23013:44429
+INFO	2023-09-15 11:43:39	AbstractAlignmentMerger	Merged   109,000,000 records.  Elapsed time: 00:29:17s.  Time for last 1,000,000:   13s.  Last read position: chr19:4,399,907.  Last read name: J00118:292:HKF77BBXX:8:2214:20456:19636
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (0, 842780, 14, 5)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (130, 277, 483)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1189)
+[M::mem_pestat] mean and std.dev: (329.54, 237.36)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1542)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (131, 285, 1201)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 3341)
+[M::mem_pestat] mean and std.dev: (480.00, 684.90)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 4411)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+INFO	2023-09-15 11:43:48	SamToFastq	Processed   112,000,000 records.  Elapsed time: 00:29:26s.  Time for last 1,000,000:   31s.  Last read position: */*
+INFO	2023-09-15 11:43:51	SamToFastq	Processed   113,000,000 records.  Elapsed time: 00:29:29s.  Time for last 1,000,000:    2s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 573.542 CPU sec, 36.077 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:43:59	AbstractAlignmentMerger	Merged   110,000,000 records.  Elapsed time: 00:29:37s.  Time for last 1,000,000:   20s.  Last read position: chr17:21,040,313.  Last read name: J00118:292:HKF77BBXX:8:2216:18375:16559
+INFO	2023-09-15 11:44:09	AbstractAlignmentMerger	Merged   111,000,000 records.  Elapsed time: 00:29:47s.  Time for last 1,000,000:   10s.  Last read position: chr4:142,878,960.  Last read name: J00118:292:HKF77BBXX:8:2218:16894:4075
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (6, 843347, 7, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+INFO	2023-09-15 11:44:20	SamToFastq	Processed   114,000,000 records.  Elapsed time: 00:29:57s.  Time for last 1,000,000:   28s.  Last read position: */*
+[M::mem_pestat] (25, 50, 75) percentile: (128, 276, 490)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1214)
+[M::mem_pestat] mean and std.dev: (332.52, 242.49)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1576)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+INFO	2023-09-15 11:44:23	SamToFastq	Processed   115,000,000 records.  Elapsed time: 00:30:00s.  Time for last 1,000,000:    3s.  Last read position: */*
+[M::process] read 2105264 sequences (160000064 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 550.976 CPU sec, 34.654 real sec
+[M::process] 0 single-end sequences; 2105264 paired-end sequences
+INFO	2023-09-15 11:44:33	AbstractAlignmentMerger	Merged   112,000,000 records.  Elapsed time: 00:30:11s.  Time for last 1,000,000:   23s.  Last read position: chr2:205,951,317.  Last read name: J00118:292:HKF77BBXX:8:2220:14377:39066
+INFO	2023-09-15 11:44:43	AbstractAlignmentMerger	Merged   113,000,000 records.  Elapsed time: 00:30:21s.  Time for last 1,000,000:    9s.  Last read position: chr19:46,854,345.  Last read name: J00118:292:HKF77BBXX:8:2222:11515:19935
+INFO	2023-09-15 11:44:53	SamToFastq	Processed   116,000,000 records.  Elapsed time: 00:30:31s.  Time for last 1,000,000:   30s.  Last read position: */*
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (2, 844317, 6, 2)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[Fri Sep 15 11:44:55 SGT 2023] picard.sam.SamToFastq done. Elapsed time: 30.55 minutes.
+Runtime.totalMemory()=1241513984
+Using GATK jar /gatk/gatk-package-4.4.0.0-local.jar
+Running:
+    java -Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=2 -Xmx100G -jar /gatk/gatk-package-4.4.0.0-local.jar SamToFastq I=/mnt/inputs/atac-croo-out/S6R691V/sample16/1bdd5f44-fe98-41c7-8eb4-db22b8154315.nodup.no_chrM_MT_revertsam-noXS_markadapt.bam FASTQ=/dev/stdout CLIPPING_ATTRIBUTE=XT CLIPPING_ACTION=2 INTERLEAVE=true NON_PF=true TMP_DIR=/mnt/outputs/tmp
+[M::mem_pestat] (25, 50, 75) percentile: (127, 277, 498)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1240)
+[M::mem_pestat] mean and std.dev: (335.87, 247.23)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1611)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::process] read 744682 sequences (56595832 bp)...
+[M::mem_process_seqs] Processed 2105264 reads in 552.950 CPU sec, 34.819 real sec
+[M::process] 0 single-end sequences; 744682 paired-end sequences
+INFO	2023-09-15 11:45:07	AbstractAlignmentMerger	Merged   114,000,000 records.  Elapsed time: 00:30:45s.  Time for last 1,000,000:   24s.  Last read position: chr4:2,127,010.  Last read name: J00118:292:HKF77BBXX:8:2223:9496:46258
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (0, 298753, 3, 2)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (125, 276, 499)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1247)
+[M::mem_pestat] mean and std.dev: (335.31, 247.60)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1621)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_process_seqs] Processed 744682 reads in 188.190 CPU sec, 11.856 real sec
+INFO	2023-09-15 11:45:18	AbstractAlignmentMerger	Merged   115,000,000 records.  Elapsed time: 00:30:56s.  Time for last 1,000,000:   10s.  Last read position: chrUn_KI270438v1:104,063.  Last read name: J00118:292:HKF77BBXX:8:2225:6268:19636
+INFO	2023-09-15 11:45:26	AbstractAlignmentMerger	Merged   116,000,000 records.  Elapsed time: 00:31:04s.  Time for last 1,000,000:    8s.  Last read position: chr7:98,909,953.  Last read name: J00118:292:HKF77BBXX:8:2227:3417:44763
+[main] Version: 0.7.17-r1188
+[main] CMD: bwa mem -M -t 16 -p /scratch/users/ntu/suffiazi/inputs/references/gatk4/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta /dev/stdin
+[main] Real time: 1875.570 sec; CPU: 29360.990 sec
+INFO	2023-09-15 11:46:17	AbstractAlignmentMerger	Written in coordinate order to output    10,000,000 records.  Elapsed time: 00:00:43s.  Time for last 10,000,000:   42s.  Last read position: chr1:206,295,915
+INFO	2023-09-15 11:46:56	AbstractAlignmentMerger	Written in coordinate order to output    20,000,000 records.  Elapsed time: 00:01:22s.  Time for last 10,000,000:   39s.  Last read position: chr3:1,090,429
+INFO	2023-09-15 11:47:35	AbstractAlignmentMerger	Written in coordinate order to output    30,000,000 records.  Elapsed time: 00:02:01s.  Time for last 10,000,000:   38s.  Last read position: chr4:81,722,549
+INFO	2023-09-15 11:48:11	AbstractAlignmentMerger	Written in coordinate order to output    40,000,000 records.  Elapsed time: 00:02:37s.  Time for last 10,000,000:   36s.  Last read position: chr5:172,063,371
+INFO	2023-09-15 11:48:47	AbstractAlignmentMerger	Written in coordinate order to output    50,000,000 records.  Elapsed time: 00:03:13s.  Time for last 10,000,000:   35s.  Last read position: chr7:74,024,044
+INFO	2023-09-15 11:49:21	AbstractAlignmentMerger	Written in coordinate order to output    60,000,000 records.  Elapsed time: 00:03:47s.  Time for last 10,000,000:   33s.  Last read position: chr9:35,403,247
+INFO	2023-09-15 11:49:53	AbstractAlignmentMerger	Written in coordinate order to output    70,000,000 records.  Elapsed time: 00:04:19s.  Time for last 10,000,000:   31s.  Last read position: chr11:19,219,147
+INFO	2023-09-15 11:50:22	AbstractAlignmentMerger	Written in coordinate order to output    80,000,000 records.  Elapsed time: 00:04:49s.  Time for last 10,000,000:   29s.  Last read position: chr13:70,846,920
+INFO	2023-09-15 11:50:51	AbstractAlignmentMerger	Written in coordinate order to output    90,000,000 records.  Elapsed time: 00:05:17s.  Time for last 10,000,000:   28s.  Last read position: chr16:3,294,228
+INFO	2023-09-15 11:51:20	AbstractAlignmentMerger	Written in coordinate order to output   100,000,000 records.  Elapsed time: 00:05:46s.  Time for last 10,000,000:   28s.  Last read position: chr18:62,420,763
+INFO	2023-09-15 11:51:48	AbstractAlignmentMerger	Written in coordinate order to output   110,000,000 records.  Elapsed time: 00:06:14s.  Time for last 10,000,000:   28s.  Last read position: chr22:38,299,166
+INFO	2023-09-15 11:52:09	AbstractAlignmentMerger	Wrote 116637521 alignment records and 582 unmapped reads.
+[Fri Sep 15 11:52:09 SGT 2023] picard.sam.MergeBamAlignment done. Elapsed time: 37.79 minutes.
+Runtime.totalMemory()=1107296256
+Tool returned:
+0
+Using GATK jar /gatk/gatk-package-4.4.0.0-local.jar
+Running:
+    java -Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=2 -Xmx100G -jar /gatk/gatk-package-4.4.0.0-local.jar MergeBamAlignment ALIGNED_BAM=/dev/stdin UNMAPPED_BAM=/mnt/inputs/atac-croo-out/S6R691V/sample16/1bdd5f44-fe98-41c7-8eb4-db22b8154315.nodup.no_chrM_MT_revertsam-noXS.bam OUTPUT=/mnt/inputs/atac-croo-out/S6R691V/sample16/1bdd5f44-fe98-41c7-8eb4-db22b8154315.nodup.no_chrM_MT_pipe-merged.bam R=/mnt/inputs/references/gatk4/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta CREATE_INDEX=true ADD_MATE_CIGAR=true CLIP_ADAPTERS=false CLIP_OVERLAPPING_READS=true INCLUDE_SECONDARY_ALIGNMENTS=true MAX_INSERTIONS_OR_DELETIONS=-1 PRIMARY_ALIGNMENT_STRATEGY=MostDistant ATTRIBUTES_TO_RETAIN=XS TMP_DIR=/mnt/outputs/tmp
+Pipeline run finished!
+======================================================================================
+
+			Resource Usage on 2023-09-15 11:52:09.947187:
+
+	JobId: 2870174.pbs101  
+	Project: 12003580 
+	Exit Status: 0
+	NCPUs Requested: 16				NCPUs Used: 16
+							CPU Time Used: 08:54:52
+	Memory Requested: 120gb 			Memory Used: 57062280kb
+							Vmem Used: 245123764kb
+	Walltime requested: 04:00:00 			Walltime Used: 00:37:54
+	
+	Execution Nodes Used: (x1001c6s6b1n0:ncpus=16:mem=125829120kb)
+	
+ ======================================================================================

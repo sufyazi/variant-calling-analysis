@@ -40,10 +40,10 @@ for list in "${lists[@]}"; do
             echo "File prefix: $file_prefix"
             # run gatk revert sam
             $singExec gatk MarkIlluminaAdapters \
-            I="${modified_bam_path}" \
-            O="${file_prefix}"_markillum-adapt.bam \
-            M="${file_prefix}"_markillum-metrics.txt \
-            TMP_DIR=/mnt/outputs/tmp
+            -I "${modified_bam_path}" \
+            -O "${file_prefix}"_markillum-adapt.bam \
+            -M "${file_prefix}"_markillum-metrics.txt \
+            -TMP_DIR /mnt/outputs/tmp
         done
     done
 done

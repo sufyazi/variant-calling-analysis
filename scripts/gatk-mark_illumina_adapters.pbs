@@ -18,7 +18,7 @@ file_prefix=$PREFIX
 
 # run gatk MarkIlluminaAdapters
 $singExec gatk --java-options "-Xmx80G" MarkIlluminaAdapters \
-        I="${bam}" \
-        O="${file_prefix}"_markadapt.bam \
-        M="${file_prefix}"_markadapt-metrcs.txt \
-        TMP_DIR=/mnt/outputs/tmp
+        -I "${bam}" \
+        -O "${file_prefix}"_markadapt.bam \
+        -M "${file_prefix}"_markadapt-metrcs.txt \
+        -TMP_DIR /mnt/outputs/tmp

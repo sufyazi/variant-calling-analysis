@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+#PBS -l select=1:ncpus=16:mem=120GB
+#PBS -l walltime=5:00:00
+#PBS -j oe
+#PBS -P 12003580
+#PBS -q normal
+
+set -o pipefail
+
+# load conda environment and singularity
+module load miniconda3/py38_4.8.3
+conda activate /home/users/ntu/suffiazi/apps/mambaforge/envs/gatk-snv
+
+module load singularity
+singExec="singularity exec --bind /home/users/ntu/suffiazi/scratch:/mnt /home/users/ntu/suffiazi/apps/sifs/gatk.sif"
+
+# set up variable
+file_prefix=$PREFIX
+
+# run gatk MarkDuplicatesSpark
+echo "Running gatk MarkDuplicatesSpark"
+
+$singExec gatk --java-options "-Xmx100G" MarkDuplicatesSpark \
+        -I "${file_prefix}"_pipe-merged.bam \
+        -O "${file_prefix}"_markdups.bam \
+        -M "${file_prefix}"_marked_dup_metrics.txt
+
+echo "Duplicate marking has finished!"
