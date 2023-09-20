@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+#PBS -l select=1:ncpus=16:mem=400GB
+#PBS -l walltime=5:00:00
+#PBS -j oe
+#PBS -P 12003580
+#PBS -q normal
+
+set -o pipefail
+
+# load conda environment and singularity
+module load miniconda3/py38_4.8.3
+conda activate /home/users/ntu/suffiazi/apps/mambaforge/envs/gatk-snv
+
+module load singularity
+singExec="singularity exec --bind /home/users/ntu/suffiazi/scratch:/mnt /home/users/ntu/suffiazi/apps/sifs/gatk.sif"
+
+# set up variable
+file_prefix=$PREFIX
+
+# run gatk BQSR learning and recalibration
+echo "Running gatk BQSRPipelineSpark..."
+
+if $singExec gatk BQSRPipelineSpark \
+   -R /mnt/inputs/references/gatk4/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta \
+   -I "${file_prefix}"_markdups.bam \
+   --known-sites /mnt/inputs/references/gatk4/Homo_sapiens_assembly38.dbsnp138.vcf \
+   --known-sites /mnt/inputs/references/gatk4/Homo_sapiens_assembly38.known_indels.vcf.gz \
+   --known-sites /mnt/inputs/references/gatk4/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz \
+   -O "${file_prefix}"_BQSR.bam; then
+        echo "BQSR learning and recalibration have finished!"
+fi
