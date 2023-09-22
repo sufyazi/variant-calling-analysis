@@ -40,14 +40,14 @@ if [ -n "${lists[*]}" ] && [ -n "${tfbs_list[*]}" ]; then
                     motif_id=$(basename "${txt%_binding_sites-basal-UP_4col.bed}")
                     echo "Motif ID: $motif_id"
                     # submit job
-                    qsub -v TF_FILE="${txt}",BAM_INP="${bams}",OUT_DIR="${outfile}",TF_ID="${motif_id}",ID="${id_name}" /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/customs/run-bcftools_mpileup_submit.pbs
+                    echo qsub -v TF_FILE="${txt}",BAM_INP="${bams}",OUT_DIR="${outfile}",TF_ID="${motif_id}",ID="${id_name}" /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/customs/run-bcftools_mpileup_submit.pbs
                 done
             elif [ "${#tfbs_loc[@]}" -eq 1 ]; then
                 echo "There is precisely one motif TFBS file in the array. Proceeding with job submission..."
                 motif_id=$(basename "${tfbs_loc[0]%_binding_sites-basal-UP_4col.bed}")
                 echo "Motif ID: $motif_id"
                 # submit job
-                qsub -v TF_FILE="${tfbs_loc[0]}",BAM_INP="${bams}",OUT_DIR="${outfile}",TF_ID="${motif_id}",ID="${id_name}" /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/customs/run-bcftools_mpileup_submit.pbs
+                echo qsub -v TF_FILE="${tfbs_loc[0]}",BAM_INP="${bams}",OUT_DIR="${outfile}",TF_ID="${motif_id}",ID="${id_name}" /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/customs/run-bcftools_mpileup_submit.pbs
             fi
         done
     done
