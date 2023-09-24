@@ -24,7 +24,7 @@ if [ -n "${lists[*]}" ] && [ -n "${tfbs_list[*]}" ]; then
     echo "Found list.txt files and candidate TF motifs of interest. Proceeding..."
     count=0
     for tfbs in "${tfbs_list[@]}"; do
-        while [ "$count" -lt 500 ]; do
+        while [ "$count" -lt 10 ]; do
             echo "Count: $count"
             echo "TF motif of interest: $tfbs"
             # find tfbs bed file
@@ -40,6 +40,7 @@ if [ -n "${lists[*]}" ] && [ -n "${tfbs_list[*]}" ]; then
                 echo qsub -v TF_FILE="${bedfile}",BAM_INP="${bams}",OUT_DIR="${outfile}",TF_ID="${motif_id}",ID="${id_name}" /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/customs/run-bcftools_mpileup_submit.pbs
             done
             count=$((count + 1))
+
         done
     done
 else
