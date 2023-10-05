@@ -31,9 +31,9 @@ for data_id in "${data_ids[@]}"; do
             done > /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/input_files/mpileup_lists/per-dataset/"${data_id}"_bam_list.txt
         fi
         bam_files="/home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/input_files/mpileup_lists/per-dataset/${data_id}_bam_list.txt"
-        echo "Submitting variant calling job..."
+        echo "Submitting PBS jobs sequentially..."
         # submit job
-        qsub -v TF_LIST="$3",BAM_INP="${bam_files}",OUT_DIR="${outfile}",ID="${data_id}" /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/customs/run-bcftools_mpileup_submit-per-dataset.pbs
+        qsub -v TF_LIST="$3",BAM_INP="${bam_files}",OUT_DIR="${outfile}",ID="${data_id}" /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/customs/run-bcftools_mpileup_parallel.pbs
     else
         echo "No bam files found in $bam_dir/$data_id"
         exit 1

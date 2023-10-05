@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+#PBS -l select=1:ncpus=2:mem=10GB
+#PBS -l walltime=4:00:00
+#PBS -j oe
+#PBS -P personal
+#PBS -q normal
+
+# load conda environment
+module load miniconda3/py38_4.8.3
+conda activate /home/users/ntu/suffiazi/apps/mambaforge/envs/gatk-snv
+
+bash /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/customs/test.sh 
+echo "test submitted"
+
+which sem

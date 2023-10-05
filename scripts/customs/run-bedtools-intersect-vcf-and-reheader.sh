@@ -82,10 +82,12 @@ for matrix in "${tfbs_matrices[@]}"; do
                 echo "Complete output file $output exists. Skipping..."
                 continue
             else
-                echo "Output file $output is incomplete. Proceeding..."
+                echo "Output file $output either does not exist or is incomplete. Proceeding with bedtools intersect..."
                 # preprocess vcf then pipe to bedtools intersect to find the TFBSs that overlap with the VCF
                 if bedtools intersect -a "${noheader}" -b "${vcf_beds[@]}" -wa >> "$output"; then
                     echo "Successfully intersected $matrix with all dataset VCFs"
+                    # run py script to rename sample columns in the vcf file
+                    bcftools 
                 else
                     echo "Failed to intersect $matrix with ${#vcf_beds[@]} VCF bed files of $motif_id"
                 fi
