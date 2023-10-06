@@ -24,7 +24,7 @@ echo "Number of TF motif bed files:" "${#tfbs_beds[@]}"
 # loop through each TF motif
 for bedfile in "${tfbs_beds[@]}"; do
     # run variant calling script in parallel using GNU parallel semaphore
-    sem -j+0 bash /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/customs/run-bcftools_mpileup_module.sh "$bedfile" "$bams" "$outfile" "$data_id"
+    sem -j+0 pwd ";" echo bash /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/customs/run-bcftools_mpileup_module.sh "$bedfile" "$bams" "$outfile" "$data_id"
     echo "Running parallel job for $bedfile"
 done
 sem --wait
