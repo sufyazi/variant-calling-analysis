@@ -87,7 +87,7 @@ for matrix in "${tfbs_matrices[@]}"; do
                 if bedtools intersect -a "${noheader}" -b "${vcf_beds[@]}" -wa >> "$output"; then
                     echo "Successfully intersected $matrix with all dataset VCFs"
                     # run py script to rename sample columns in the vcf file
-                    bcftools 
+                    python3 column_renamer.py "$output" 
                 else
                     echo "Failed to intersect $matrix with ${#vcf_beds[@]} VCF bed files of $motif_id"
                 fi

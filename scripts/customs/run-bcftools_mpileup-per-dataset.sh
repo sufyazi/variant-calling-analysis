@@ -2,10 +2,10 @@
 # shellcheck disable=SC1091
 
 # check arguments
-if [ "$#" -ne 4 ]; then
-    echo "Usage: $0 <bam_dir/> <dataset_id_list> <tfbs_bedfile_names.txt> <out_dir/>"
-    exit 1
-fi
+# if [ "$#" -ne 4 ]; then
+#     echo "Usage: $0 <bam_dir/> <dataset_id_list> <tfbs_bedfile_names.txt> <out_dir/>"
+#     exit 1
+# fi
 
 # set up variables
 bam_dir=$1
