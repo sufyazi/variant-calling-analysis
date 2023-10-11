@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+#PBS -l select=1:ncpus=128:mem=200GB
+#PBS -l walltime=10:00:00
+#PBS -j oe
+#PBS -P 12003580
+#PBS -q normal
+
+# load conda environment
+module load miniconda3/py38_4.8.3
+conda activate /home/users/ntu/suffiazi/apps/mambaforge/envs/gatk-snv
+
+# Define the function to run 
+mpileup_module() {
+    local motif_ids="$1"
+    local bams="$2"
+    local outfile="$3"
+    local data_id="$4"
+    
+    echo "Running parallel job on $motif_ids with $data_id bam files..."
+    bash /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/customs/run-bcftools_mpileup_module-v2.sh "$motif_ids" "$bams" "$outfile" "$data_id"
+}
+
+# Export the function so it's available to GNU Parallel
+export -f mpileup_module
+
+# Determine the number of available CPU cores
+num_cores=$(nproc)
+
+# set up variables
+tfbs=$TF_LIST
+bams=$BAM_INP
+outfile=$OUT_DIR
+data_id=$ID
+
+# read in TF motif list
+readarray -t tfbs_motifs < "$tfbs"
+echo "Number of TF motifs:" "${#tfbs_motifs[@]}"
+
+
+# Use GNU Parallel to run the commands in parallel using all available cores
+parallel --jobs "$num_cores" mpileup_module ::: "${tfbs_motifs[@]}" ::: "$bams" ::: "$outfile" ::: "$data_id"

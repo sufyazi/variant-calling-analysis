@@ -51,10 +51,10 @@ for matrix in "${tfbs_matrices[@]}"; do
             # get basename without extension
             vcf_basename=$(basename "$vcf" _qualgt10.var.flt.vcf)
             echo "VCF basename: $vcf_basename"
-            if [[ ! -f "${vcf_basename}_qualgt10.var.flt_noheadlines.tmp" ]]; then
+            if [[ ! -f "${vcf_basename}_qualgt10.var.flt_noheadlines.txt" ]]; then
                 echo "No associated files found for $vcf_basename"
                 # get rid of header lines in vcf file
-                grep -v "^#" "$vcf" > /data/bank/booth/msazizan/tobias-analysis-outputs/tobias-tfbs-subset-matrices-datashop/reco/v0/prod/brca-called-variant-vcfs-nohead/"${vcf_basename}_qualgt10.var.flt_noheadlines.tmp" && \
+                # grep -v "^#" "$vcf" > /data/bank/booth/msazizan/tobias-analysis-outputs/tobias-tfbs-subset-matrices-datashop/reco/v0/prod/brca-called-variant-vcfs-nohead/"${vcf_basename}_qualgt10.var.flt_noheadlines.tmp" && \
                 # get rid of ## header lines (keeping the #CHROM line)
                 grep -v "^##" "$vcf" > /data/bank/booth/msazizan/tobias-analysis-outputs/tobias-tfbs-subset-matrices-datashop/reco/v0/prod/brca-called-variant-vcfs-nohead/"${vcf_basename}_qualgt10.var.flt_noheadlines.txt" && \
                 # generate a bedtools-compatible bed file from the vcf
@@ -74,20 +74,20 @@ for matrix in "${tfbs_matrices[@]}"; do
             echo "Found VCF beds for $motif_id"
             echo "VCFs: " "${vcf_beds[@]}"
             # construct output filename and save header
-            output="${output_dir}/${motif_id}_BRCA-vcfs-filtered-matrix.txt"
-            head -n 1 "$matrix" > "$output"
+            output="${output_dir}/${motif_id}_BRCA-vcfs-filtered-matrix"
             
             # check if output file exists
-            if [[ -f "$output" && $(wc -l < "$output") -gt 1 ]]; then
-                echo "Complete output file $output exists. Skipping..."
+            if [[ -f "${output}.txt" && $(wc -l < "${output}.txt") -gt 1 ]]; then
+                echo "Complete output file ${output}.txt exists. Skipping..."
                 continue
             else
-                echo "Output file $output either does not exist or is incomplete. Proceeding with bedtools intersect..."
+                echo "Output file ${output}.txt does not exist. Proceeding with bedtools intersect..."
+                head -n 1 "$matrix" > "${output}.tmp"
                 # preprocess vcf then pipe to bedtools intersect to find the TFBSs that overlap with the VCF
-                if bedtools intersect -a "${noheader}" -b "${vcf_beds[@]}" -wa >> "$output"; then
-                    echo "Successfully intersected $matrix with all dataset VCFs"
+                if bedtools intersect -a "${noheader}" -b "${vcf_beds[@]}" -wa >> "${output}.tmp"; then
+                    echo "Successfully intersected $matrix with all dataset VCFs. Renaming columns..."
                     # run py script to rename sample columns in the vcf file
-                    python3 column_renamer.py "$output" 
+                    python3 column_renamer.py "${output}.tmp" "/home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/output_files/mapping_files/2GAMBDQ_sample_colname_mapping.txt" "${output}.txt"
                 else
                     echo "Failed to intersect $matrix with ${#vcf_beds[@]} VCF bed files of $motif_id"
                 fi
@@ -96,4 +96,3 @@ for matrix in "${tfbs_matrices[@]}"; do
         rm "${noheader}"
     fi
 done
-

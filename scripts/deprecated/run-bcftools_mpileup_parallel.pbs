@@ -2,7 +2,7 @@
 # shellcheck disable=SC1091
 
 #PBS -l select=1:ncpus=128:mem=200GB
-#PBS -l walltime=36:00:00
+#PBS -l walltime=10:00:00
 #PBS -j oe
 #PBS -P 12003580
 #PBS -q normal
@@ -23,8 +23,8 @@ echo "Number of TF motif bed files:" "${#tfbs_beds[@]}"
 
 # loop through each TF motif
 for bedfile in "${tfbs_beds[@]}"; do
+    echo "Running parallel job for $bedfile with $data_id..."
     # run variant calling script in parallel using GNU parallel semaphore
-    sem -j+0 bash /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/customs/run-bcftools_mpileup_module.sh "$bedfile" "$bams" "$outfile" "$data_id"
-    echo "Running parallel job for $bedfile"
+    sem -j+0 bash /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/customs/run-bcftools_mpileup_module.sh $bedfile $bams $outfile $data_id ";" echo "Job for $bedfile with $data_id completed."
 done
 sem --wait

@@ -14,9 +14,9 @@ echo "Motif ID: $motif_id"
 
 # check if output vcf file already exists
 if [ -f "${outfile}"/"${data_id}"_"${motif_id}"_qualgt10.var.flt.vcf ]; then
-    echo "Output vcf file already exists. Skipping..."
+    echo "Output vcf file for ${data_id} already exists. Skipping..."
 else
-    echo "Output vcf file does not exist. Proceeding..."
+    echo "Output vcf file for ${data_id} does not exist. Proceeding..."
     # get bedfile path
     bed_path=$(find /scratch/users/ntu/suffiazi/inputs/brca_tfbs_bedfiles -name "${bedfile}" -type f)
     if [ -n "$bed_path" ]; then
