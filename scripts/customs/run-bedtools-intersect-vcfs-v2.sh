@@ -118,7 +118,7 @@ for direc in "${tfbs_motifs[@]}"; do
                         head -n 1 "${matrix}" > "${output}.tmp"
                         # bedtools intersect the original matrix with the masking bed file
                         if tail -n +2 "${matrix}" | bedtools intersect -a - -b "${mask}.bed" -u >> "${output}.tmp"; then
-                            echo "Successfully intersected $matrix with masking bed file tocreate a filtered matrix."
+                            echo "Successfully intersected $matrix with masking bed file to create a filtered matrix."
                             # rename the temporary file
                             mv "${output}.tmp" "${output}.txt"
                             # remove the masking bed file
