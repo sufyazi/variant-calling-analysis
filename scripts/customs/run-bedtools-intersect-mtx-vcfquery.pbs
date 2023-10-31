@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+#PBS -l select=1:ncpus=1:mem=80GB
+#PBS -l walltime=8:00:00
+#PBS -j oe
+#PBS -P personal
+#PBS -q normal
+
+
+module load miniconda3/py38_4.8.3
+conda activate /home/users/ntu/suffiazi/apps/mambaforge/envs/gatk-snv
+
+# set up variables
+data_id_list=$DATA
+motif_prefixes=$MOTIFS
+vcf_root_dir=$VCFS
+output_dir=$OUT
+
+# load dataset IDs
+readarray -t data_ids < "$data_id_list"
+
+# load motif prefixes from the input text file
+mapfile -t motif_prefixes < "$motif_prefixes"
+
+# process each dataset ID
+for id in "${data_ids[@]}"; do
+    echo "Dataset ID: $id"
+    # loop through each motif prefix
+    for motif_prefix in "${motif_prefixes[@]}"; do
+        echo "Motif to process: $motif_prefix. Finding the file..."
+        # find specific motif vcf file under this ID
+        vcf_file=$(find "${vcf_root_dir}" -name "${id}_${motif_prefix}*.vcf" -type f)
+        if [ -n "$vcf_file" ]; then
+            echo "VCF file found: $vcf_file"
+            # construct output filename
+            mkdir -p "${output_dir}/${id}"
+            output="${output_dir}/${id}/${id}_${motif_prefix}_VAF-per-sample-with-indels"
+            # check if output file already exists
+            if [ ! -f "${output}".txt ]; then
+                # extract the AF field from the vcf file together with indels
+                if bcftools norm -m-both "${vcf_file}" | bcftools query -H -f '%CHROM\t%POS\t%REF\t%ALT\t[\t%VAF]\n' - > "${output}".txt; then
+                    echo "Successfully extracted VAF field from VCF file of ${motif_prefix} from ${id} dataset with indels included."
+                else
+                    echo "Failed to extract VAF field from VCF file of ${motif_prefix} from ${id} dataset with indels included."
+                    continue
+                fi
+            else
+                echo "Output file ${output}.txt already exists. Skipping..."
+                continue
+            fi
+        else
+            echo "VCF file for ${motif_prefix} not found. Skipping..."
+            continue
+        fi
+    done
+done
