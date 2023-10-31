@@ -15,7 +15,7 @@ if [ -f "${outfile}"/"${data_id}"/"${data_id}"_"${motif_id}"_qualgt10.var.flt_VA
 else
     echo "Output vcf file for ${data_id} does not exist. Proceeding..."
     # get bedfile path
-    bed_path=$(find /scratch/users/ntu/suffiazi/inputs/BRCA-diffmode_tfbs_bedfiles -name "${motif_id}*.bed" -type f)
+    bed_path=$(find /scratch/users/ntu/suffiazi/inputs/consensus-filt-tfbs-matrices-BRCA -name "${motif_id}*.txt" -type f)
     if [ -n "$bed_path" ]; then
         echo "Found bed file. Proceeding..."
         echo "Bed file path: $bed_path"
