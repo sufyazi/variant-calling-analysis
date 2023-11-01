@@ -28,17 +28,31 @@ for motif_prefix in "${motif_prefixes[@]}"; do
         continue
     fi
     # construct output filename
-    output="${output_dir}/${motif_prefix}_variant-overlapped-regions-with-position"
+    output="${output_dir}/var-positions-per-subtype/${motif_prefix}_variant-overlapped-regions-with-position"
     # check if output file already exists
     if [ -f "${output}".txt ]; then
-        echo "Output file ${output}.txt already exists. Skipping..."
-        continue
+        echo "Output file ${output}.txt already exists. Checking if region-only file exists..."
+        # construct region-only output filename
+        output_reg="${output_dir}/collapsed-filt-regions/${motif_prefix}_variant-overlapped-regions-uniq"
+        if [ -f "${output_reg}".txt ]; then
+            echo "Region-only output file ${output_reg}.txt already exists. Skipping..."
+            continue
+        else
+            # generate region-only output file
+            cut -f1-4 "${output}".txt | sort -k1,1V -k2,2n -u > "${output_reg}".txt
+            echo "Region-only output file ${output_reg}.txt did not exist, so it has been generated."
+            continue
+        fi
     fi
     # create a header for the output file
     printf "chr\tstart\tend\tstrand\tdataset\tchrom\tposition\n" > "${output}.txt"
     # intersect the consensus filtered regions with the vcf files of a particular motif
     if bedtools intersect -a "${region_file}" -b "${vcf_files[@]}" -wo -names "${data_ids[@]}" | cut -f1-7 >> "${output}.txt"; then
-        echo "Successfully overlapped variant positions across all subtypes with the motif ID ${motif_prefix} region file and truncated the output file"
+        echo "Successfully overlapped variant positions across all subtypes with the motif ID ${motif_prefix} region file and truncated the output file."
+        # generate region-only output file
+        echo "Generating region-only output file..."
+        output_reg="${output_dir}/collapsed-filt-regions/${motif_prefix}_variant-overlapped-regions-uniq"
+        cut -f1-4 "${output}".txt | sort -k1,1V -k2,2n -u > "${output_reg}".txt
     else
         echo "Failed to run bedtools intersect. Please investigate why."
     fi
