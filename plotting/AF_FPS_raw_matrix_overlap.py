@@ -1,4 +1,4 @@
-#!/#!/usr/bin/env python3
+#!/usr/bin/env python3
 
 ####################
 # import libraries #
@@ -9,6 +9,8 @@ import sys
 import fnmatch
 import pandas as pd
 import pyranges as pr
+import concurrent.futures
+import itertools
 
 ####################
 # define functions #
@@ -75,6 +77,64 @@ def pyrange_obj_overlap(gr_fpscore, grs_vcf_dict):
       
     return filtered_gr
 
+# define concurrent function to process multiple files at once
+def process_file(file, af_path, dataset_ids, output_path):
+    suffix = "_BRCA-subtype-vcf-filtered-matrix.txt"
+    motif_id = os.path.basename(file).replace(suffix, '')
+    print(f"Processing filtered TFBS matrix of {motif_id}...")
+    # load the data
+    df_fps = pd.read_csv(file, sep="\t")
+    # drop the column "TFBS_strand" and "TFBS_score"
+    df_fps = df_fps.drop(columns=["TFBS_strand", "TFBS_score"])
+    # rename columns in the dataframe
+    df_fps = df_fps.rename(columns={"TFBS_chr": "Chromosome", "TFBS_start": "Start", "TFBS_end": "End", "2GAMBDQ_Normal-like_score": "2GAMBDQ_Norm_fps"})
+    # for all column names that end with the string 'score', replace the string with 'fps'
+    df_fps = df_fps.rename(columns=lambda x: x.replace('score', 'fps') if x.endswith('score') else x)
+
+    # load associated vcf files of the motif name for each dataset ID
+    # first search for the associated vcf files based on the motif name
+    vcf_paths = find_files(af_path, f"*{motif_id}*.txt")
+        
+    if len(vcf_paths) != len(dataset_ids):
+        print(f"ERROR: Number of vcf files ({len(vcf_paths)}) does not match the number of dataset IDs ({len(dataset_ids)})!")
+        print("Printing both lists...")
+        print(f"vcf_paths: {vcf_paths}")
+        print(f"dataset_ids: {dataset_ids}")
+        print("Exiting prematurely...")
+        sys.exit(1)
+        
+    # create a dataset ID:af dataframe dictionary
+    dataset_af_dict = {dataset: load_vcf(path) for dataset, path in zip(dataset_ids, vcf_paths)}
+    print(dataset_af_dict)
+        
+    # create a pyranges object for the filtered TFBS footprint matrix
+    gr_fpscore = pr.PyRanges(df_fps)
+        
+    # load up vcf dfs into pyranges 
+    grs = {}
+    for name, vcf in dataset_af_dict.items():
+        gr_vcf = pr.PyRanges(vcf)
+        grs[name] = gr_vcf
+
+    target_gr = pyrange_obj_overlap(gr_fpscore, grs)
+    target_df = target_gr.df
+
+    # create a column called 'region_id'
+    target_df["region_id"] = target_df["Chromosome"].astype(str) + ":" + target_df["Start"].astype(str) + "-" + target_df["End"].astype(str)
+
+    # for all column name ending with the string '_fps', split the string, take the second element, change the first letter in the string to lowercase, and reconstruct the original string with the new first letter
+    target_df = target_df.rename(columns=lambda x: x.split('_')[0] + '_' + x.split('_')[1][0].lower() + x.split('_')[1][1:] + '_fps' if x.endswith('_fps') else x)
+
+    # construct output filename
+    outfile = os.path.join(output_path, f"{motif_id}_fpscore-af-varsites-combined-matrix-wide.tsv")
+        
+    # save to file
+    target_df.to_csv(outfile, sep="\t", index=False, na_rep='NULL')
+
+    # print the dimensions of the dataframe
+    print(f"Shape of the current motif ID ({motif_id}): {target_df.shape}")
+    print(f"Output file for {motif_id} has been generated!")
+    
 ##################
 # load arguments #
 ##################
@@ -95,58 +155,8 @@ output_path = sys.argv[4] # path to where the output files will be stored
 ############# 
 
 if __name__ == "__main__":
-    # iterate through the filtered TFBS matrices     
-    for file in path_generator(fps_path):
-        suffix = "_BRCA-subtype-vcf-filtered-matrix.txt"
-        motif_id = os.path.basename(file).replace(suffix, '')
-        print(f"Processing filtered TFBS matrix of {motif_id}...")
-        # load the data
-        df_fps = pd.read_csv(file, sep="\t")
-        # drop the column "TFBS_strand" and "TFBS_score"
-        df_fps = df_fps.drop(columns=["TFBS_strand", "TFBS_score"])
-        # rename columns in the dataframe
-        df_fps = df_fps.rename(columns={"TFBS_chr": "Chromosome", "TFBS_start": "Start", "TFBS_end": "End", "2GAMBDQ_Normal-like_score": "2GAMBDQ_Norm_fps"})
-        # for all column names that end with the string 'score', replace the string with 'fps'
-        df_fps = df_fps.rename(columns=lambda x: x.replace('score', 'fps') if x.endswith('score') else x)
-
-        # load associated vcf files of the motif name for each dataset ID
-        # first search for the associated vcf files based on the motif name
-        vcf_paths = find_files("/data1/msazizan/gatk-workflow/plotting/raw_inputs/af", f"*{motif_id}*.txt")
-        
-        if len(vcf_paths) != len(dataset_ids):
-            print(f"ERROR: Number of vcf files ({len(vcf_paths)}) does not match the number of dataset IDs ({len(dataset_ids)})!")
-            print("Printing both lists...")
-            print(f"vcf_paths: {vcf_paths}")
-            print(f"dataset_ids: {dataset_ids}")
-            print("Exiting prematurely...")
-            sys.exit(1)
-        
-        # create a dataset ID:af dataframe dictionary
-        dataset_af_dict = {dataset: load_vcf(path) for dataset, path in zip(dataset_ids, vcf_paths)}
-        print(dataset_af_dict)
-        
-        # create a pyranges object for the filtered TFBS footprint matrix
-        gr_fpscore = pr.PyRanges(df_fps)
-        
-        # load up vcf dfs into pyranges 
-        grs = {}
-        for name, vcf in dataset_af_dict.items():
-            gr_vcf = pr.PyRanges(vcf)
-            grs[name] = gr_vcf
-
-        target_gr = pyrange_obj_overlap(gr_fpscore, grs)
-        target_df = target_gr.df
-
-        # create a column called 'region_id'
-        target_df["region_id"] = target_df["Chromosome"].astype(str) + ":" + target_df["Start"].astype(str) + "-" + target_df["End"].astype(str)
-
-        # for all column name ending with the string '_fps', split the string, take the second element, change the first letter in the string to lowercase, and reconstruct the original string with the new first letter
-        target_df = target_df.rename(columns=lambda x: x.split('_')[0] + '_' + x.split('_')[1][0].lower() + x.split('_')[1][1:] + '_fps' if x.endswith('_fps') else x)
-
-        # save to file
-        target_df.to_csv("TFDP1_M08108_2.00_fpscore-af-varsites-combined-matrix-wide.tsv", sep="\t", index=False, na_rep='NULL')
-
-        # print the dimensions of the dataframe
-        print(f"Shape of the current motif ID ({motif_id}): {target_df.shape}")
+    # run concurrent processes
+    with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executor:
+        executor.map(process_file, path_generator(fps_path), itertools.repeat(af_path), itertools.repeat(dataset_ids), itertools.repeat(output_path))  
 
     print ("All footprint matrices have been processed!")
