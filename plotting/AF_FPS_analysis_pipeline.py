@@ -64,7 +64,7 @@ def regionsort_df(filepath, output_path):
 	# extract motif id from filename
 	motif_id = os.path.basename(filepath).replace('_fpscore-af-varsites-combined-matrix-wide.tsv', '')
 	# print message
-	print(f'(Processing {motif_id}...)')
+	print(f'Processing {motif_id}...')
 
 	# load data file
 	afps_df = pd.read_csv(filepath, sep='\t')
@@ -149,16 +149,13 @@ def process_data(target_file, output_path):
 
 	# plot the sorted stacked bar plot (unfiltered)
 	print(f'Plotting stacked barplot for all variant sites sorted by descending AF values...')
-	if plot_stacked_barplot(afps_regsorted_df, motif_id, output_path):
-		print(f'Done! Filtering for top 5% variant sites...')
-		# filter the top 5% of variant sites
-		afps_df_top = filter_top5percent(afps_regsorted_df, output_path, motif_id)
-		print(f'Now plotting stacked barplot for top 5% variant sites...')
-		if plot_stacked_barplot(afps_df_top, motif_id, output_path, rotate_xticks=True, xticks_fontsize=5, output_subfolder='topsite-barplots', plot_suffix='top_5pc'):
-			print(f'Done!')
-	else:
-		print(f'ERROR: Failed to plot stacked barplot for {motif_id}. Check logs.')
-		sys.exit(1)
+	plot_stacked_barplot(afps_regsorted_df, motif_id, output_path)
+	print(f'Done! Filtering for top 5% variant sites...')
+	# filter the top 5% of variant sites
+	afps_df_top = filter_top5percent(afps_regsorted_df, output_path, motif_id)
+	print(f'Now plotting stacked barplot for top 5% variant sites...')
+	plot_stacked_barplot(afps_df_top, motif_id, output_path, rotate_xticks=True, xticks_fontsize=5, output_subfolder='topsite-barplots', plot_suffix='top_5pc')
+	print(f'Done!')
 
 	# scale and filter the FPS values
 	print(f'Scaling and filtering FPS values...')
@@ -166,15 +163,9 @@ def process_data(target_file, output_path):
 
 	# plot the scaled data jointplot and the filtered data jointplot
 	print(f'Plotting jointplots for scaled and filtered data...')
-	if plot_jointplot(afps_regsorted_df, output_path, motif_id):
-		if plot_jointplot(iqr_filt_df, output_path, motif_id, subfolder='scaled-filtered-jointplots', out_suffix='scaled-iqr-filtered'):
-			print(f'Done!')
-		else:
-			print(f'ERROR: Failed to plot jointplot for filtered {motif_id} sites. Check logs.')
-			sys.exit(1)
-	else:
-		print(f'ERROR: Failed to plot jointplot for scaled FPS data of {motif_id}. Check logs.')
-		sys.exit(1)
+	plot_jointplot(afps_regsorted_df, output_path, motif_id)
+	plot_jointplot(iqr_filt_df, output_path, motif_id, subfolder='scaled-filtered-jointplots', out_suffix='scaled-iqr-filtered')
+	print(f'Done!')
 
 	# finally extract the counts of filtered variant sites and save to file
 	print(f'Extracting counts of filtered variant sites...')
