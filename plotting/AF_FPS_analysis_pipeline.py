@@ -115,8 +115,10 @@ def regionsort_df(filepath, output_path):
 def filter_top5percent(regsorted_df, output_path, motif_id):
     # truncate the dataframe to the first 5% of region_id values of all unique region_id values
 	regsorted_df_filt = regsorted_df.head(int(len(regsorted_df['region_id'].unique())*0.05)*5)
-	regsorted_df_filt.to_csv(f'{output_path}/output-data/{motif_id}_afps-regionsorted-top5pc.tsv', sep='\t', index=False)
-	return regsorted_df_filt
+	regsorted_df_filt.to_csv(f'{output_path}/output-data/afps_region-sorted/{motif_id}_afps-regionsorted-top5pc.tsv', sep='\t', index=False)
+	# return the path to the saved file
+	file_output = f'{output_path}/output-data/afps_region-sorted/{motif_id}_afps-regionsorted-top5pc.tsv'
+	return file_output
 
 def scale_filter_fps(regsorted_df):
 	# scale the FPS values to a range of 0-1
@@ -138,7 +140,6 @@ def scale_filter_fps(regsorted_df):
 def plot_jointplot(df, output_path, motif_id, subfolder='scaled-jointplots', out_suffix='scaled'):
     # Create a jointplot of 'AF' and 'FPS'
 	sns.jointplot(data=df, x='AF', y='FPS_scaled', kind='scatter', hue='sample_id', height=12)
-	plt.xlim(-0.1, 1.1)
  	#save the plot
 	plt.savefig(f'{output_path}/graphs/{subfolder}/{motif_id}_afps-jointplot-{out_suffix}.png', dpi=300, bbox_inches='tight')
 	plt.close()
@@ -152,8 +153,10 @@ def process_data(target_file, output_path):
 	plot_stacked_barplot(afps_regsorted_df, motif_id, output_path)
 	print(f'Done! Filtering for top 5% variant sites...')
 	# filter the top 5% of variant sites
-	afps_df_top = filter_top5percent(afps_regsorted_df, output_path, motif_id)
+	afps_top = filter_top5percent(afps_regsorted_df, output_path, motif_id)
 	print(f'Now plotting stacked barplot for top 5% variant sites...')
+	# load the filtered dataframe
+	afps_df_top = pd.read_csv(afps_top, sep='\t')
 	plot_stacked_barplot(afps_df_top, motif_id, output_path, rotate_xticks=True, xticks_fontsize=5, output_subfolder='topsite-barplots', plot_suffix='top_5pc')
 	print(f'Done!')
 
@@ -171,7 +174,7 @@ def process_data(target_file, output_path):
 	print(f'Extracting counts of filtered variant sites...')
 	filtered_sites_df = iqr_filt_df.groupby('sample_id', observed=True)['region_id'].nunique().reset_index()
 	filtered_sites_df['motif_id'] = motif_id
-	filtered_sites_df.to_csv(f'{output_path}/output-data/{motif_id}_filt-varsite-counts.tsv', sep='\t', index=False)
+	filtered_sites_df.to_csv(f'{output_path}/output-data/filtered_varsites/{motif_id}_filt-varsite-counts.tsv', sep='\t', index=False)
 
 def process_input_tsv(root_dir):
     # Find all *.tsv files in root_dir
@@ -201,10 +204,3 @@ if __name__ == '__main__':
         executor.map(process_data, inputs, it.repeat(output_path))
 
     print ("All footprint matrices have been processed!")
-	
-  
-	
- 
-	
- 
-	
