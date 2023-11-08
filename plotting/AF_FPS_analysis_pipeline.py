@@ -200,7 +200,6 @@ output_path = '/home/msazizan/hyperspace/gatk-workflow/plotting'
 
 if __name__ == '__main__':
     inputs = process_input_tsv(root_dir)
-    print(f'Processing {len(inputs)} files...')
     # run concurrent processes
     with cf.ProcessPoolExecutor(max_workers=5) as executor:
         executor.map(process_data, inputs, it.repeat(output_path))
