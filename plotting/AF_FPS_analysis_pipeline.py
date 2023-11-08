@@ -6,7 +6,6 @@
 
 import os
 import sys
-import glob
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -15,6 +14,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import concurrent.futures as cf
 
+from pathlib import Path
 from natsort import index_natsorted
 from sklearn.preprocessing import MinMaxScaler
 
@@ -178,7 +178,8 @@ def process_data(target_file, output_path):
 
 def process_input_tsv(root_dir):
     # Find all *.tsv files in root_dir
-    tsv_files = glob.glob(f'{root_dir}/*.tsv')
+    target_dir = Path(root_dir)
+    tsv_files = target_dir.glob('*.tsv')
     return tsv_files
 
 ##################
@@ -199,8 +200,8 @@ output_path = '/home/msazizan/hyperspace/gatk-workflow/plotting'
 
 if __name__ == '__main__':
     inputs = process_input_tsv(root_dir)
+    print(f'Processing {len(inputs)} files...')
     # run concurrent processes
     with cf.ProcessPoolExecutor(max_workers=5) as executor:
         executor.map(process_data, inputs, it.repeat(output_path))
-
     print ("All footprint matrices have been processed!")
