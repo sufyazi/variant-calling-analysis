@@ -26,11 +26,13 @@ output_path = '/home/msazizan/hyperspace/gatk-workflow/plotting'
 if __name__ == '__main__':
 	# Find all *.tsv files in root_dir
 	target_dir = Path(root_dir)
-	tsv_files = target_dir.glob('*counts.tsv')
+	tsv_files = target_dir.glob('*-variance.tsv')
     
 	for i, tsv in enumerate(tsv_files):
 		if i == 0:
-			# create a dataframe from the first file
+			# get motif ID
+			motif_id = tsv.stem.replace('_afps-variance', '')
+			# load the first file
 			df_first = pd.read_csv(tsv, sep='\t')
 			# rename a column
 			df_first = df_first.rename(columns={'region_id': 'unique_sites'})

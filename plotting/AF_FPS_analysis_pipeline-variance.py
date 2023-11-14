@@ -85,12 +85,15 @@ def variance_calc_df(filepath, output_path):
 	
 	af_df = matrix_df.filter(regex='_AF$|_id$')
 	af_df = af_df.set_index('region_id')
+ 	# retain rows where at least one sample has AF > 0.5
+	af_df = af_df[(af_df > 0.5).any(axis=1)]
+ 
 	af_df['af_var'] = af_df.var(axis=1)
 	af_var_df = af_df[['af_var']].reset_index()
 	af_var_df = af_var_df.sort_values(by='af_var', ascending=False)
 	af_var_df = af_var_df.set_index('region_id')
 	# merged sorted fps_var_df and af_var_df on region_id index
-	variance_df = pd.merge(af_var_df, fps_var_df, left_index=True, right_on='region_id', how = 'outer')
+	variance_df = pd.merge(af_var_df, fps_var_df, left_index=True, right_on='region_id')
 	variance_df = variance_df[['region_id', 'af_var', 'fps_var']]
 
 	# plot scatterplot of AF variance vs FPS variance
@@ -202,9 +205,9 @@ output_path = '/home/msazizan/hyperspace/gatk-workflow/plotting'
 
 if __name__ == '__main__':
 	inputs = process_input_tsv(root_dir)
-	# for target_file in inputs:
-	# 	process_data(target_file, output_path)
+	for target_file in inputs:
+		process_data_into_variance(target_file, output_path)
     # run concurrent processes
-	with cf.ProcessPoolExecutor(max_workers=5) as executor:
-		executor.map(process_data_into_variance, inputs, it.repeat(output_path))
+	# with cf.ProcessPoolExecutor(max_workers=5) as executor:
+	# 	executor.map(process_data_into_variance, inputs, it.repeat(output_path))
 	print ("Pipeline finished! All footprint matrices have had the site variances calculated.")

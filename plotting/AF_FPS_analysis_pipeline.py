@@ -170,6 +170,7 @@ def plot_jointplot(df, output_path, motif_id, subfolder='scaled-jointplots', out
 			print(f'Plotting jointplot for {motif_id}...')
 			sns.jointplot(data=df, x='AF', y='FPS_scaled', kind='scatter', hue='sample_id', height=12)
 			#save the plot
+			plt.ylim(0, 1)
 			plt.savefig(f'{output_path}/graphs/{subfolder}/{motif_id}_afps-jointplot-{out_suffix}.png', dpi=300, bbox_inches='tight')
 			plt.close()
 			return True
@@ -305,11 +306,11 @@ else:
 ##################
 # define globals #
 ##################
-output_path = '/home/msazizan/hyperspace/gatk-workflow/plotting'
+output_path = '/home/msazizan/hyperspace/gatk-workflow/plotting/test-ground'
 
 if __name__ == '__main__':
 	inputs = process_input_tsv(root_dir)
-	filter_fps = False
+	filter_fps = True
 	# for target_file in inputs:
 	# 	process_data(target_file, output_path)
     # run concurrent processes
