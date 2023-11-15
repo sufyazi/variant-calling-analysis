@@ -54,7 +54,7 @@ def plot_stacked_barplot(longdf, motif_id, output_path, rotate_xticks=False, xti
 			plt.xticks([])
     
 		plt.ylabel('Cumulative allelic frequency (AF)', fontsize=12)
-		plt.xlabel(f'{motif_id} motif sites with called variants ({longdf['region_id'].nunique()})', fontsize=12)
+		plt.xlabel(f'{motif_id} motif sites with called variants ({longdf["region_id"].nunique()})', fontsize=12)
 	
 		output = f'{output_path}/graphs/{output_subfolder}/{motif_id}_afps-barplot-{plot_suffix}.png'
 		plt.savefig(output, dpi=300, bbox_inches='tight')

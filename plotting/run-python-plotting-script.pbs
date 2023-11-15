@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+#PBS -l select=1:ncpus=8:mem=100GB
+#PBS -l walltime=6:00:00
+#PBS -j oe
+#PBS -P 12003580
+#PBS -q normal
+
+# load conda environment
+module load miniconda3/py38_4.8.3
+conda activate /home/users/ntu/suffiazi/apps/mambaforge/envs/plotting-env
+
+cd /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/plotting/ || exit 1
+
+./AF_FPS_analysis_pipeline-variance.py /scratch/users/ntu/suffiazi/outputs/tmp/plotting/output-data/combined_matrix
+
+
