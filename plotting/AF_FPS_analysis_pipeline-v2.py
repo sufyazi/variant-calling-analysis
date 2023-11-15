@@ -162,7 +162,6 @@ def variance_calc_df(filepath, output_path):
 	# plot scatterplot of AF variance vs FPS variance
 	sns.set_context("poster", rc={"figure.dpi": 300})
 	sns.jointplot(data=variance_df[(variance_df['af_var'] > 0.001) & (variance_df['fps_var'] > 0.001)], x='af_var', y='fps_var', height=12, alpha=0.9, s=15, color='darkblue')
-	plt.ylim
 	plt.xlabel('Allelic frequency (AF) variance')
 	plt.ylabel('Footprint score (FPS) variance')
 
