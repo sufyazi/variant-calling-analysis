@@ -11,8 +11,6 @@
 module load miniconda3/py38_4.8.3
 conda activate /home/users/ntu/suffiazi/apps/mambaforge/envs/plotting-env
 
-cd /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/plotting/ || exit 1
-
-./AF_FPS_analysis_pipeline-variance.py /scratch/users/ntu/suffiazi/outputs/tmp/plotting/output-data/combined_matrix
+python /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/plotting/AF_FPS_analysis_pipeline-v2.py /scratch/users/ntu/suffiazi/outputs/tmp/plotting/output-data/combined_matrix
 
 
