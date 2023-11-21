@@ -1,0 +1,37 @@
+Processing /home/users/ntu/suffiazi/scratch/outputs/tmp/plotting/input_data/FOXP1_M08115_2.00_fpscore-af-varsites-combined-matrix-wide.tsv...
+FOXP1_M08115_2.00 data has been loaded.
+FOXP1_M08115_2.00 data table already exists. Skipping...
+FOXP1_M08115_2.00 data table with stats already exists. Skipping...
+FOXP1_M08115_2.00 subset violin plot already exists. Skipping...
+Traceback (most recent call last):
+  File "/home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/plotting/AF_FPS_data-viz.py", line 434, in <module>
+    process_data(target_file, output_dir, True)
+  File "/home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/plotting/AF_FPS_data-viz.py", line 266, in process_data
+    sns.boxplot(x='region_id', y='AF', data=high_af_fpsvar_filt, color='whitesmoke', linecolor='black', showfliers=False)
+  File "/home/users/ntu/suffiazi/.local/lib/python3.11/site-packages/seaborn/categorical.py", line 2239, in boxplot
+    plotter.plot(ax, kwargs)
+  File "/home/users/ntu/suffiazi/.local/lib/python3.11/site-packages/seaborn/categorical.py", line 888, in plot
+    self.draw_boxplot(ax, boxplot_kws)
+  File "/home/users/ntu/suffiazi/.local/lib/python3.11/site-packages/seaborn/categorical.py", line 820, in draw_boxplot
+    artist_dict = ax.boxplot(box_data,
+                  ^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/ntu/suffiazi/.local/lib/python3.11/site-packages/matplotlib/__init__.py", line 1446, in inner
+    return func(ax, *map(sanitize_sequence, args), **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Axes.boxplot() got an unexpected keyword argument 'linecolor'
+======================================================================================
+
+			Resource Usage on 2023-11-21 22:49:24.182866:
+
+	JobId: 5527254.pbs101  
+	Project: 12003580 
+	Exit Status: 1
+	NCPUs Requested: 8				NCPUs Used: 8
+							CPU Time Used: 00:00:00
+	Memory Requested: 100gb 			Memory Used: 0b
+							Vmem Used: 1429504kb
+	Walltime requested: 12:00:00 			Walltime Used: 00:00:40
+	
+	Execution Nodes Used: (x1001c1s7b1n0:ncpus=8:mem=104857600kb)
+	
+ ======================================================================================
