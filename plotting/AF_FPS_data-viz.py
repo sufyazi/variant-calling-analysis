@@ -236,7 +236,7 @@ def process_data(target_file, output_path, plot=True):
 		plt.figure(figsize=(10, 10), dpi=300)
 		plt.subplot(2, 1, 1)
 		sns.boxplot(x='region_id', y='AF', data=mf_df.groupby('region_id').filter(lambda x: (x['AF'] == 0).any()), color='lightgray', linecolor='black', linewidth=1.5, showfliers=False)
-		plt.xticks(rotation=90, fontsize=8)
+		plt.xticks(rotation=90, fontsize=6)
 		sns.stripplot(x='region_id', y='AF', data=mf_df.groupby('region_id').filter(lambda x: (x['AF'] == 0).any()), hue='sample_id', size=6, jitter=True, palette=springpastel, linewidth=0.5, edgecolor='black')
 		# plot legend outside of the plot
 		plt.legend(bbox_to_anchor=(1.225, 1),borderaxespad=0, markerscale=1, fontsize=10)
@@ -247,7 +247,7 @@ def process_data(target_file, output_path, plot=True):
 		sns.boxplot(x='region_id', y='FPS_scaled', data=mf_df.groupby('region_id').filter(lambda x: (x['AF'] == 0).any()), color='lightgray', linecolor='black', linewidth=1.5, showfliers=False)
 		plt.xticks(rotation=90, fontsize=6)
 		sns.stripplot(x='region_id', y='FPS_scaled', data=mf_df.groupby('region_id').filter(lambda x: (x['AF'] == 0).any()), hue='sample_id', size=6, jitter=True, palette=springpastel, linewidth=0.5, edgecolor='black', legend=False)
-		plt.xlabel(f'{motif_id} TF binding sites with allelic variants (at least one subtype with AF = 0)', fontsize=8)
+		plt.xlabel(f'{motif_id} TF binding sites with allelic variants (at least one subtype with AF = 0)', fontsize=10)
 		plt.ylabel(f'Footprint scores (FPS) (min-max scaled)', fontsize=8)
 		plt.subplots_adjust(hspace=0.5)
 		# check existence of output directory
@@ -289,7 +289,7 @@ def process_data(target_file, output_path, plot=True):
 		plt.subplot(4, 1, 4)
 		sns.barplot(x='region_id', y='FPS_scaled_var', data=high_nzaf_outlie_filtsort, color='darkslateblue', edgecolor='black')
 		plt.xticks(rotation=90, fontsize=2)
-		plt.xlabel(f'{motif_id} TF binding sites with allelic variants (median AF > 0.5)', fontsize=8)
+		plt.xlabel(f'{motif_id} TF binding sites with allelic variants (median AF > 0.5)', fontsize=10)
 		plt.ylabel('FPS Variance', fontsize=8)
 		plt.subplots_adjust(hspace=0.5)
 		# check existence of output directory
