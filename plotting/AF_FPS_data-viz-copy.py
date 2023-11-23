@@ -106,7 +106,7 @@ def process_data(target_file, output_path, plot=True):
 	# calculate variance of fps values across samples per region_id and add to a new column called 'fps_var'
 	fps_df = fps_df.set_index('region_id')
 	fps_df['FPS_var'] = fps_df.var(axis=1)
-	
+
 	# calculate the coefficient of variation (CV) of fps values across samples per region_id and add to a new column called 'fps_cv'
 	# fps_df['FPS_cv'] = fps_df.drop(columns=['FPS_var']).std(axis=1) / fps_df.drop(columns=['FPS_var']).mean(axis=1) * 100
 	# calculate the quartile coefficient of dispersion (QCD) of fps values across samples per region_id and add to a new column called 'fps_qcd'
@@ -114,7 +114,7 @@ def process_data(target_file, output_path, plot=True):
 
 	# calculate variance of fps_scaled values across samples per region_id and add to a new column called 'fps_scaled_var'
 	fps_df_scaled['FPS_scaled_var'] = fps_df_scaled.var(axis=1)
-	
+
 	# calculate the coefficient of variation (CV) of fps values across samples per region_id and add to a new column called 'fps_scaled_cv'
 	# fps_df_scaled['FPS_scaled_cv'] = fps_df_scaled.drop(columns=['FPS_scaled_var']).std(axis=1) / fps_df_scaled.drop(columns=['FPS_scaled_var']).mean(axis=1) * 100
 	# calculate the quartile coefficient of dispersion (QCD) of fps values across samples per region_id and add to a new column called 'fps_scaled_qcd'
@@ -170,7 +170,7 @@ def process_data(target_file, output_path, plot=True):
 	# mf_df['AF_qcd'] = mf_df.groupby('region_id')['AF'].transform(lambda x: (x.quantile(q=0.75) - x.quantile(q=0.25)) / (x.quantile(q=0.75) + x.quantile(q=0.25) + constant))
 
 	# to ensure that each unique region_id is retained as a group of subtype rows, we need to filter after grouping per region_id
- 
+
 	print(f'Filtering {motif_id} processed matrix...')
 	high_af = mf_df.groupby('region_id').filter(lambda x: (x['AF_median'] > 0.5).any())
 	# subset high_af for sites with FPS_var > 75th percentile + 1.5 * IQR
@@ -431,11 +431,11 @@ else:
 if __name__ == '__main__':
 	inputs = process_input_tsv(root_dir)
 	# uncomment this to run serially
-	for target_file in inputs:
-		process_data(target_file, output_dir, True)
+	#for target_file in inputs:
+	#	process_data(target_file, output_dir, True)
 
 	# uncomment this to run in parallel
-	#with cf.ProcessPoolExecutor(max_workers=8) as executor:
-	#	executor.map(process_data, inputs, it.repeat(output_dir), it.repeat(True))
+	with cf.ProcessPoolExecutor(max_workers=8) as executor:
+		executor.map(process_data, inputs, it.repeat(output_dir), it.repeat(True))
 
 	print ("Pipeline finished! All footprint matrices have been processed.")
