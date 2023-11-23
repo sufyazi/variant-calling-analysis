@@ -399,9 +399,9 @@ def process_data(target_file, output_path, plot=True):
 	print('Now quantifying the number of sites where a subtype has maximum FPS_scaled value...')
 	# quantify the number of filtered sites per sample_id
 	max_af_raw_subset = max_af_raw[['region_id', 'sample_id']]
-	max_af_raw_df = max_af_raw_subset.groupby('sample_id', observed=True)['region_id'].count().to_frame()
+	max_af_raw_df = max_af_raw_subset.groupby('sample_id', observed=False)['region_id'].count().to_frame()
 	max_fps_scaled_subset = max_fps_scaled[['region_id', 'sample_id']]
-	max_fps_scaled_df = max_fps_scaled_subset.groupby('sample_id', observed=True)['region_id'].count().to_frame()
+	max_fps_scaled_df = max_fps_scaled_subset.groupby('sample_id', observed=False)['region_id'].count().to_frame()
 
 	# save high_nzaf_outlie_filtsort, subset_dfs, max_af_raw_df and max_fps_scaled_df to csv
 	print(f'Saving {motif_id} various tables...')
@@ -436,6 +436,6 @@ if __name__ == '__main__':
 
 	# uncomment this to run in parallel
 	with cf.ProcessPoolExecutor(max_workers=8) as executor:
-		executor.map(process_data, inputs, it.repeat(output_dir), it.repeat(True))
+		executor.map(process_data, inputs, it.repeat(output_dir), it.repeat(False))
 
 	print ("Pipeline finished! All footprint matrices have been processed.")
