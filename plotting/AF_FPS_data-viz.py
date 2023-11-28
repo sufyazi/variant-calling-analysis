@@ -7,7 +7,6 @@
 import os
 import sys
 import pandas as pd
-import numpy as np
 import seaborn as sns
 import itertools as it
 import matplotlib.pyplot as plt
@@ -120,7 +119,7 @@ def process_data(target_file, output_path, plot=True, threshold='iqr'):
 	fps_df['FPS_var'] = fps_df.var(axis=1)
 	# now calculate variance of fps_scaled values across samples per region_id and add to a new column called 'fps_scaled_var'
 	fps_df_scaled_cp = fps_df_scaled.copy()
-	fps_df_scaled['FPS_scaled_var'] = fps_df_scaled_cp.var(axis=1)
+	fps_df_scaled_cp['FPS_scaled_var'] = fps_df_scaled_cp.var(axis=1)
 	# Do the same for AF values
 	# extract af columns
 	af_df = matrix_afps.filter(regex='_AF$|_id$')
@@ -339,7 +338,7 @@ def process_data(target_file, output_path, plot=True, threshold='iqr'):
 		plt.figure(figsize=(10, 10), dpi=300)
 		plt.subplot(2, 1, 1)
 		sns.boxplot(x='region_id', y='AF', data=high_af, color='lightgray', linecolor='black', linewidth=1.5, showfliers=False)
-		plt.xticks(rotation=90, fontsize=6)
+		plt.xticks(rotation=90, fontsize=4)
 		sns.stripplot(x='region_id', y='AF', data=high_af, hue='sample_id', size=6, jitter=True, palette=springpastel, linewidth=0.5, edgecolor='black')
 		# plot legend outside of the plot
 		plt.legend(bbox_to_anchor=(1.225, 1),borderaxespad=0, markerscale=1, fontsize=10)
@@ -348,7 +347,7 @@ def process_data(target_file, output_path, plot=True, threshold='iqr'):
 		# then plot the scaled FPS values for these sites
 		plt.subplot(2, 1, 2)
 		sns.boxplot(x='region_id', y='FPS_scaled', data=high_af, color='white', linecolor='black', linewidth=1.5, showfliers=False)
-		plt.xticks(rotation=90, fontsize=6)
+		plt.xticks(rotation=90, fontsize=4)
 		sns.stripplot(x='region_id', y='FPS_scaled', data=high_af, hue='sample_id', size=6, jitter=True, palette=springpastel, legend=False, linewidth=0.5, edgecolor='black')
 		plt.xlabel(f'{motif_id} TF binding sites with allelic variants (AF > 0.5)', fontsize=10)
 		plt.ylabel(f'Footprint scores (FPS) (min-max scaled)', fontsize=8)
@@ -373,31 +372,31 @@ def process_data(target_file, output_path, plot=True, threshold='iqr'):
 		plt.subplot(4, 1, 1)
 		sns.boxplot(x='region_id', y='AF', data=high_nzaf_outlie_filtsort, color='whitesmoke', linecolor='black', showfliers=False)
 		sns.stripplot(x='region_id', y='AF', data=high_nzaf_outlie_filtsort, hue='sample_id', palette=dutchfield_colordict, size=4, jitter=True, linewidth=0.5, edgecolor='black')
-		plt.xticks(rotation=90, fontsize=3)
+		plt.xticks(rotation=90, fontsize=4)
 		plt.xlabel('')
 		plt.ylabel('AF Distribution Per Site', fontsize=10)
 		# place legend outside of the plot
 		plt.legend(bbox_to_anchor=(1.01, 1),borderaxespad=0, markerscale=2, fontsize=10)
 		plt.subplot(4, 1, 2)
 		sns.barplot(x='region_id', y='AF_var', data=high_nzaf_outlie_filtsort, color='darkslateblue', edgecolor='black')
-		plt.xticks(rotation=90, fontsize=3)
+		plt.xticks(rotation=90, fontsize=4)
 		plt.xlabel('')
 		plt.ylabel('AF Variance', fontsize=10)
 		plt.subplot(4, 1, 3)
 		sns.boxplot(x='region_id', y='FPS_scaled', data=high_nzaf_outlie_filtsort, color='whitesmoke', linecolor='black', showfliers=False)
 		sns.stripplot(x='region_id', y='FPS_scaled', data=high_nzaf_outlie_filtsort, hue='sample_id', palette=dutchfield_colordict, size=4, jitter=True, legend=False, linewidth=0.5, edgecolor='black')
-		plt.xticks(rotation=90, fontsize=3)
+		plt.xticks(rotation=90, fontsize=4)
 		plt.xlabel('')
 		plt.ylabel('FPS Scaled Distribution Per Site', fontsize=10)
 		plt.subplot(4, 1, 4)
 		sns.barplot(x='region_id', y='FPS_scaled_var', data=high_nzaf_outlie_filtsort, color='darkslateblue', edgecolor='black')
-		plt.xticks(rotation=90, fontsize=3)
+		plt.xticks(rotation=90, fontsize=4)
 		if threshold == 'iqr':
 			plt.xlabel(f'{motif_id} binding sites with allelic variants (AF > 0.5 and passing IQR threshold)', fontsize=10)
 		elif threshold == 'median':
 			plt.xlabel(f'{motif_id} binding sites with allelic variants (AF > 0.5 and scaled FPS above median)', fontsize=10)
 		plt.ylabel('FPS Variance', fontsize=10)
-		plt.subplots_adjust(hspace=0.6)
+		plt.subplots_adjust(hspace=0.8)
 
 		# check existence of output directory
 		if threshold == 'iqr':
@@ -433,7 +432,7 @@ def process_data(target_file, output_path, plot=True, threshold='iqr'):
 		sns.boxplot(x='region_id', y='AF', data=high_nzaf_outlie_filtsort, color='whitesmoke', linecolor='black', showfliers=False)
 		sns.stripplot(x='region_id', y='AF', data=max_af_raw_inv, hue='sample_id', palette=gray_colordict, size=4, jitter=True, legend=False, linewidth=0.5, edgecolor='dimgray', alpha=0.8)
 		sns.stripplot(x='region_id', y='AF', data=max_af_raw, hue='sample_id', palette=dutchfield_colordict, size=4, jitter=True, linewidth=0.5, edgecolor='black')
-		plt.xticks(rotation=90, fontsize=3)
+		plt.xticks(rotation=90, fontsize=4)
 		plt.xlabel('')
 		ylabel = textwrap.fill('AF Per Site (maxima)', width=20)
 		plt.ylabel(ylabel, fontsize=8)
@@ -441,26 +440,26 @@ def process_data(target_file, output_path, plot=True, threshold='iqr'):
 		plt.legend(bbox_to_anchor=(1.01, 1),borderaxespad=0, markerscale=2, fontsize=10)
 		plt.subplot(4, 1, 2)
 		sns.barplot(x='region_id', y='AF_var', data=high_nzaf_outlie_filtsort, color='darkslateblue', edgecolor='black')
-		plt.xticks(rotation=90, fontsize=3)
+		plt.xticks(rotation=90, fontsize=4)
 		plt.xlabel('')
 		plt.ylabel('AF Variance', fontsize=8)
 		plt.subplot(4, 1, 3)
 		sns.boxplot(x='region_id', y='FPS_scaled', data=high_nzaf_outlie_filtsort, color='whitesmoke', linecolor='black', showfliers=False)
 		sns.stripplot(x='region_id', y='FPS_scaled', data=max_fps_scaled_inv, hue='sample_id', palette=gray_colordict, size=4, jitter=True, legend=False, linewidth=0.5, edgecolor='dimgray', alpha=0.8)
 		sns.stripplot(x='region_id', y='FPS_scaled', data=max_fps_scaled, hue='sample_id', palette=dutchfield_colordict, size=4, jitter=True, legend=False, linewidth=0.5, edgecolor='black')
-		plt.xticks(rotation=90, fontsize=3)
+		plt.xticks(rotation=90, fontsize=4)
 		plt.xlabel('')
 		ylabel = textwrap.fill('Scaled FPS Per Site (maxima)', width=20)
 		plt.ylabel(ylabel, fontsize=8)
 		plt.subplot(4, 1, 4)
 		sns.barplot(x='region_id', y='FPS_scaled_var', data=high_nzaf_outlie_filtsort, color='darkslateblue', edgecolor='black')
-		plt.xticks(rotation=90, fontsize=3)
+		plt.xticks(rotation=90, fontsize=4)
 		if threshold == 'iqr':
 			plt.xlabel(f'{motif_id} binding sites with allelic variants (AF > 0.5 and passing IQR threshold)', fontsize=8)
 		elif threshold == 'median':
 			plt.xlabel(f'{motif_id} binding sites with allelic variants (AF > 0.5 and scaled FPS above median)', fontsize=8)
 		plt.ylabel('FPS Variance', fontsize=8)
-		plt.subplots_adjust(hspace=0.6)
+		plt.subplots_adjust(hspace=0.8)
 		# save the plot
 		# check existence of output directory
 		if threshold == 'iqr':
@@ -495,7 +494,7 @@ def process_data(target_file, output_path, plot=True, threshold='iqr'):
 		sns.boxplot(x='region_id', y='AF', data=high_nzaf_outlie_filtsort, color='whitesmoke', linecolor='black', showfliers=False)
 		sns.stripplot(x='region_id', y='AF', data=min_af_raw_inv, hue='sample_id', palette=gray_colordict, size=4, jitter=True, legend=False, linewidth=0.5, edgecolor='dimgray', alpha=0.8)
 		sns.stripplot(x='region_id', y='AF', data=min_af_raw, hue='sample_id', palette=dutchfield_colordict, size=4, jitter=True, linewidth=0.5, edgecolor='black')
-		plt.xticks(rotation=90, fontsize=3)
+		plt.xticks(rotation=90, fontsize=4)
 		plt.xlabel('')
 		ylabel = textwrap.fill('AF Per Site (minima)', width=20)
 		plt.ylabel(ylabel, fontsize=8)
@@ -503,26 +502,26 @@ def process_data(target_file, output_path, plot=True, threshold='iqr'):
 		plt.legend(bbox_to_anchor=(1.01, 1),borderaxespad=0, markerscale=2, fontsize=10)
 		plt.subplot(4, 1, 2)
 		sns.barplot(x='region_id', y='AF_var', data=high_nzaf_outlie_filtsort, color='darkslateblue', edgecolor='black')
-		plt.xticks(rotation=90, fontsize=3)
+		plt.xticks(rotation=90, fontsize=4)
 		plt.xlabel('')
 		plt.ylabel('AF Variance', fontsize=8)
 		plt.subplot(4, 1, 3)
 		sns.boxplot(x='region_id', y='FPS_scaled', data=high_nzaf_outlie_filtsort, color='whitesmoke', linecolor='black', showfliers=False)
 		sns.stripplot(x='region_id', y='FPS_scaled', data=min_fps_scaled_inv, hue='sample_id', palette=gray_colordict, size=4, jitter=True, legend=False, linewidth=0.5, edgecolor='dimgray', alpha=0.8)
 		sns.stripplot(x='region_id', y='FPS_scaled', data=min_fps_scaled, hue='sample_id', palette=dutchfield_colordict, size=4, jitter=True, legend=False, linewidth=0.5, edgecolor='black')
-		plt.xticks(rotation=90, fontsize=3)
+		plt.xticks(rotation=90, fontsize=4)
 		plt.xlabel('')
 		ylabel = textwrap.fill('Scaled FPS Per Site (minima)', width=20)
 		plt.ylabel(ylabel, fontsize=8)
 		plt.subplot(4, 1, 4)
 		sns.barplot(x='region_id', y='FPS_scaled_var', data=high_nzaf_outlie_filtsort, color='darkslateblue', edgecolor='black')
-		plt.xticks(rotation=90, fontsize=3)
+		plt.xticks(rotation=90, fontsize=4)
 		if threshold == 'iqr':
 			plt.xlabel(f'{motif_id} TF binding sites with allelic variants (AF > 0.5 and passing IQR threshold)', fontsize=8)
 		elif threshold == 'median':
 			plt.xlabel(f'{motif_id} TF binding sites with allelic variants (AF > 0.5 and scaled FPS above median)', fontsize=8)
 		plt.ylabel('FPS Variance', fontsize=8)
-		plt.subplots_adjust(hspace=0.6)
+		plt.subplots_adjust(hspace=0.8)
 		# save the plot
 		# check existence of output directory
 		if threshold == 'iqr':
@@ -587,8 +586,8 @@ else:
 if __name__ == '__main__':
 	inputs = process_input_tsv(root_dir)
 	# uncomment this to run serially
-	#for target_file in inputs:
-	#	process_data(target_file, output_dir, True)
+	# for target_file in inputs:
+	# 	process_data(target_file, output_dir, True, 'iqr')
 
 	# uncomment this to run in parallel
 	with cf.ProcessPoolExecutor(max_workers=8) as executor:
