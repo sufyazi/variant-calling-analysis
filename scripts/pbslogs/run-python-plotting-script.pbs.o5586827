@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/plotting/AF_FPS_data-viz.py", line 602, in <module>
+    process_data(target_file, output_dir, True, 'iqr')
+  File "/home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/plotting/AF_FPS_data-viz.py", line 433, in process_data
+    os.makedirs(f'{output_path}/output-data/plots/{motif_id}', exist_ok=True)
+                                                   ^^^^^^^^
+UnboundLocalError: cannot access local variable 'motif_id' where it is not associated with a value
+======================================================================================
+
+			Resource Usage on 2023-11-29 18:09:25.120087:
+
+	JobId: 5586827.pbs101  
+	Project: 12003580 
+	Exit Status: 1
+	NCPUs Requested: 8				NCPUs Used: 8
+							CPU Time Used: 00:00:00
+	Memory Requested: 300gb 			Memory Used: 0b
+							Vmem Used: 1071588kb
+	Walltime requested: 08:00:00 			Walltime Used: 00:00:16
+	
+	Execution Nodes Used: (x1001c0s5b1n1:ncpus=8:mem=314572800kb)
+	
+ ======================================================================================
