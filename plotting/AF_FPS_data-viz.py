@@ -119,18 +119,18 @@ def accessory_df(afps_stats_mergesorted):
 	unfiltered_df = unfiltered_df.set_index('region_id')
 	# filter rows using the condition FPS_scaled_var > 0.001 and AF_var > 0.001
 	filtered_df = unfiltered_df[(unfiltered_df['FPS_scaled_var'] > 0.001) & (unfiltered_df['AF_var'] > 0.001)]
-	return unfiltered_df, filtered_df
+	return filtered_df
 
-def accessory_plot(unfiltered_df, filtered_df, motif_id, output_path):
+def accessory_plot(filtered_df, motif_id, output_path):
 	################ PLOT ASIDE ################
 	# plot scatter plot of AF_var vs FPS_scaled_var unfiltered
-	print(f'Plotting {motif_id} scatter plot of AF_var vs FPS_scaled_var (unfiltered)...')
-	g = sns.jointplot(data=unfiltered_df, x="FPS_scaled_var", y="AF_var", height=10, ratio=5, color='darkslateblue' )
-	g.fig.suptitle(f'AF vs FPS var for {motif_id} (unfiltered: {len(unfiltered_df)} regions)')
-	# save the plot
-	print(f'Saving {motif_id} scatter plot of AF and scaled FPS variance (unfiltered)...')
-	g.savefig(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AF_vs_FPS-scaled_variance_scatterplot-unfilt.pdf', dpi=300, bbox_inches="tight")
-	g.fig.clear()
+	# print(f'Plotting {motif_id} scatter plot of AF_var vs FPS_scaled_var (unfiltered)...')
+	# g = sns.jointplot(data=unfiltered_df, x="FPS_scaled_var", y="AF_var", height=10, ratio=5, color='darkslateblue' )
+	# g.fig.suptitle(f'AF vs FPS var for {motif_id} (unfiltered: {len(unfiltered_df)} regions)')
+	# # save the plot
+	# print(f'Saving {motif_id} scatter plot of AF and scaled FPS variance (unfiltered)...')
+	# g.savefig(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AF_vs_FPS-scaled_variance_scatterplot-unfilt.pdf', dpi=300, bbox_inches="tight")
+	# g.fig.clear()
 	# now plot the filtered scatterplot
 	print(f'Plotting {motif_id} scatter plot of AF_var vs FPS_scaled_var (filtered)...')
 	g = sns.jointplot(data=filtered_df, x="FPS_scaled_var", y="AF_var", height=10, ratio=5, color='darkslateblue' )
@@ -164,21 +164,52 @@ def basic_filtering(afps_stats_mergesorted):
 	atleast_one_zero_af = merged_filt_nozero[merged_filt_nozero['region_id'].isin(max_af['region_id'])]
 	return merged_filt_nolowaf, merged_filt_nozeroaf, atleast_one_zero_af
 
-def thresholding_strat(input_df, threshold, unsplit_df=None):
+def thresholding_strat(high_af_df, threshold, low_af_df=None, unsplit_df=None):
 	if threshold == 'iqr':
 		# thresholding strategy 1: use IQR method to capture outliers and return only outlier regions
 		# subset high_af for sites with FPS_var > 75th percentile + 1.5 * IQR
-		iqr = input_df['FPS_scaled_var'].quantile(q=0.75) - input_df['FPS_scaled_var'].quantile(q=0.25)
-		high_af_outliers = input_df[input_df['FPS_scaled_var'] > input_df['FPS_scaled_var'].quantile(q=0.75) + (1.5 * iqr)]
-		return high_af_outliers
-	elif threshold == 'median':
-		# thresholding strategy 2: compute median of FPS_scaled data points from the unsplit (high+low af) dataframe and return only regions with FPS_scaled > median
-		global_median = unsplit_df['FPS_scaled'].median()
-		high_af_abovemedian = input_df[input_df['FPS_scaled'] > global_median]
-		return high_af_abovemedian
+		iqr = high_af_df['FPS_scaled_var'].quantile(q=0.75) - high_af_df['FPS_scaled_var'].quantile(q=0.25)
+		high_af_outliers = high_af_df[high_af_df['FPS_scaled_var'] > high_af_df['FPS_scaled_var'].quantile(q=0.75) + (1.5 * iqr)]
+		print('Thresholding strategy 1: IQR method: Returning one dataframe only.')
+		return high_af_outliers, None, None, None
+	elif threshold == 'central':
+		# thresholding strategy 2: compute mean of FPS_scaled data points from the unsplit (high+low af) dataframe and return only regions with FPS_scaled > mean
+		global_mean = unsplit_df['FPS_scaled'].mean()
+		high_af_abovemean = high_af_df.groupby('region_id').filter(lambda x: (x['FPS_scaled'] > global_mean).all())
+		high_af_belowmean = high_af_df.groupby('region_id').filter(lambda x: (x['FPS_scaled'] <= global_mean).all())
+		low_af_abovemean = low_af_df.groupby('region_id').filter(lambda x: (x['FPS_scaled'] > global_mean).all())
+		low_af_belowmean = low_af_df.groupby('region_id').filter(lambda x: (x['FPS_scaled'] <= global_mean).all())
+		print('Thresholding strategy 2: Central method: Returning two dataframes.')
+		return high_af_abovemean, high_af_belowmean, low_af_abovemean, low_af_belowmean
 	else:
-		print('Invalid thresholding strategy. Please choose either "iqr" or "median".')
-		sys.exit(1)
+		raise ValueError('Invalid thresholding strategy. Please choose either "iqr" or "central".')
+	
+def filtersort_df(input_df):
+	# discard sites if it has AF_var == 0
+	nzaf_df = input_df[input_df['AF_var'] != 0]
+	# extract unique region_ids from the high_nzaf_outliers df
+	af_filt_uniq_reg = nzaf_df[['region_id', 'AF_var', 'FPS_scaled_var']].drop_duplicates()
+	# sort the region_id in the filtered high_af dataframe based on descending order of AF_var or FPS_scaled_var
+	# afvar_uniqsort = high_af_uniq_reg.sort_values(by='AF_var', ascending=False)
+	fpsvar_uniqsort = af_filt_uniq_reg.sort_values(by='FPS_scaled_var', ascending=False)
+	# extract the region_id from the sorted dataframe
+	sorted_region_ids = fpsvar_uniqsort['region_id']
+	# Change 'region_id' to a categorical variable with the categories ordered by 'fps_sorted_region_ids'
+	df_copy = nzaf_df.copy()
+	df_copy['region_id'] = pd.Categorical(nzaf_df['region_id'], categories=sorted_region_ids, ordered=True)
+	# Filter the DataFrame
+	nzaf_df_filt = df_copy[df_copy['region_id'].isin(sorted_region_ids)]
+	# Sort the DataFrame by 'region_id'
+	nzaf_df_filt = nzaf_df_filt.sort_values('region_id')
+	# get unique sample_id values into a list to define a categorical order
+	datasets = nzaf_df_filt['sample_id'].unique().tolist()
+	datasets = sorted(datasets)
+	# Create a categorical variable with ordered categories
+	dataset_copy = nzaf_df_filt.copy()
+	dataset_copy['sample_id'] = pd.Categorical(dataset_copy['sample_id'], categories=datasets, ordered=True)
+	# Sort 'sample_id' within each 'region_id'
+	nzaf_df_filtsorted = dataset_copy.groupby('region_id', sort=False, observed=False).apply(lambda x: x.sort_values('sample_id')).reset_index(drop=True)
+	return nzaf_df_filtsorted
 
 def find_min_max(input_df):
 	######### FIND MAXIMA AND MINIMA #########
@@ -206,134 +237,94 @@ def find_min_max(input_df):
 	min_af_raw_inv = input_df[mask]
 	return max_fps_scaled, min_fps_scaled, max_af_raw, min_af_raw, max_fps_scaled_inv, min_fps_scaled_inv, max_af_raw_inv, min_af_raw_inv
 
-def boxplot_high_af(fig_tuple, input_df, motif_id, output_path, palette_col):
-	################ START box plot of high AF regions (>0.5) ################	
-	if not os.path.exists(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_sites_AF_morethan_0.5-boxplot.pdf'):
-		print(f'Plotting {motif_id} boxplot for sites with AF > 0.5...')
-		fig, ax = fig_tuple
-		sns.boxplot(x='region_id', y='AF', data=input_df, color='lightgray', linecolor='black', linewidth=1.5, showfliers=False, ax=ax)
-		plt.xticks(rotation=90, fontsize=6)
-		sns.stripplot(x='region_id', y='AF', data=input_df, hue='sample_id', size=6, jitter=True, palette=palette_col, linewidth=0.5, edgecolor='black')
-		# plot legend outside of the plot
-		plt.legend(bbox_to_anchor=(1.225, 1),borderaxespad=0, markerscale=1, fontsize=10)
-		plt.xlabel(f'{motif_id} TF binding sites with allelic variants (with AF > 0.5 in all subtypes)', fontsize=10)
-		plt.ylabel('Allele frequency (AF)', fontsize=8)
-		print(f'Saving {motif_id} boxplot for sites with AF > 0.5...')
-		# save the plot
-		plt.savefig(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_sites_AF_morethan_0.5-boxplot.pdf', dpi=300, bbox_inches="tight")
-		print('Plot saved.')
-		# # close the plot
-		# plt.close(fig)
-		# print('Plot space closed.')
-	else:
-		print(f'{motif_id} filtered high AF boxplot already exists. Skipping...')
-	################ END box plot of high AF regions (>0.5) ################
-
-def boxplot_high_af_fps(fig_tuple, input_df, motif_id, output_path, palette_col):
-	################ START box plot of high AF set across raw AF and scaled FPS data ################
-	if not os.path.exists(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_sites_AF_morethan_0.5-with-FPS-scaled-boxplot.pdf'):
-		print(f'Plotting {motif_id} boxplots for sites with AF > 0.5 with FPS scaled data...')
-		fig, ax = fig_tuple
-		sns.boxplot(x='region_id', y='AF', data=input_df, color='lightgray', linecolor='black', linewidth=1.5, showfliers=False, ax=ax[0])
-		ax[0].tick_params(axis='x', rotation=90, labelsize=6)
-		sns.stripplot(x='region_id', y='AF', data=input_df, hue='sample_id', size=6, jitter=True, palette=palette_col, linewidth=0.5, edgecolor='black', ax=ax[0])
-		# plot legend outside of the plot
-		ax[0].legend(bbox_to_anchor=(1.225, 1),borderaxespad=0, markerscale=1, fontsize=10)
-		ax[0].set_xlabel('')
-		ax[0].set_ylabel('Allele frequency (AF)', fontsize=8)
-		
-		# then plot the scaled FPS values for these sites
-		sns.boxplot(x='region_id', y='FPS_scaled', data=input_df, color='white', linecolor='black', linewidth=1.5, showfliers=False, ax=ax[1])
-		ax[1].tick_params(axis='x', rotation=90, labelsize=6)
-		sns.stripplot(x='region_id', y='FPS_scaled', data=input_df, hue='sample_id', size=6, jitter=True, palette=palette_col, legend=False, linewidth=0.5, edgecolor='black', ax=ax[1])
-		ax[1].set_xlabel(f'{motif_id} TF binding sites with allelic variants (at least one subtype with AF = 0)', fontsize=10)
-		ax[1].set_ylabel(f'Footprint scores (FPS) (min-max scaled)', fontsize=8)
-		plt.subplots_adjust(hspace=0.6)
-		print(f'Saving {motif_id} boxplot for sites with AF > 0.5...')
-		
-		# save the plot
-		plt.savefig(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_sites_AF_morethan_0.5-with-FPS-scaled-boxplot.pdf', dpi=300, bbox_inches="tight")
-		print('Plot saved.')
-		# # close the plot
-		# plt.close(fig)
-		# print('Plot space closed.')
-	else:
-		print(f'{motif_id} filtered high AF boxplot with FPS data already exists. Skipping...')
-	################ END box plot of high AF set across raw AF and scaled FPS data ################
-
-def boxplot_high_af_filtsorted(fig_tuple, input_df, motif_id, output_path, palette_col, threshold):
+def boxplot_high_af_filtsorted(input_df, motif_id, output_path, palette_col, threshold, central_stat=None):
 	################# START box plot of AF distr on filtered sorted sites as well as the substype-hued stripplot ################
 	# check existence of output directory
-	if not os.path.exists(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AFdist_per_site_AFvar_filtsorted_by_FPS_var_boxplot-IQR.pdf') or not os.path.exists(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AFdist_per_site_AFvar_filtsorted_by_FPS_var_boxplot-FPSmedian.pdf'):
+	if not os.path.exists(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AFdist_per_site_AFvar_filtsorted_by_FPS_var_boxplot-IQR.pdf') or not os.path.exists(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AFdist_per_site_AFvar_filtsorted_by_FPS_var_boxplot-gbl-mean.pdf'):
 		print(f'Plotting {motif_id} boxplot of AF distribution on filtered sites sorted by FPS variance...')
-		# plt.figure(figsize=(10, 10), dpi=300)
-		# # specify subplot
-		# plt.subplot(4, 1, 1)
-		# sns.boxplot(x='region_id', y='AF', data=input_df, color='whitesmoke', linecolor='black', showfliers=False)
-		# sns.stripplot(x='region_id', y='AF', data=input_df, hue='sample_id', palette=palette_col, size=4, jitter=True, linewidth=0.5, edgecolor='black')
-		# plt.xticks(rotation=90, fontsize=4)
-		# plt.xlabel('')
-		# plt.ylabel('AF Distribution Per Site', fontsize=10)
-		# # place legend outside of the plot
-		# plt.legend(bbox_to_anchor=(1.01, 1),borderaxespad=0, markerscale=2, fontsize=10)
-		# plt.subplot(4, 1, 2)
-		# sns.barplot(x='region_id', y='AF_var', data=input_df, color='darkslateblue', edgecolor='black')
-		# plt.xticks(rotation=90, fontsize=4)
-		# plt.xlabel('')
-		# plt.ylabel('AF Variance', fontsize=10)
-		# plt.subplot(4, 1, 3)
-		# sns.boxplot(x='region_id', y='FPS_scaled', data=input_df, color='whitesmoke', linecolor='black', showfliers=False)
-		# sns.stripplot(x='region_id', y='FPS_scaled', data=input_df, hue='sample_id', palette=palette_col, size=4, jitter=True, legend=False, linewidth=0.5, edgecolor='black')
-		# plt.xticks(rotation=90, fontsize=4)
-		# plt.xlabel('')
-		# plt.ylabel('FPS Scaled Distribution Per Site', fontsize=10)
-		# plt.subplot(4, 1, 4)
-		# sns.barplot(x='region_id', y='FPS_scaled_var', data=input_df, color='darkslateblue', edgecolor='black')
-		# plt.xticks(rotation=90, fontsize=4)
-		# if threshold == 'iqr':
-		# 	plt.xlabel(f'{motif_id} binding sites with allelic variants (AF > 0.5 and passing IQR threshold)', fontsize=10)
-		# elif threshold == 'median':
-		# 	plt.xlabel(f'{motif_id} binding sites with allelic variants (AF > 0.5 and scaled FPS above median)', fontsize=10)
-		# plt.ylabel('FPS Variance', fontsize=10)
-		# plt.subplots_adjust(hspace=0.8)
+		plt.figure(figsize=(10, 10), dpi=300)
+		# specify subplot
+		plt.subplot(4, 1, 1)
+		sns.boxplot(x='region_id', y='AF', data=input_df, color='whitesmoke', linecolor='black', showfliers=False)
+		sns.stripplot(x='region_id', y='AF', data=input_df, hue='sample_id', palette=palette_col, size=4, jitter=True, linewidth=0.5, edgecolor='black')
+		plt.xticks(ticks=plt.xticks()[0], labels=[])
+		plt.xlabel('')
+		ylabel = textwrap.fill('AF per site', width=15)
+		plt.ylabel(ylabel, fontsize=10)
+		# place legend outside of the plot
+		plt.legend(bbox_to_anchor=(1.01, 1),borderaxespad=0, markerscale=2, fontsize=10)
 
+		plt.subplot(4, 1, 2)
+		sns.barplot(x='region_id', y='AF_var', data=input_df, color='darkslateblue', edgecolor='black')
+		plt.xticks(ticks=plt.xticks()[0], labels=[])
+		plt.xlabel('')
+		ylabel = textwrap.fill('AF variance', width=15)
+		plt.ylabel(ylabel, fontsize=10)
+		
+		plt.subplot(4, 1, 3)
+		sns.boxplot(x='region_id', y='FPS_scaled', data=input_df, color='whitesmoke', linecolor='black', showfliers=False)
+		sns.stripplot(x='region_id', y='FPS_scaled', data=input_df, hue='sample_id', palette=palette_col, size=4, jitter=True, legend=False, linewidth=0.5, edgecolor='black')
+		# plot horizontal line at fps_scaled_global_mean
+		if threshold == 'central':
+			plt.axhline(y=central_stat, color='black', linestyle='--')
+		plt.xticks(ticks=plt.xticks()[0], labels=[])
+		plt.xlabel('')
+		ylabel = textwrap.fill('Scaled FPS per site', width=15)
+		plt.ylabel(ylabel, fontsize=10)
+
+		plt.subplot(4, 1, 4)
+		sns.barplot(x='region_id', y='FPS_scaled_var', data=input_df, color='darkslateblue', edgecolor='black')
+		plt.xticks(rotation=90, fontsize=4)
+		if threshold == 'iqr':
+			plt.xlabel(f'{motif_id} binding sites with allelic variants (AF > 0.5 and passing IQR threshold)', fontsize=10)
+		elif threshold == 'central':
+			plt.xlabel(f'{motif_id} binding sites with allelic variants (AF > 0.5 and scaled FPS above global mean)', fontsize=10)
+		plt.ylabel('Scaled FPS variance', fontsize=10)
+		plt.subplots_adjust(hspace=0.05)
+		# save the plot
+		if threshold == 'iqr':
+			print(f'Saving {motif_id} boxplot of AF distribution on filtered sorted sites...')
+			plt.savefig(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AFdist_per_site_AFvar_filtsorted_by_FPS_var_boxplot-IQR.pdf', dpi=300, bbox_inches="tight")
+			print('Plot saved.')
+			# close the plot
+			plt.close('all')
+			print('Plot space closed.')
+		elif threshold == 'central':
+			print(f'Saving {motif_id} boxplot of AF distribution on filtered sorted sites...')
+			plt.savefig(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AFdist_per_site_AFvar_filtsorted_by_FPS_var_boxplot-gbl-mean.pdf', dpi=300, bbox_inches="tight")
+			print('Plot saved.')
+			# close the plot
+			plt.close('all')
+			print('Plot space closed.')
 		# alternative code
-		fig, ax = fig_tuple
-		sns.boxplot(x='region_id', y='AF', data=input_df, color='whitesmoke', linecolor='black', showfliers=False, ax=ax[0])
-		sns.stripplot(x='region_id', y='AF', data=input_df, hue='sample_id', palette=palette_col, size=4, jitter=True, linewidth=0.5, edgecolor='black', ax=ax[0])
-		ax[0].tick_params(axis='x', rotation=90, labelsize=5)
-		# plot legend outside of the plot
-		ax[0].legend(bbox_to_anchor=(1.01, 1),borderaxespad=0, markerscale=2, fontsize=10)
-		ax[0].set_xlabel('')
-		ylabel = textwrap.fill('AF per Site', width=15)
-		ax[0].set_ylabel(ylabel, fontsize=10)
+		# fig, ax = fig_tuple
+		# sns.boxplot(x='region_id', y='AF', data=input_df, color='whitesmoke', linecolor='black', showfliers=False, ax=ax[0])
+		# sns.stripplot(x='region_id', y='AF', data=input_df, hue='sample_id', palette=palette_col, size=4, jitter=True, linewidth=0.5, edgecolor='black', ax=ax[0])
+		# ax[0].tick_params(axis='x', rotation=90, labelsize=5)
+		# # plot legend outside of the plot
+		# ax[0].legend(bbox_to_anchor=(1.01, 1),borderaxespad=0, markerscale=2, fontsize=10)
+		# ax[0].set_xlabel('')
+		# ylabel = textwrap.fill('AF per Site', width=15)
+		# ax[0].set_ylabel(ylabel, fontsize=10)
 
-		sns.barplot(x='region_id', y='AF_var', data=input_df, color='darkslateblue', edgecolor='black', ax=ax[1])
-		ax[1].tick_params(axis='x', rotation=90, labelsize=5)
-		ax[1].set_xlabel('')
-		ax[1].set_ylabel('AF Variance', fontsize=10)
+		# sns.barplot(x='region_id', y='AF_var', data=input_df, color='darkslateblue', edgecolor='black', ax=ax[1])
+		# ax[1].tick_params(axis='x', rotation=90, labelsize=5)
+		# ax[1].set_xlabel('')
+		# ax[1].set_ylabel('AF Variance', fontsize=10)
 		
 
-		sns.boxplot(x='region_id', y='FPS_scaled', data=input_df, color='whitesmoke', linecolor='black', showfliers=False, ax=ax[2])
-		sns.stripplot(x='region_id', y='FPS_scaled', data=input_df, hue='sample_id', palette=palette_col, size=4, jitter=True, legend=False, linewidth=0.5, edgecolor='black', ax=ax[2])
-		ax[2].tick_params(axis='x', rotation=90, labelsize=5)
-		ax[2].set_xlabel('')
-		ylabel = textwrap.fill('Scaled FPS per Site', width=15)
-		ax[2].set_ylabel(ylabel, fontsize=10)
+		# sns.boxplot(x='region_id', y='FPS_scaled', data=input_df, color='whitesmoke', linecolor='black', showfliers=False, ax=ax[2])
+		# sns.stripplot(x='region_id', y='FPS_scaled', data=input_df, hue='sample_id', palette=palette_col, size=4, jitter=True, legend=False, linewidth=0.5, edgecolor='black', ax=ax[2])
+		# ax[2].tick_params(axis='x', rotation=90, labelsize=5)
+		# ax[2].set_xlabel('')
+		# ylabel = textwrap.fill('Scaled FPS per Site', width=15)
+		# ax[2].set_ylabel(ylabel, fontsize=10)
 
-		sns.barplot(x='region_id', y='FPS_scaled_var', data=input_df, color='darkslateblue', edgecolor='black', ax=ax[3])
-		ax[3].tick_params(axis='x', rotation=90, labelsize=5)
-		ax[3].set_xlabel(f'{motif_id} TF binding sites with allelic variants (median AF > 0.5)', fontsize=10)
-		ax[3].set_ylabel('FPS Variance', fontsize=10)
-		plt.subplots_adjust(hspace=0.8)
-		plt.tight_layout()
-
-		# save the plot
-		plt.savefig(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AFdist_per_site_AFvar_filtsorted_by_FPS_var_boxplot-IQR.pdf', dpi=300, bbox_inches="tight")
-		print('Plot saved.')
-		# # close the plot
-		# plt.close(fig)
-		# print('Plot space closed.')
+		# sns.barplot(x='region_id', y='FPS_scaled_var', data=input_df, color='darkslateblue', edgecolor='black', ax=ax[3])
+		# ax[3].tick_params(axis='x', rotation=90, labelsize=5)
+		# ax[3].set_xlabel(f'{motif_id} TF binding sites with allelic variants (median AF > 0.5)', fontsize=10)
+		# ax[3].set_ylabel('FPS Variance', fontsize=10)
+		# fig.subplots_adjust(hspace=1.0)
 	else:
 		print(f'{motif_id} box plots of AF distribution on filtered sites already exists. Skipping...')
 	################# END box plot of AF distr on filtered sorted sites as well as the substype-hued stripplot ################
@@ -399,20 +390,20 @@ def boxplot_maxima(fig_tuple, input_df, max_af, max_af_inv, max_fps, max_fps_inv
 		ax[3].set_ylabel('FPS Variance', fontsize=10)
 		if threshold == 'iqr':
 			ax[3].set_xlabel(f'{motif_id} binding sites with allelic variants (AF > 0.5 and passing IQR threshold)', fontsize=10)
-			plt.subplots_adjust(hspace=0.8)
+			fig.subplots_adjust(hspace=0.8)
 			# save the plot
 			print(f'Saving {motif_id} boxplot of AF distribution on filtered sorted sites...')
-			plt.savefig(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AFdist_per_site_AFvar_filtsorted_with_FPS_boxplot-maxima-IQR.pdf', dpi=300, bbox_inches="tight")
+			fig.savefig(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AFdist_per_site_AFvar_filtsorted_with_FPS_boxplot-maxima-IQR.pdf', dpi=300, bbox_inches="tight")
 			print('Plot saved.')
 			# # close the plot
 			# plt.close(fig)
 			# print('Plot space closed.')
 		elif threshold == 'median':
 			ax[3].set_xlabel(f'{motif_id} binding sites with allelic variants (AF > 0.5 and scaled FPS above median)', fontsize=10)
-			plt.subplots_adjust(hspace=0.8)
+			fig.subplots_adjust(hspace=1.0)
 			# save the plot
 			print(f'Saving {motif_id} boxplot of AF distribution on filtered sorted sites...')
-			plt.savefig(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AFdist_per_site_AFvar_filtsorted_with_FPS_boxplot-maxima-FPSmedian.pdf', dpi=300, bbox_inches="tight")
+			fig.savefig(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AFdist_per_site_AFvar_filtsorted_with_FPS_boxplot-maxima-FPSmedian.pdf', dpi=300, bbox_inches="tight")
 			print('Plot saved.')
 			# # close the plot
 			# plt.close(fig)
@@ -500,20 +491,20 @@ def boxplot_minima(fig_tuple, input_df, min_af, min_af_inv, min_fps, min_fps_inv
 		ax[3].set_ylabel('FPS Variance', fontsize=10)
 		if threshold == 'iqr':
 			ax[3].set_xlabel(f'{motif_id} binding sites with allelic variants (AF > 0.5 and passing IQR threshold)', fontsize=10)
-			plt.subplots_adjust(hspace=0.8)
+			fig.subplots_adjust(hspace=1.0)
 			# save the plot
 			print(f'Saving {motif_id} boxplot of AF distribution on filtered sorted sites...')
-			plt.savefig(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AFdist_per_site_AFvar_filtsorted_with_FPS_boxplot-minima-IQR.pdf', dpi=300, bbox_inches="tight")
+			fig.savefig(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AFdist_per_site_AFvar_filtsorted_with_FPS_boxplot-minima-IQR.pdf', dpi=300, bbox_inches="tight")
 			print('Plot saved.')
 			# # close the plot
 			# plt.close(fig)
 			# print('Plot space closed.')
 		elif threshold == 'median':
 			ax[3].set_xlabel(f'{motif_id} binding sites with allelic variants (AF > 0.5 and scaled FPS above median)', fontsize=10)
-			plt.subplots_adjust(hspace=0.8)
+			fig.subplots_adjust(hspace=1.0)
 			# save the plot
 			print(f'Saving {motif_id} boxplot of AF distribution on filtered sorted sites...')
-			plt.savefig(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AFdist_per_site_AFvar_filtsorted_with_FPS_boxplot-minima-FPSmedian.pdf', dpi=300, bbox_inches="tight")
+			fig.savefig(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AFdist_per_site_AFvar_filtsorted_with_FPS_boxplot-minima-FPSmedian.pdf', dpi=300, bbox_inches="tight")
 			print('Plot saved.')
 			# # close the plot
 			# plt.close(fig)
@@ -523,7 +514,7 @@ def boxplot_minima(fig_tuple, input_df, min_af, min_af_inv, min_fps, min_fps_inv
 		print(f'{motif_id} box plots of AF distribution on filtered sites already exists. Skipping...')
 	#################### END box plot of AF distr on filtered sorted sites (with minima) ################
 
-def process_data(target_file, output_path, plot=True, threshold='iqr'):
+def process_data(target_file, output_path, threshold, plot=True):
 	################ define color palettes ################
 	springpastel = ["#fd7f6f", "#7eb0d5", "#b2e061", "#bd7ebe", "#ffb55a"]
 	dutchfield_colordict = {'S6R691V_her2': "#e60049", 'ANAB5F7_basal': "#0bb4ff", '98JKPD8_lumA': "#87bc45", 'PU24GB8_lumB': "#ef9b20", '2GAMBDQ_norm': "#b33dc6"}
@@ -572,13 +563,13 @@ def process_data(target_file, output_path, plot=True, threshold='iqr'):
 	else:
 		print(f'{motif_id} data table with stats already exists. Skipping...')
 	# generate accessory plots
-	unfiltered_df, filtered_df = accessory_df(afps_stats_mergesorted)
+	filtered_df = accessory_df(afps_stats_mergesorted)
 	print(f'Saving {motif_id} FPS_scaled and AF variances filtered for values more than 0.001...')
 	# save file
 	filtered_df.to_csv(f'{output_path}/output-data/tables/{motif_id}/{motif_id}_afps_var_filtered_unique_regions.tsv', sep='\t', index=True)
 	# plot scatter plot of AF_var vs FPS_scaled_var
 	print(f'Plotting {motif_id} scatter plot of AF_var vs FPS_scaled_var...')
-	accessory_plot(unfiltered_df, filtered_df, motif_id, output_path)
+	accessory_plot(filtered_df, motif_id, output_path)
 	###########################################
 	################ SAVEPOINT ################
 	
@@ -598,76 +589,66 @@ def process_data(target_file, output_path, plot=True, threshold='iqr'):
 	# copy the filtered dataframe
 	mf_df = merged_filt_nozeroaf.copy()
 	mf_df = mf_df.reset_index(drop=True)
-	# calculate AF median per region_id
-	mf_df['AF_median'] = mf_df.groupby('region_id')['AF'].transform('median')
 	# to ensure that each unique region_id is retained as a group of subtype rows, we need to filter after grouping per region_id
 	print(f'Thresholding {motif_id} processed matrix...')
 	high_af = mf_df.groupby('region_id').filter(lambda x: (x['AF'] > 0.5).all())
+	low_af = mf_df.groupby('region_id').filter(lambda x: (x['AF'] <= 0.5).all())
 	######## THRESHOLDING ########
 	if threshold == 'iqr':
 		high_af_fps_outliers = thresholding_strat(high_af, 'iqr')
-	elif threshold == 'median':
-		high_af_fps_outliers = thresholding_strat(high_af, 'median', mf_df)
-	# discard sites if it has AF_var == 0
-	high_nzaf_outliers = high_af_fps_outliers[high_af_fps_outliers['AF_var'] != 0]
-	# extract unique region_ids from the high_nzaf_outliers df
-	high_af_uniq_reg = high_nzaf_outliers[['region_id', 'AF_var', 'FPS_scaled_var']].drop_duplicates()
-	# sort the region_id in the filtered high_af dataframe based on descending order of AF_var or FPS_scaled_var
-	# afvar_uniqsort = high_af_uniq_reg.sort_values(by='AF_var', ascending=False)
-	fpsvar_uniqsort = high_af_uniq_reg.sort_values(by='FPS_scaled_var', ascending=False)
-	# extract the region_id from the sorted dataframe
-	sorted_region_ids = fpsvar_uniqsort['region_id']
-	# Change 'region_id' to a categorical variable with the categories ordered by 'fps_sorted_region_ids'
-	df_copy = high_nzaf_outliers.copy()
-	df_copy['region_id'] = pd.Categorical(high_nzaf_outliers['region_id'], categories=sorted_region_ids, ordered=True)
-	# Filter the DataFrame
-	high_nzaf_outlie_filt = df_copy[df_copy['region_id'].isin(sorted_region_ids)]
-	# Sort the DataFrame by 'region_id'
-	high_nzaf_outlie_filt = high_nzaf_outlie_filt.sort_values('region_id')
-	# get unique sample_id values into a list to define a categorical order
-	datasets = high_nzaf_outlie_filt['sample_id'].unique().tolist()
-	datasets = sorted(datasets)
-	# Create a categorical variable with ordered categories
-	dataset_copy = high_nzaf_outlie_filt.copy()
-	dataset_copy['sample_id'] = pd.Categorical(dataset_copy['sample_id'], categories=datasets, ordered=True)
-	# Sort 'sample_id' within each 'region_id'
-	high_nzaf_outlie_filtsort = dataset_copy.groupby('region_id', sort=False, observed=False).apply(lambda x: x.sort_values('sample_id')).reset_index(drop=True)
-	################ SAVEPOINT ################
-	###########################################
-	if threshold == 'iqr':
-		if not os.path.exists(f'{output_path}/output-data/tables/{motif_id}/{motif_id}_high_AF_regions_passing_IQR_threshold_sorted_by_FPS_var_datatable.tsv'):
+		high_af_fps_outliers_filtsorted = filtersort_df(high_af_fps_outliers)
+		################ SAVEPOINT ################
+		###########################################
+		if not os.path.exists(f'{output_path}/output-data/tables/{motif_id}/{motif_id}_high_AF_regs_abv_IQR_threshold_sorted_by_FPS_var_table.tsv'):
 			print(f'Saving data table of {motif_id} regions with high AF (>0.5) passing IQR threshold and sorted by FPS variance...')
 			# save file
-			high_nzaf_outlie_filtsort.to_csv(f'{output_path}/output-data/tables/{motif_id}/{motif_id}_high_AF_regions_passing_IQR_threshold_sorted_by_FPS_var_datatable.tsv', sep='\t', index=False)
+			high_af_fps_outliers_filtsorted.to_csv(f'{output_path}/output-data/tables/{motif_id}/{motif_id}_high_AF_regs_abv_IQR_threshold_sorted_by_FPS_var_table.tsv', sep='\t', index=False)
 		else:
 			print(f'{motif_id} data table of regions passing IQR threshold already exists. Skipping...')
-	elif threshold == 'median':
-		if not os.path.exists(f'{output_path}/output-data/tables/{motif_id}/{motif_id}_high_AF_regions_above_median_FPS_sorted_by_FPS_var_datatable.tsv'):
-			print(f'Saving data table of {motif_id} regions with high AF (>0.5) above median FPS and sorted by FPS variance...')
-			# save file
-			high_nzaf_outlie_filtsort.to_csv(f'{output_path}/output-data/tables/{motif_id}/{motif_id}_high_AF_regions_above_median_FPS_sorted_by_FPS_var_datatable.tsv', sep='\t', index=False)
-		else:
-			print(f'{motif_id} data table of regions above median FPS already exists. Skipping...')
-	###########################################
-	################ SAVEPOINT ################
-	# find maxima and minima
-	max_fps_scaled, min_fps_scaled, max_af_raw, min_af_raw, max_fps_scaled_inv, min_fps_scaled_inv, max_af_raw_inv, min_af_raw_inv = find_min_max(high_nzaf_outlie_filtsort)
-	print(f'{motif_id} processed matrix has been extensively filtered and sorted. Entering plotting phase...')
+		###########################################
+		# find maxima and minima
+		max_fps_scaled, min_fps_scaled, max_af_raw, min_af_raw, max_fps_scaled_inv, min_fps_scaled_inv, max_af_raw_inv, min_af_raw_inv = find_min_max(high_af_fps_outliers_filtsorted)
+		print(f'{motif_id} processed matrix has been extensively filtered and sorted. Entering plotting phase...')
 
-	if plot == True:
-		fig_tuple = plt.subplots(figsize=(10, 10), dpi=300, num=1, clear=True)
-		boxplot_high_af(fig_tuple, high_af, motif_id, output_path, springpastel)
-		fig_tuple = plt.subplots(2, 1, figsize=(10, 10), dpi=300, num=1, clear=True)
-		boxplot_high_af_fps(fig_tuple, high_af, motif_id, output_path, springpastel)
-		fig_tuple = plt.subplots(4, 1, figsize=(10, 10), dpi=300, num=1, clear=True)
-		boxplot_high_af_filtsorted(fig_tuple, high_nzaf_outlie_filtsort, motif_id, output_path, dutchfield_colordict, threshold)
-		fig_tuple = plt.subplots(4, 1, figsize=(10, 10), dpi=300, num=1, clear=True)
-		boxplot_maxima(fig_tuple, high_nzaf_outlie_filtsort, max_af_raw, max_af_raw_inv, max_fps_scaled, max_fps_scaled_inv, motif_id, output_path, dutchfield_colordict, gray_colordict, threshold)
-		fig_tuple = plt.subplots(4, 1, figsize=(10, 10), dpi=300, num=1, clear=True)
-		boxplot_minima(fig_tuple, high_nzaf_outlie_filtsort, min_af_raw, min_af_raw_inv, min_fps_scaled, min_fps_scaled_inv, motif_id, output_path, dutchfield_colordict, gray_colordict, threshold)
-		plt.close('all')
-	else:
-		print('Skipping plotting phase...')
+		if plot == True:
+			fig_tuple = plt.subplots(figsize=(10, 10), dpi=150, num=1, clear=True)
+			boxplot_high_af(fig_tuple, high_af, motif_id, output_path, springpastel)
+			plt.close(fig_tuple[0])
+			fig_tuple = plt.subplots(2, 1, figsize=(10, 10), dpi=150, num=1, clear=True)
+			boxplot_high_af_fps(fig_tuple, high_af, motif_id, output_path, springpastel)
+			plt.close(fig_tuple[0])
+			fig_tuple = plt.subplots(4, 1, figsize=(10, 10), dpi=150, num=1, clear=True)
+			boxplot_high_af_filtsorted(fig_tuple, high_nzaf_outlie_filtsort, motif_id, output_path, dutchfield_colordict, threshold)
+			fig_tuple = plt.subplots(4, 1, figsize=(10, 10), dpi=150, num=1, clear=True)
+			boxplot_maxima(fig_tuple, high_nzaf_outlie_filtsort, max_af_raw, max_af_raw_inv, max_fps_scaled, max_fps_scaled_inv, motif_id, output_path, dutchfield_colordict, gray_colordict, threshold)
+			fig_tuple = plt.subplots(4, 1, figsize=(10, 10), dpi=150, num=1, clear=True)
+			boxplot_minima(fig_tuple, high_nzaf_outlie_filtsort, min_af_raw, min_af_raw_inv, min_fps_scaled, min_fps_scaled_inv, motif_id, output_path, dutchfield_colordict, gray_colordict, threshold)
+			# close all plots
+			plt.close(fig_tuple[0])
+		else:
+			print('Skipping plotting phase...')
+
+
+
+
+	elif threshold == 'central':
+		high_af_abovemean, high_af_belowmean, low_af_abovemean, low_af_belowmean = thresholding_strat(high_af, 'central', low_af, mf_df)
+		high_af_abvmean_fs = filtersort_df(high_af_abovemean)
+		high_af_blwmean_fs = filtersort_df(high_af_belowmean)
+		low_af_abvmean_fs = filtersort_df(low_af_abovemean)
+		low_af_blwmean_fs = filtersort_df(low_af_belowmean)
+		###########################################
+		################ SAVEPOINT ################
+		if not os.path.exists(f'{output_path}/output-data/tables/{motif_id}/{motif_id}_HI_AF_regs_abv_FPS-mean_sorted_by_FPS_var_table.tsv'):
+			print(f'Saving data table of {motif_id} regions above or below mean scaled FPS and sorted by FPS variance...')
+			# save files
+			high_af_abvmean_fs.to_csv(f'{output_path}/output-data/tables/{motif_id}/{motif_id}_HI_AF_regs_GT_FPS-mean_sorted_by_FPS_var_table.tsv', sep='\t', index=False)
+			high_af_blwmean_fs.to_csv(f'{output_path}/output-data/tables/{motif_id}/{motif_id}_HI_AF_regs_LT_FPS-mean_sorted_by_FPS_var_table.tsv', sep='\t', index=False)
+			low_af_abvmean_fs.to_csv(f'{output_path}/output-data/tables/{motif_id}/{motif_id}_LO_AF_regs_GT_FPS-mean_sorted_by_FPS_var_table.tsv', sep='\t', index=False)
+			low_af_blwmean_fs.to_csv(f'{output_path}/output-data/tables/{motif_id}/{motif_id}_LO_AF_regs_LT_FPS-mean_sorted_by_FPS_var_table.tsv', sep='\t', index=False)
+		else:
+			print(f'{motif_id} data tables of regions above or below FPS mean already exist. Skipping...')
+
 
 	if threshold == 'iqr':
 		print('Now quantifying the number of sites where a subtype has maximum FPS_scaled value...')

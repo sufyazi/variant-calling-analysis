@@ -1,16 +1,22 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC1091
+# shellcheck disable=SC2153
 
-#PBS -l select=1:ncpus=8:mem=300GB
-#PBS -l walltime=10:00:00
+#PBS -N plotting
+#PBS -l select=1:ncpus=8:mem=400GB
+#PBS -l walltime=4:00:00
 #PBS -j oe
-#PBS -P personal
+#PBS -P 12003580
 #PBS -q normal
 
 # load conda environment
 module load miniconda3/py38_4.8.3
 conda activate /home/users/ntu/suffiazi/apps/mambaforge/envs/plots
 
-python3 /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/plotting/AF_FPS_data-viz.py /home/users/ntu/suffiazi/scratch/outputs/tmp/input_data /home/users/ntu/suffiazi/scratch/outputs/tmp/plotting-v4
+# load environment variables
+input_dir=$INPUTDIR
+output_dir=$OUTPUTDIR
+
+python3 /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/plotting/AF_FPS_data-viz-v2.py "${input_dir}" "${output_dir}"
 
 
