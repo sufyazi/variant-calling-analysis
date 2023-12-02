@@ -391,7 +391,7 @@ def boxplot_minima(input_df, min_af, min_af_inv, min_fps, min_fps_inv, motif_id,
 		plt.subplots_adjust(hspace=0.05)
 		# save the plot
 		print(f'Saving {motif_id} boxplot of AF distribution on filtered sorted sites...')
-		plt.savefig(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AFdist_per_site_AFvar_filtsorted_with_FPS_boxplot-maxima.pdf', dpi=300, bbox_inches="tight")
+		plt.savefig(f'{output_path}/output-data/plots/{motif_id}/{motif_id}_AFdist_per_site_AFvar_filtsorted_with_FPS_boxplot-minima.pdf', dpi=300, bbox_inches="tight")
 		print('Plot saved.')
 		# close the plot
 		plt.close('all')
