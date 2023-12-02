@@ -480,7 +480,7 @@ def process_data(target_file, output_path, threshold, plot=True):
 	low_af = mf_df.groupby('region_id').filter(lambda x: (x['AF'] <= 0.5).all())
 	######## THRESHOLDING ########
 	if threshold == 'iqr':
-		high_af_fps_outliers = thresholding_strat(high_af, 'iqr')
+		high_af_fps_outliers, *_ = thresholding_strat(high_af, 'iqr')
 		high_af_fps_outliers_filtsorted = filtersort_df(high_af_fps_outliers)
 		################ SAVEPOINT ################
 		###########################################
@@ -575,11 +575,11 @@ else:
 if __name__ == '__main__':
 	inputs = process_input_tsv(root_dir)
 	# uncomment this to run serially
-	# for target_file in inputs:
-	# 	process_data(target_file, output_dir, True, 'iqr')
+	#for target_file in inputs:
+		#process_data(target_file, output_dir, 'iqr', True)
 
 	# uncomment this to run in parallel
 	with cf.ProcessPoolExecutor(max_workers=8) as executor:
-		executor.map(process_data, inputs, it.repeat(output_dir), it.repeat('iqr'), it.repeat(True))
+		executor.map(process_data, inputs, it.repeat(output_dir), it.repeat('central'), it.repeat(True))
 
 	print ("Pipeline finished! All footprint matrices have been processed.")

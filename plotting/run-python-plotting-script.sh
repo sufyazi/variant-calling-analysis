@@ -32,8 +32,8 @@ for ((i=0; i<array_length; i+=batch)); do
     echo "${part[-1]}" ": last file in this batch"
 
     # create a directory for this batch
-    mkdir -p /home/users/ntu/suffiazi/scratch/outputs/tmp/input_batch/batch-"${counter}"
-    batch_dir="/home/users/ntu/suffiazi/scratch/outputs/tmp/input_batch/batch-${counter}"
+    mkdir -p /home/users/ntu/suffiazi/scratch/outputs/tmp/input_batch-mean/batch-"${counter}"
+    batch_dir="/home/users/ntu/suffiazi/scratch/outputs/tmp/input_batch-mean/batch-${counter}"
 
     # create output directory for this batch
     mkdir -p "${output_dir}"/batch-"${counter}"
