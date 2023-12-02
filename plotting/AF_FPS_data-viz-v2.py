@@ -576,11 +576,11 @@ else:
 if __name__ == '__main__':
 	inputs = process_input_tsv(root_dir)
 	# uncomment this to run serially
-	for target_file in inputs:
-		process_data(target_file, output_dir, 'iqr', True)
+	# for target_file in inputs:
+	# 	process_data(target_file, output_dir, 'iqr', True)
 
 	# uncomment this to run in parallel
-	# with cf.ProcessPoolExecutor(max_workers=8) as executor:
-	# 	executor.map(process_data, inputs, it.repeat(output_dir), it.repeat('central'), it.repeat(True))
+	with cf.ProcessPoolExecutor(max_workers=8) as executor:
+		executor.map(process_data, inputs, it.repeat(output_dir), it.repeat('iqr'), it.repeat(True))
 
 	print ("Pipeline finished! All footprint matrices have been processed.")
