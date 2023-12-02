@@ -498,7 +498,7 @@ def process_data(target_file, output_path, threshold, plot=True):
 		if plot == True:
 			boxplot_region_filtsorted(high_af_fps_outliers_filtsorted, motif_id, output_path, dutchfield_colordict, threshold)
 			boxplot_maxima(high_af_fps_outliers_filtsorted, max_af_raw, max_af_raw_inv, max_fps_scaled, max_fps_scaled_inv, motif_id, output_path, dutchfield_colordict, gray_colordict)
-			boxplot_minima(high_af_fps_outliers_filtsorted, min_af_raw, min_af_raw_inv, min_fps_scaled, min_fps_scaled_inv, motif_id, output_path, dutchfield_colordict, gray_colordict, threshold)
+			boxplot_minima(high_af_fps_outliers_filtsorted, min_af_raw, min_af_raw_inv, min_fps_scaled, min_fps_scaled_inv, motif_id, output_path, dutchfield_colordict, gray_colordict)
 			# close all plots
 			plt.close('all')
 		else:
@@ -551,7 +551,8 @@ def process_data(target_file, output_path, threshold, plot=True):
 			low_af_blwmean_fs_subset = low_af_blwmean_fs[['region_id', 'sample_id']]
 			low_af_blwmean_fs_subset_df = low_af_blwmean_fs_subset.groupby('sample_id', observed=False)['region_id'].count().to_frame()
 			low_af_blwmean_fs_subset_df.to_csv(f'{output_path}/output-data/tables/{motif_id}/{motif_id}_LO-AF_LT-mean_regions_count.tsv', sep='\t', index=True)
-
+			print(f'All filtered data tables have been saved to file.')
+			print('Data analysis complete. Exiting...')
 		else:
 			print(f'{motif_id} data tables of regions above or below FPS mean already exist. Skipping...')
 
