@@ -27,20 +27,20 @@ else:
 if __name__ == '__main__':
 	# Find all max_af_df files in the root directory
 	target_dir = Path(root_dir)
-	tsv_files = target_dir.glob('**/*maximum_af*count.tsv')
+	tsv_files = target_dir.glob('**/*max_af_regions_count.tsv')
 	print(f'Currently processing maximum_af files in target directory: {target_dir}')
 	for i, tsv in enumerate(tsv_files):
 		if i == 0:
 			print(f'[File count:{i+1}] First file {os.path.basename(tsv)} has been loaded.')
 			# get motif ID
-			motif_id = tsv.stem.replace('_maximum_af_regions_count', '')
+			motif_id = tsv.stem.replace('_max_af_regions_count', '')
 			print(motif_id)
 			# load the first file
 			df_af = pd.read_csv(tsv, sep='\t')
 			# rename the column region_id to max_AF_region_count
 			df_af = df_af.rename(columns={'region_id': 'max_AF_region_count'})
 			# find the corresponding maximum fps file in the same target dir based on the motif ID
-			max_fps_file = str(next(target_dir.glob(f'**/{motif_id}_maximum_fps-scaled_regions_count.tsv')))
+			max_fps_file = str(next(target_dir.glob(f'**/{motif_id}_max_fps-scaled_regions_count.tsv')))
 			# load the maximum fps file
 			df_fps = pd.read_csv(max_fps_file, sep='\t')
 			# rename the column region_id to region_counts
@@ -54,14 +54,14 @@ if __name__ == '__main__':
 		else:
 			print(f'[File count:{i+1}] Subsequent file {os.path.basename(tsv)} has been loaded.')
 			# get motif ID
-			motif_id = tsv.stem.replace('_maximum_af_regions_count', '')
+			motif_id = tsv.stem.replace('_max_af_regions_count', '')
 			print(motif_id)
 			# load the max AF file
 			df_af = pd.read_csv(tsv, sep='\t')
 			# rename the column region_id to max_AF_region_count
 			df_af = df_af.rename(columns={'region_id': 'max_AF_region_count'})
 			# find the corresponding maximum fps file in the same target dir based on the motif ID
-			max_fps_file = str(next(target_dir.glob(f'**/{motif_id}_maximum_fps-scaled_regions_count.tsv')))
+			max_fps_file = str(next(target_dir.glob(f'**/{motif_id}_max_fps-scaled_regions_count.tsv')))
 			# load the maximum fps file
 			df_fps = pd.read_csv(max_fps_file, sep='\t')
 			# rename the column region_id to region_counts
