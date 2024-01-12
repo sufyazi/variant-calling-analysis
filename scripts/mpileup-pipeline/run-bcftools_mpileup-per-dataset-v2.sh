@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091
+# shellcheck disable=SC1091,SC2034
 
 # check arguments
 if [ "$#" -ne 4 ]; then
@@ -24,16 +24,16 @@ for data_id in "${data_ids[@]}"; do
     if [ -n "${bams[*]}" ]; then
         echo "Found bam files. Proceeding..."
         # create a file to store bam list
-        if [ ! -f /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/input_files/mpileup_lists/per-dataset/"${data_id}"_bam_list.txt ]; then
+        if [ ! -f /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/input_files/mpileup_lists/per-dataset/"${data_id}"_bamlist.txt ]; then
             mkdir -p /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/input_files/mpileup_lists/per-dataset
             for element in "${bams[@]}"; do
                 echo "$element"
-            done > /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/input_files/mpileup_lists/per-dataset/"${data_id}"_bam_list.txt
+            done > /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/input_files/mpileup_lists/per-dataset/"${data_id}"_bamlist.txt
         fi
         bam_files="/home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/input_files/mpileup_lists/per-dataset/${data_id}_bam_list.txt"
         echo "Submitting PBS jobs sequentially..."
-        # submit job
-        qsub -v TF_LIST="$3",BAM_INP="${bam_files}",OUT_DIR="${outfile}",ID="${data_id}" /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/customs/run-bcftools_mpileup_parallel-v2.pbs
+        # # submit job
+        # qsub -v TF_LIST="$3",BAM_INP="${bam_files}",OUT_DIR="${outfile}",ID="${data_id}" /home/users/ntu/suffiazi/scripts/gatk-workflow-scripts/scripts/customs/run-bcftools_mpileup_parallel-v2.pbs
     else
         echo "No bam files found in $bam_dir/$data_id"
         exit 1
